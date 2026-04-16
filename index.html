@@ -3,165 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank Soal Manman-team</title>
+    <title>VIP Bank Soal - Manman-team</title>
     <style>
         :root {
-            --bg-color: #f5f5f7; /* 苹果系统背景色 */
-            --card-bg: rgba(255, 255, 255, 0.7); /* 毛玻璃卡片背景 */
-            --text-color: #1d1d1f; /* 苹果系统主文字色 */
-            --secondary-text: #86868b; /* 苹果系统次级文字色 */
-            --accent-color: #0071e3; /* 苹果系统蓝色 */
-            --accent-hover: #007aff;
-            --ans-bg: rgba(245, 245, 247, 0.8); /* 答案框毛玻璃 */
+            /* 高级赌场暗黑金配色 */
+            --bg-color: #121212; /* 炭黑色 */
+            --text-color: #f5f5f7; /* 极白 */
+            --accent-gold: #c6a36c; /* 深金色 */
+            --accent-gold-hover: #e5d1ae; /* 浅金色 */
+            --glass-bg: rgba(25, 25, 25, 0.7); /* 暗黑玻璃卡片背景 */
+            --glass-border: rgba(198, 163, 108, 0.2); /* 极淡的金边 */
+            --sidebar-glass: rgba(0, 0, 0, 0.5); /* 两侧毛玻璃背景 */
+        }
+
+        /* 核心：金沙粒子背景特效 */
+        @keyframes goldDust {
+            0% { transform: translateY(0px) translateX(0px); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-1000px) translateX(20px); opacity: 0; }
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%); /* 柔和渐变背景 */
+            background-color: var(--bg-color);
             color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            padding: 60px 20px;
             margin: 0;
-            -webkit-font-smoothing: antialiased; /* 抗锯齿，更精致 */
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
             min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        .container {
-            max-width: 680px;
+        /* 创建粒子层 */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(#c6a36c 1px, transparent 1px),
+                radial-gradient(#c6a36c 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px;
+            opacity: 0.05;
+            animation: goldDust 60s linear infinite;
+            z-index: 1;
+        }
+
+        /* 主体布局：两侧侧边栏 + 中间问答区 */
+        .wrapper {
+            display: flex;
             width: 100%;
+            position: relative;
+            z-index: 2; /* 保证在粒子上方 */
+        }
+
+        /* 解决太空问题：两侧的毛玻璃浮雕层 */
+        .sidebar {
+            flex: 1; /* 占据剩余空间 */
+            background: var(--sidebar-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar:hover {
+            opacity: 1;
+        }
+
+        /* 两侧的金色线条动物浮雕（使用CSS勾勒或SVG placeholder） */
+        .animal-carving {
+            width: 80%;
+            max-width: 300px;
+            height: auto;
+            opacity: 0.3;
+            filter: drop-shadow(0 0 5px var(--accent-gold)); /* 增加金色微光 */
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar:hover .animal-carving {
+            opacity: 0.6;
+        }
+
+        /* 中间的主问答区 */
+        .main-content {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            box-sizing: border-box;
+            background-color: rgba(18, 18, 18, 0.95); /* 稍微深一点，突出中间 */
         }
 
         h2 {
             text-align: center;
-            color: #1d1d1f;
-            margin-bottom: 50px;
-            font-size: 2.4rem;
-            font-weight: 700;
-            letter-spacing: -0.015em; /* 苹果系统字距微调 */
+            color: var(--accent-gold); /* 标题使用深金 */
+            margin-bottom: 60px;
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            text-shadow: 0 2px 10px rgba(198, 163, 108, 0.4); /* 增加标题微光 */
         }
 
+        h2::before {
+            content: '🏛️ '; /* 赌场大厅图标 */
+            font-size: 2.2rem;
+        }
+
+        /* 问答筹码展示盒设计 */
         .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px); /* 核心毛玻璃效果 */
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 24px; /* 更圆润的圆角 */
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
             padding: 30px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.3); /* 精细边框 */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03); /* 极细腻的阴影 */
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 30px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
         }
 
         .card:hover {
-            transform: translateY(-5px); /* 悬浮吸附感 */
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(198, 163, 108, 0.15); /* 悬浮时的金色光晕 */
+            border-color: rgba(198, 163, 108, 0.5); /* 悬浮时金边更明显 */
         }
 
         .question {
-            font-size: 1.25rem;
+            font-size: 1.35rem;
             font-weight: 600;
             color: var(--text-color);
-            margin-bottom: 18px;
+            margin-bottom: 20px;
             line-height: 1.4;
+            display: flex;
+            align-items: center;
         }
 
-        /* 优雅的答案展开动画 */
+        .question::before {
+            content: '♠️ '; /* 问题使用扑克黑桃前缀 */
+            color: var(--accent-gold);
+            margin-right: 10px;
+            opacity: 0.8;
+        }
+
+        /* 丝滑的答案展开动画 */
         .answer-wrapper {
-            opacity: 0;
-            transform: scale(0.9); /* 初始缩小 */
             max-height: 0;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* 弹性过渡 */
-            pointer-events: none; /* 隐藏时不可点 */
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* 果味弹性 */
         }
 
         .answer-wrapper.open {
-            opacity: 1;
-            transform: scale(1); /* 放大回正 */
-            max-height: 500px; /* 容纳长文本 */
-            margin-top: 20px;
-            pointer-events: auto; /* 展开后可点 */
+            max-height: 800px; /* 容纳更长文本 */
+            margin-top: 25px;
         }
 
         .answer-box {
-            background: var(--ans-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.3);
             padding: 20px;
-            border-radius: 16px;
-            color: #444;
-            line-height: 1.6;
-            font-size: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 14px;
+            color: #ccc;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .answer-title {
             font-weight: 700;
-            color: var(--text-color);
+            color: var(--accent-gold); /* 答案开头：深金 */
             margin-bottom: 8px;
             display: block;
-            opacity: 0.8;
         }
 
-        /* 苹果风格的毛玻璃按钮 */
+        /* 赌场高级感按钮：暗玻璃金边 */
         .show-btn {
-            background: rgba(0, 113, 227, 0.8);
-            backdrop-filter: blur(5px);
-            color: white;
-            border: none;
-            padding: 12px 26px;
-            border-radius: 14px;
+            background: transparent;
+            color: var(--accent-gold);
+            border: 2px solid var(--accent-gold);
+            padding: 12px 28px;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 600;
-            transition: background-color 0.2s ease, transform 0.1s ease;
-            position: absolute;
-            top: 20px;
-            right: 20px;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            text-transform: uppercase; /* 按钮文字全大写 */
+            letter-spacing: 0.1em;
         }
 
         .show-btn:hover {
-            background: rgba(0, 122, 255, 1);
+            background-color: var(--accent-gold);
+            color: #121212;
+            box-shadow: 0 0 15px rgba(198, 163, 108, 0.6);
         }
 
         .show-btn:active {
-            transform: scale(0.97); /* 点击时的按压感 */
+            transform: scale(0.96);
         }
 
-        /* 手机端适配 */
-        @media (max-width: 600px) {
-            .card {
-                padding: 25px;
-                position: static; /* 手机端按钮放在问题下方 */
+        /* 手机端适配：合并侧边栏 */
+        @media (max-width: 1024px) {
+            .wrapper {
+                flex-direction: column;
             }
-            .question {
-                font-size: 1.15rem;
-                margin-bottom: 20px;
+            .sidebar {
+                display: none; /* 手机端暂时隐藏侧边栏动物，保持整洁 */
             }
-            .show-btn {
-                position: relative;
-                top: auto;
-                right: auto;
-                display: block;
+            .main-content {
                 width: 100%;
-                text-align: center;
-                margin-bottom: -10px;
+                max-width: 100%;
+                padding: 60px 20px;
             }
             h2 {
-                font-size: 1.8rem;
-                margin-bottom: 30px;
+                font-size: 2rem;
+                margin-bottom: 40px;
             }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>Bank Soal Manman-team</h2>
-    <div id="quiz-list"></div>
+<div class="wrapper">
+    <aside class="sidebar left-sidebar">
+        <svg class="animal-carving" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 10 C30 10, 10 30, 10 50 C10 70, 30 90, 50 90 C70 90, 90 70, 90 50 C90 30, 70 10, 50 10" fill="none" stroke="#c6a36c" stroke-width="0.5"/>
+            <text x="50" y="55" text-anchor="middle" fill="#c6a36c" font-size="6">Cendrawasih</text>
+        </svg>
+    </aside>
+
+    <main class="main-content">
+        <h2>Bank Soal Manman-team</h2>
+        <div id="quiz-list"></div>
+    </main>
+
+    <aside class="sidebar right-sidebar">
+        <svg class="animal-carving" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 50 L30 30 L70 30 L90 50 L70 70 L30 70 Z" fill="none" stroke="#c6a36c" stroke-width="0.5"/>
+            <text x="50" y="55" text-anchor="middle" fill="#c6a36c" font-size="6">Komodo</text>
+        </svg>
+    </aside>
 </div>
 
 <script>
