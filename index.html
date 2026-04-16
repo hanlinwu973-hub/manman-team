@@ -3,301 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP Bank Soal - Manman-team</title>
+    <title>VIP Manman Elite</title>
     <style>
         :root {
-            /* 高级赌场暗黑金配色 */
-            --bg-color: #121212; /* 炭黑色 */
-            --text-color: #f5f5f7; /* 极白 */
-            --accent-gold: #c6a36c; /* 深金色 */
-            --accent-gold-hover: #e5d1ae; /* 浅金色 */
-            --glass-bg: rgba(25, 25, 25, 0.7); /* 暗黑玻璃卡片背景 */
-            --glass-border: rgba(198, 163, 108, 0.2); /* 极淡的金边 */
-            --sidebar-glass: rgba(0, 0, 0, 0.5); /* 两侧毛玻璃背景 */
-        }
-
-        /* 核心：金沙粒子背景特效 */
-        @keyframes goldDust {
-            0% { transform: translateY(0px) translateX(0px); opacity: 0; }
-            10% { opacity: 0.3; }
-            90% { opacity: 0.3; }
-            100% { transform: translateY(-1000px) translateX(20px); opacity: 0; }
+            --gold: #d4af37;
+            --dark-gold: #aa841e;
+            --black: #0a0a0a;
+            --glass: rgba(20, 20, 20, 0.85);
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--black);
+            color: white;
+            font-family: 'Playfair Display', serif, system-ui;
             margin: 0;
-            padding: 0;
-            -webkit-font-smoothing: antialiased;
-            min-height: 100vh;
-            display: flex;
             overflow-x: hidden;
-            position: relative;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+            min-height: 100vh;
         }
 
-        /* 创建粒子层 */
-        body::before {
+        /* 背景流光特效 */
+        .bg-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/dark-leather.png');
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        /* 顶部霸气标题 */
+        .header-vip {
+            text-align: center;
+            padding: 50px 0;
+            background: linear-gradient(to bottom, rgba(212,175,55,0.1) 0%, transparent 100%);
+        }
+
+        .header-vip h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            filter: drop-shadow(0 0 15px rgba(212,175,55,0.3));
+        }
+
+        /* 侧边印尼图腾装饰 */
+        .side-totem {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 250px;
+            height: 600px;
+            opacity: 0.2;
+            pointer-events: none;
+            transition: opacity 0.5s;
+        }
+
+        .totem-left { left: 20px; border-right: 2px solid var(--gold); }
+        .totem-right { right: 20px; border-left: 2px solid var(--gold); }
+
+        .totem-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            color: var(--gold);
+            font-size: 5rem;
+            font-weight: bold;
+            opacity: 0.1;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* 问答主容器 */
+        .main-stage {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* 筹码卡片设计 */
+        .vip-card {
+            background: var(--glass);
+            border: 1px solid var(--gold);
+            border-radius: 0;
+            margin-bottom: 40px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .vip-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                radial-gradient(#c6a36c 1px, transparent 1px),
-                radial-gradient(#c6a36c 1px, transparent 1px);
-            background-size: 50px 50px;
-            background-position: 0 0, 25px 25px;
-            opacity: 0.05;
-            animation: goldDust 60s linear infinite;
-            z-index: 1;
-        }
-
-        /* 主体布局：两侧侧边栏 + 中间问答区 */
-        .wrapper {
-            display: flex;
-            width: 100%;
-            position: relative;
-            z-index: 2; /* 保证在粒子上方 */
-        }
-
-        /* 解决太空问题：两侧的毛玻璃浮雕层 */
-        .sidebar {
-            flex: 1; /* 占据剩余空间 */
-            background: var(--sidebar-glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-
-        .sidebar:hover {
-            opacity: 1;
-        }
-
-        /* 两侧的金色线条动物浮雕（使用CSS勾勒或SVG placeholder） */
-        .animal-carving {
-            width: 80%;
-            max-width: 300px;
-            height: auto;
+            top: -5px; left: -5px; right: -5px; bottom: -5px;
+            border: 1px solid var(--dark-gold);
             opacity: 0.3;
-            filter: drop-shadow(0 0 5px var(--accent-gold)); /* 增加金色微光 */
-            transition: opacity 0.3s ease;
         }
 
-        .sidebar:hover .animal-carving {
-            opacity: 0.6;
+        .vip-card:hover {
+            transform: scale(1.02);
+            border-color: #fff;
+            box-shadow: 0 0 30px rgba(212,175,55,0.2);
         }
 
-        /* 中间的主问答区 */
-        .main-content {
-            width: 100%;
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 80px 40px;
-            box-sizing: border-box;
-            background-color: rgba(18, 18, 18, 0.95); /* 稍微深一点，突出中间 */
-        }
+        .card-inner { padding: 30px; }
 
-        h2 {
-            text-align: center;
-            color: var(--accent-gold); /* 标题使用深金 */
-            margin-bottom: 60px;
-            font-size: 2.8rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            text-shadow: 0 2px 10px rgba(198, 163, 108, 0.4); /* 增加标题微光 */
-        }
-
-        h2::before {
-            content: '🏛️ '; /* 赌场大厅图标 */
-            font-size: 2.2rem;
-        }
-
-        /* 问答筹码展示盒设计 */
-        .card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(198, 163, 108, 0.15); /* 悬浮时的金色光晕 */
-            border-color: rgba(198, 163, 108, 0.5); /* 悬浮时金边更明显 */
-        }
-
-        .question {
-            font-size: 1.35rem;
-            font-weight: 600;
-            color: var(--text-color);
+        .question-txt {
+            font-size: 1.5rem;
+            color: #fcf6ba;
             margin-bottom: 20px;
-            line-height: 1.4;
-            display: flex;
-            align-items: center;
+            font-weight: 300;
+            letter-spacing: 1px;
         }
 
-        .question::before {
-            content: '♠️ '; /* 问题使用扑克黑桃前缀 */
-            color: var(--accent-gold);
-            margin-right: 10px;
-            opacity: 0.8;
-        }
-
-        /* 丝滑的答案展开动画 */
-        .answer-wrapper {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* 果味弹性 */
-        }
-
-        .answer-wrapper.open {
-            max-height: 800px; /* 容纳更长文本 */
-            margin-top: 25px;
-        }
-
-        .answer-box {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            border-radius: 14px;
-            color: #ccc;
-            line-height: 1.7;
-            font-size: 1.05rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .answer-title {
-            font-weight: 700;
-            color: var(--accent-gold); /* 答案开头：深金 */
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        /* 赌场高级感按钮：暗玻璃金边 */
-        .show-btn {
-            background: transparent;
-            color: var(--accent-gold);
-            border: 2px solid var(--accent-gold);
-            padding: 12px 28px;
-            border-radius: 12px;
+        /* 翻牌特效按钮 */
+        .flip-btn {
+            background: linear-gradient(45deg, var(--dark-gold), var(--gold));
+            border: none;
+            color: black;
+            padding: 12px 35px;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 1rem;
-            font-weight: 700;
-            transition: all 0.2s ease;
-            text-transform: uppercase; /* 按钮文字全大写 */
-            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+            transition: 0.3s;
         }
 
-        .show-btn:hover {
-            background-color: var(--accent-gold);
-            color: #121212;
-            box-shadow: 0 0 15px rgba(198, 163, 108, 0.6);
+        .flip-btn:hover {
+            letter-spacing: 5px;
+            background: white;
         }
 
-        .show-btn:active {
-            transform: scale(0.96);
+        .ans-content {
+            height: 0;
+            overflow: hidden;
+            transition: 0.5s;
+            opacity: 0;
+            color: #ddd;
+            line-height: 1.8;
+            border-top: 0px solid var(--gold);
         }
 
-        /* 手机端适配：合并侧边栏 */
-        @media (max-width: 1024px) {
-            .wrapper {
-                flex-direction: column;
-            }
-            .sidebar {
-                display: none; /* 手机端暂时隐藏侧边栏动物，保持整洁 */
-            }
-            .main-content {
-                width: 100%;
-                max-width: 100%;
-                padding: 60px 20px;
-            }
-            h2 {
-                font-size: 2rem;
-                margin-bottom: 40px;
-            }
+        .ans-content.reveal {
+            height: auto;
+            padding-top: 25px;
+            margin-top: 20px;
+            opacity: 1;
+            border-top: 1px solid var(--dark-gold);
+        }
+
+        /* 装饰粒子 */
+        .particle {
+            position: fixed;
+            background: var(--gold);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.5;
+            animation: float 10s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        @media (max-width: 1100px) {
+            .side-totem { display: none; }
         }
     </style>
 </head>
 <body>
 
-<div class="wrapper">
-    <aside class="sidebar left-sidebar">
-        <svg class="animal-carving" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <path d="M50 10 C30 10, 10 30, 10 50 C10 70, 30 90, 50 90 C70 90, 90 70, 90 50 C90 30, 70 10, 50 10" fill="none" stroke="#c6a36c" stroke-width="0.5"/>
-            <text x="50" y="55" text-anchor="middle" fill="#c6a36c" font-size="6">Cendrawasih</text>
-        </svg>
-    </aside>
+    <div class="bg-glow"></div>
+    
+    <div class="side-totem totem-left">
+        <div class="totem-text">CENDRAWASIH</div>
+    </div>
+    <div class="side-totem totem-right">
+        <div class="totem-text">HARIMAU INDO</div>
+    </div>
 
-    <main class="main-content">
-        <h2>Bank Soal Manman-team</h2>
-        <div id="quiz-list"></div>
-    </main>
+    <header class="header-vip">
+        <h1>MANMAN ELITE</h1>
+    </header>
 
-    <aside class="sidebar right-sidebar">
-        <svg class="animal-carving" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 50 L30 30 L70 30 L90 50 L70 70 L30 70 Z" fill="none" stroke="#c6a36c" stroke-width="0.5"/>
-            <text x="50" y="55" text-anchor="middle" fill="#c6a36c" font-size="6">Komodo</text>
-        </svg>
-    </aside>
-</div>
+    <main class="main-stage" id="stage"></main>
 
-<script>
-    const myData = [
-        { q: "wd berapa ?", a: "Saya tidak bisa jamin wd berapa kak karena kaka bisa cek live rtp disitu dan live wd di situsnya dan bisa lihat wd banyak dari game apa coba kaka bisa ikutin game tersebut." },
-        { q: "kalo gak wd gimana ?", a: "Kalo ga wd, situs menyediakan kompensasi kaa dalam 1x24 jam nanti kaka akan dapat beberapa jumlah saldo disitus Kembali." },
-        { q: "bisa maxwin gak kalo bisa aku main ?", a: "Kalo maxwin bisa aja ka, tapi saranku coba aja kaa dari modal kecil kalo wd kaka lanjut barangkali kaka maxwin dan semisal ga maxwin paling-paling wd tipis dan kalo ga wd ada kompensasi ka." },
-        { q: "kalo wd bisa ajak teman mabar ?", a: "Tentu saja bisa kak, jika kakak bisa mengajak teman untuk bermain bersama dan mengikuti strategi kami, peluang kemenangan akan jauh lebih besar." },
-        { q: "apa situs di Facebook itu penipuan ?", a: "Akun Facebook tersebut adalah akun buzzer dari situs pesaing yang sengaja menjelekkan kami. Beberapa bahkan memanipulasi ID pengguna, seperti mengubah deposit 50rb menjadi 200rb." },
-        { q: "wd ke Dijamin/JP beneran aman ?", a: "WD itu tergantung keberuntungan kak, tapi saya bisa bantu kirim pola gacor dan bantu klaim bonus deposit serta free spin, asalkan kakak deposit pakai nomor yang terdaftar." },
-        { q: "ini situs tipu-tipu ya ?", a: "Maaf kak, kemungkinan besar itu admin situs sebelah yang sengaja menjelekkan situs kami. Itu hanya kerjaan buzzer. Jangan khawatir, situs kami resmi dan berlisensi, dijamin aman." },
-        { q: "berapa banyak yang bisa di-wd ?", a: "Mengenai wd, saya tidak bisa kasih nominal pastinya kak, tapi kakak bisa coba pola gacor yang saya kirim. Setelah deposit, kakak dapat bonus 10x free spin untuk semua game 🥰" },
-        { q: "apakah pasti bisa wd ?", a: "Kami tidak bisa menjamin kemenangan, tetapi ada data RTP live yang bisa digunakan untuk memilih game dengan peluang menang tinggi." },
-        { q: "nominal wd-nya berapa ?", a: "Untuk nominal wd, kami tidak bisa memberikan info akurat karena itu sepenuhnya tergantung dari permainan dan taruhan kakak selanjutnya." },
-        { q: "main di game apa ?", a: "Kakak bisa memilih game yang sedang gacor atau yang memiliki persentase RTP tinggi saat ini." }
-    ];
+    <script>
+        const data = [
+            { q: "wd berapa ?", a: "Saya tidak bisa jamin wd berapa kak karena kaka bisa cek live rtp disitu dan live wd di situsnya dan bisa lihat wd banyak dari game apa coba kaka bisa ikutin game tersebut." },
+            { q: "kalo gak wd gimana ?", a: "Kalo ga wd, situs menyediakan kompensasi kaa dalam 1x24 jam nanti kaka akan dapat beberapa jumlah saldo disitus Kembali." },
+            { q: "bisa maxwin gak kalo bisa aku main ?", a: "Kalo maxwin bisa aja ka, tapi saranku coba aja kaa dari modal kecil kalo wd kaka lanjut barangkali kaka maxwin dan semisal ga maxwin paling-paling wd tipis dan kalo ga wd ada kompensasi ka." },
+            { q: "kalo wd bisa ajak teman mabar ?", a: "Tentu saja bisa kak, jika kakak bisa mengajak teman untuk bermain bersama dan mengikuti strategi kami, peluang kemenangan akan jauh lebih besar." },
+            { q: "apa situs di Facebook itu penipuan ?", a: "Akun Facebook tersebut adalah akun buzzer dari situs pesaing yang sengaja menjelekkan kami. Beberapa bahkan memanipulasi ID pengguna, seperti mengubah deposit 50rb menjadi 200rb." },
+            { q: "wd ke Dijamin/JP beneran aman ?", a: "WD itu tergantung keberuntungan kak, tapi saya bisa bantu kirim pola gacor dan bantu klaim bonus deposit serta free spin, asalkan kakak deposit pakai nomor yang terdaftar." },
+            { q: "ini situs tipu-tipu ya ?", a: "Maaf kak, kemungkinan besar itu admin situs sebelah yang sengaja menjelekkan situs kami. Itu hanya kerjaan buzzer. Jangan khawatir, situs kami resmi dan berlisensi, dijamin aman." },
+            { q: "berapa banyak yang bisa di-wd ?", a: "Mengenai wd, saya tidak bisa kasih nominal pastinya kak, tapi kakak bisa coba pola gacor yang saya kirim. Setelah deposit, kakak dapat bonus 10x free spin untuk semua game 🥰" },
+            { q: "apakah pasti bisa wd ?", a: "Kami tidak bisa menjamin kemenangan, tetapi ada data RTP live yang bisa digunakan untuk memilih game dengan peluang menang tinggi." },
+            { q: "nominal wd-nya berapa ?", a: "Untuk nominal wd, kami tidak bisa memberikan info akurat karena itu sepenuhnya tergantung dari permainan dan taruhan kakak selanjutnya." },
+            { q: "main di game apa ?", a: "Kakak bisa memilih game yang sedang gacor atau yang memiliki persentase RTP tinggi saat ini." }
+        ];
 
-    function render() {
-        const list = document.getElementById('quiz-list');
-        list.innerHTML = myData.map((item, i) => `
-            <div class="card">
-                <div class="question">${i + 1}. ${item.q}</div>
-                <button class="show-btn" id="btn-${i}" onclick="toggle(${i})">Lihat Jawaban</button>
-                <div class="answer-wrapper" id="wrapper-${i}">
-                    <div class="answer-box">
-                        <span class="answer-title">Jawaban:</span>
-                        ${item.a}
+        const stage = document.getElementById('stage');
+
+        data.forEach((item, i) => {
+            const card = document.createElement('div');
+            card.className = 'vip-card';
+            card.innerHTML = `
+                <div class="card-inner">
+                    <div class="question-txt">QUESTION ${i+1}: ${item.q}</div>
+                    <button class="flip-btn" onclick="showAns(${i})">Buka Kartu</button>
+                    <div class="ans-content" id="ans-${i}">
+                        <strong>VIP ADVICE:</strong><br>${item.a}
                     </div>
                 </div>
-            </div>
-        `).join('');
-    }
+            `;
+            stage.appendChild(card);
+        });
 
-    window.toggle = (i) => {
-        const wrapper = document.getElementById(`wrapper-${i}`);
-        const btn = document.getElementById(`btn-${i}`);
-        
-        if (wrapper.classList.contains('open')) {
-            wrapper.classList.remove('open');
-            btn.innerText = 'Lihat Jawaban';
-        } else {
-            wrapper.classList.add('open');
-            btn.innerText = 'Sembunyikan';
+        function showAns(i) {
+            const el = document.getElementById('ans-'+i);
+            el.classList.toggle('reveal');
         }
-    };
 
-    render();
-</script>
-
+        // 生成装饰粒子
+        for(let i=0; i<20; i++) {
+            let p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.width = p.style.height = Math.random() * 5 + 'px';
+            p.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            p.style.animationDelay = Math.random() * 5 + 's';
+            document.body.appendChild(p);
+        }
+    </script>
 </body>
 </html>
