@@ -16,14 +16,11 @@
     </style>
 </head>
 <body>
-
 <div class="container">
-    <h2>📖 Bank Soal Manman-team (Update)</h2>
+    <h2>📖 Bank Soal Manman-team</h2>
     <div id="quiz-list"></div>
 </div>
-
 <script>
-    // 整合后的所有问答数据
     const myData = [
         { q: "wd berapa ?", a: "Saya tidak bisa jamin wd berapa kak karena kaka bisa cek live rtp disitu dan live wd di situsnya dan bisa lihat wd banyak dari game apa coba kaka bisa ikutin game tersebut." },
         { q: "kalo gak wd gimana ?", a: "Kalo ga wd, situs menyediakan kompensasi kaa dalam 1x24 jam nanti kaka akan dapat beberapa jumlah saldo disitus Kembali." },
@@ -37,20 +34,15 @@
         { q: "nominal wd-nya berapa ?", a: "Untuk nominal wd, kami tidak bisa memberikan info akurat karena itu sepenuhnya tergantung dari permainan dan taruhan kakak selanjutnya." },
         { q: "main di game apa ?", a: "Kakak bisa memilih game yang sedang gacor atau yang memiliki persentase RTP tinggi saat ini." }
     ];
-
     function render() {
         const list = document.getElementById('quiz-list');
         list.innerHTML = myData.map((item, i) => `
             <div class="card">
                 <div class="question">${i + 1}. ${item.q}</div>
                 <button class="show-btn" id="btn-${i}" onclick="toggle(${i})">Lihat Jawaban</button>
-                <div class="answer-box" id="ans-${i}">
-                    <strong>Jawaban:</strong><br>${item.a}
-                </div>
-            </div>
-        `).join('');
+                <div class="answer-box" id="ans-${i}"><strong>Jawaban:</strong><br>${item.a}</div>
+            </div>`).join('');
     }
-
     window.toggle = (i) => {
         const box = document.getElementById(`ans-${i}`);
         const btn = document.getElementById(`btn-${i}`);
@@ -62,9 +54,7 @@
             btn.innerText = 'Sembunyikan';
         }
     };
-
     render();
 </script>
-
 </body>
 </html>
