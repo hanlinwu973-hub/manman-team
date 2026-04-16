@@ -1,42 +1,87 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manman-team 题库</title>
+    <title>Bank Soal Manman-team</title>
     <style>
-        body { font-family: sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
+        body { font-family: 'PingFang SC', sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
         .container { max-width: 600px; width: 100%; }
+        h2 { text-align: center; color: #333; }
         .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .question { font-size: 1.1rem; font-weight: bold; color: #2c3e50; margin-bottom: 10px; }
-        .answer-box { background: #f8f9fa; border-left: 4px solid #4a90e2; padding: 10px 15px; margin-top: 10px; display: none; color: #d9534f; }
-        .show-btn { background: #4a90e2; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; }
+        .answer-box { 
+            background: #f8f9fa; 
+            border-left: 4px solid #4a90e2; 
+            padding: 10px 15px; 
+            margin-top: 10px; 
+            display: none; 
+            color: #d9534f;
+            font-weight: 500;
+        }
+        .show-btn { 
+            background: #4a90e2; 
+            color: white; 
+            border: none; 
+            padding: 8px 15px; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-size: 0.9rem;
+        }
+        .show-btn:hover { background: #357abd; }
     </style>
 </head>
 <body>
+
 <div class="container">
-    <h2>📖 Manman-team 问答库</h2>
+    <h2>📖 Bank Soal Manman-team</h2>
     <div id="quiz-list"></div>
 </div>
+
 <script>
+    // Data Pertanyaan dan Jawaban
     const myData = [
-        { q: "wd berapa ?", a: "saya tidak bisa jamin wd berapa kak karena kaka bisa cek live rtp disitu..." },
-        { q: "kalo gak wd gimana ?", a: "kalo ga wd, situs menyediakan kompensasi kaa..." },
-        { q: "bisa maxwin gak kalo bisa aku main", a: "kalo maxwin bisa aja ka, tapi saranku coba aja kaa..." }
+        {
+            q: "wd berapa ?",
+            a: "saya tidak bisa jamin wd berapa kak karena kaka bisa cek live rtp disitu dan live wd di situsnya dan bisa lihat wd banyak dari game apa coba kaka bisa ikutin game tersebut"
+        },
+        {
+            q: "kalo gak wd gimana ?",
+            a: "kalo ga wd, situs menyediakan kompensasi kaa dalam 1x24 jam nanti kaka akan dapat beberapa jumlah saldo disitus Kembali"
+        },
+        {
+            q: "bisa maxwin gak kalo bisa aku main",
+            a: "kalo maxwin bisa aja ka, tapi saranku coba aja kaa dari modal kecil kalo wd kaka lanjut barangkali kaka maxwin dan semisal ga maxwin paling paling wd tipis dan kalo ga wd ada kompensasi ka"
+        }
     ];
+
     function render() {
-        document.getElementById('quiz-list').innerHTML = myData.map((item, i) => `
+        const list = document.getElementById('quiz-list');
+        list.innerHTML = myData.map((item, i) => `
             <div class="card">
                 <div class="question">${i + 1}. ${item.q}</div>
-                <button class="show-btn" onclick="toggle(${i})">查看答案</button>
-                <div class="answer-box" id="ans-${i}">Menjawab：${item.a}</div>
-            </div>`).join('');
+                <button class="show-btn" id="btn-${i}" onclick="toggle(${i})">Lihat Jawaban</button>
+                <div class="answer-box" id="ans-${i}">
+                    Jawaban: ${item.a}
+                </div>
+            </div>
+        `).join('');
     }
+
     window.toggle = (i) => {
         const box = document.getElementById(`ans-${i}`);
-        box.style.display = box.style.display === 'block' ? 'none' : 'block';
+        const btn = document.getElementById(`btn-${i}`);
+        if (box.style.display === 'block') {
+            box.style.display = 'none';
+            btn.innerText = 'Lihat Jawaban';
+        } else {
+            box.style.display = 'block';
+            btn.innerText = 'Sembunyikan';
+        }
     };
+
     render();
 </script>
+
 </body>
 </html>
