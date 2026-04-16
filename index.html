@@ -5,21 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank Soal Manman-team</title>
     <style>
-        body { font-family: sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
-        .container { max-width: 650px; width: 100%; }
-        h2 { text-align: center; color: #333; margin-bottom: 25px; }
-        .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .question { font-size: 1.1rem; font-weight: bold; color: #2c3e50; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 8px; }
-        .answer-box { background: #fdf2f2; border-left: 4px solid #e74c3c; padding: 12px 15px; margin-top: 10px; display: none; color: #333; line-height: 1.5; }
-        .show-btn { background: #4a90e2; color: white; border: none; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 0.9rem; transition: 0.3s; }
-        .show-btn:hover { background: #357abd; }
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #357abd;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --accent-color: #e74c3c;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 650px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 35px;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        h2::before {
+            content: '📖 ';
+            font-size: 1.8rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.04);
+        }
+
+        .question {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #1a252f;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .question::before {
+            content: '❓ ';
+            font-size: 1rem;
+            margin-right: 8px;
+            opacity: 0.7;
+        }
+
+        .answer-wrapper {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, opacity 0.4s ease-in;
+            opacity: 0;
+        }
+
+        .answer-wrapper.open {
+            max-height: 500px; /* 足够容纳长文本 */
+            opacity: 1;
+            transition: max-height 0.4s ease-in, opacity 0.4s ease-out;
+        }
+
+        .answer-box {
+            background-color: #fafafa;
+            border-left: 4px solid var(--accent-color);
+            padding: 16px 20px;
+            margin-top: 15px;
+            border-radius: 8px;
+            color: #444;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .answer-title {
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .show-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 2px 4px rgba(74, 144, 226, 0.2);
+        }
+
+        .show-btn:hover {
+            background-color: var(--secondary-color);
+            box-shadow: 0 4px 8px rgba(74, 144, 226, 0.3);
+        }
+
+        .show-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 1px 2px rgba(74, 144, 226, 0.2);
+        }
     </style>
 </head>
 <body>
+
 <div class="container">
-    <h2>📖 Bank Soal Manman-team</h2>
+    <h2>Bank Soal Manman-team</h2>
     <div id="quiz-list"></div>
 </div>
+
 <script>
     const myData = [
         { q: "wd berapa ?", a: "Saya tidak bisa jamin wd berapa kak karena kaka bisa cek live rtp disitu dan live wd di situsnya dan bisa lihat wd banyak dari game apa coba kaka bisa ikutin game tersebut." },
@@ -34,27 +151,38 @@
         { q: "nominal wd-nya berapa ?", a: "Untuk nominal wd, kami tidak bisa memberikan info akurat karena itu sepenuhnya tergantung dari permainan dan taruhan kakak selanjutnya." },
         { q: "main di game apa ?", a: "Kakak bisa memilih game yang sedang gacor atau yang memiliki persentase RTP tinggi saat ini." }
     ];
+
     function render() {
         const list = document.getElementById('quiz-list');
         list.innerHTML = myData.map((item, i) => `
             <div class="card">
-                <div class="question">${i + 1}. ${item.q}</div>
+                <div class="question">${item.q}</div>
                 <button class="show-btn" id="btn-${i}" onclick="toggle(${i})">Lihat Jawaban</button>
-                <div class="answer-box" id="ans-${i}"><strong>Jawaban:</strong><br>${item.a}</div>
-            </div>`).join('');
+                <div class="answer-wrapper" id="wrapper-${i}">
+                    <div class="answer-box">
+                        <span class="answer-title">Jawaban:</span>
+                        ${item.a}
+                    </div>
+                </div>
+            </div>
+        `).join('');
     }
+
     window.toggle = (i) => {
-        const box = document.getElementById(`ans-${i}`);
+        const wrapper = document.getElementById(`wrapper-${i}`);
         const btn = document.getElementById(`btn-${i}`);
-        if (box.style.display === 'block') {
-            box.style.display = 'none';
+        
+        if (wrapper.classList.contains('open')) {
+            wrapper.classList.remove('open');
             btn.innerText = 'Lihat Jawaban';
         } else {
-            box.style.display = 'block';
+            wrapper.classList.add('open');
             btn.innerText = 'Sembunyikan';
         }
     };
+
     render();
 </script>
+
 </body>
 </html>
