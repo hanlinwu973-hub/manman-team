@@ -3,235 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Green Casino - Manman-team</title>
+    <title>Manman Strategy Elite</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;600&display=swap');
 
         :root {
-            /* 顶级赌场：翡翠绿与炭黑配色 */
             --emerald: #2e7d32;
-            --light-green: #4caf50;
-            --black: #080808;
-            --glass: rgba(15, 25, 15, 0.9);
+            --neon-green: #4caf50;
+            --black: #050505;
+            --dark-card: rgba(10, 20, 10, 0.95);
         }
 
         body {
             background-color: var(--black);
-            background-image: radial-gradient(circle at center, #101a10 0%, #050505 100%);
+            background-image: radial-gradient(circle at center, #0d1a0d 0%, #020202 100%);
             color: #e0e0e0;
             font-family: 'Montserrat', sans-serif;
             margin: 0;
-            overflow-x: hidden;
             min-height: 100vh;
-        }
-
-        /* 顶部装饰 */
-        .header-line {
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, var(--light-green), transparent);
-            box-shadow: 0 0 20px var(--emerald);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         header {
             text-align: center;
-            padding: 40px 0;
+            padding: 50px 0;
+            width: 100%;
             border-bottom: 1px solid rgba(76, 175, 80, 0.2);
+            position: relative;
         }
 
         h1 {
             font-family: 'Cinzel', serif;
-            font-size: 2.8rem;
-            letter-spacing: 12px;
-            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 8px;
             background: linear-gradient(to bottom, #a5d6a7, #2e7d32);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px rgba(76, 175, 80, 0.3));
+            margin: 0;
         }
 
-        /* 解决太空：两侧深绿青蛙图腾 */
-        .side-frog {
+        /* 解决两侧太空：背景图腾装饰 */
+        body::before, body::after {
+            content: '🐸';
             position: fixed;
             top: 50%;
-            transform: translateY(-50%);
-            width: 18vw;
-            opacity: 0.1;
+            font-size: 20vw;
+            opacity: 0.03;
             pointer-events: none;
-            filter: grayscale(1) sepia(1) hue-rotate(80deg);
-            transition: opacity 0.5s, filter 0.5s;
+            transform: translateY(-50%);
         }
-        .frog-left { left: 2%; }
-        .frog-right { right: 2%; transform: translateY(-50%) scaleX(-1); }
+        body::before { left: 2%; }
+        body::after { right: 2%; }
 
-        body:hover .side-frog {
-            opacity: 0.2;
-            filter: grayscale(0) drop-shadow(0 0 15px var(--light-green));
+        /* 主容器 */
+        .main-wrapper {
+            width: 90%;
+            max-width: 1200px;
+            margin-top: 30px;
+            padding-bottom: 100px;
         }
 
-        /* 内容布局：3列平铺解决中间缩成一团的问题 */
-        .main-grid {
-            width: 92%;
-            max-width: 1400px;
-            margin: 40px auto;
+        /* 大模块样式 */
+        .category-section {
+            margin-bottom: 25px;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            background: var(--dark-card);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .category-header {
+            padding: 25px 40px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, rgba(46, 125, 50, 0.1), transparent);
+        }
+
+        .category-header:hover {
+            background: rgba(46, 125, 50, 0.2);
+        }
+
+        .category-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--neon-green);
+            letter-spacing: 2px;
+        }
+
+        .category-content {
+            display: none; /* 默认隐藏 */
+            padding: 30px;
+            border-top: 1px solid rgba(76, 175, 80, 0.2);
+        }
+
+        /* 当点击展开时使用的类 */
+        .active .category-content {
+            display: block;
+        }
+
+        /* 内部网格：解决大屏横向填充问题 */
+        .quiz-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            position: relative;
-            z-index: 10;
+            gap: 20px;
         }
 
-        .casino-card {
-            perspective: 1000px;
-            height: 240px;
+        .rule-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .rule-item {
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid var(--neon-green);
+            font-size: 1rem;
+        }
+
+        .rule-item.prohibit {
+            border-left-color: #c62828; /* 禁止事项用红色 */
+        }
+
+        /* 问答卡片样式 */
+        .qa-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             cursor: pointer;
+            transition: 0.3s;
         }
 
-        .card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-style: preserve-3d;
+        .qa-card:hover {
+            border-color: var(--neon-green);
+            background: rgba(76, 175, 80, 0.05);
         }
 
-        .casino-card.flipped .card-inner {
-            transform: rotateY(180deg);
-        }
-
-        .card-front, .card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 15px;
-            padding: 25px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            border: 1px solid rgba(76, 175, 80, 0.3);
-            background: var(--glass);
-        }
-
-        .card-front {
-            background: linear-gradient(135deg, #121a12 0%, #080808 100%);
-        }
-
-        .card-front:hover {
-            border-color: var(--light-green);
-            box-shadow: 0 0 25px rgba(76, 175, 80, 0.2);
-        }
-
-        .card-back {
-            transform: rotateY(180deg);
-            background: #e0e0e0;
-            color: #050505;
-            border: 2px solid var(--emerald);
-        }
-
-        .q-tag {
-            color: var(--light-green);
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
-
-        .question-txt {
-            font-size: 1.2rem;
+        .question {
             font-weight: 600;
-            line-height: 1.4;
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
         }
 
-        .answer-txt {
-            font-size: 0.95rem;
+        .answer {
+            font-size: 0.9rem;
+            color: #aaa;
             line-height: 1.6;
-            font-weight: 500;
+            display: none; /* 默认隐藏答案 */
+            padding-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* 装饰背景点 */
-        .green-dust {
-            position: fixed;
-            background: var(--light-green);
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0.2;
-            animation: move 15s infinite linear;
+        .answer.show {
+            display: block;
         }
 
-        @keyframes move {
-            from { transform: translateY(100vh); }
-            to { transform: translateY(-10vh); }
-        }
-
-        @media (max-width: 1200px) { .main-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 1100px) { .quiz-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) { 
-            .main-grid { grid-template-columns: 1fr; }
-            .side-frog { display: none; }
+            .quiz-grid, .rule-list { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="header-line"></div>
-
-    <img src="https://cdn-icons-png.flaticon.com/512/3516/3516358.png" class="side-frog frog-left" alt="frog">
-    <img src="https://cdn-icons-png.flaticon.com/512/3516/3516358.png" class="side-frog frog-right" alt="frog">
-
     <header>
-        <h1>MANMAN GREEN ELITE</h1>
+        <h1>MANMAN ELITE STRATEGY</h1>
     </header>
 
-    <main class="main-grid" id="mainGrid"></main>
+    <div class="main-wrapper">
+        
+        <div class="category-section" id="section-1">
+            <div class="category-header" onclick="toggleSection('section-1')">
+                <span class="category-title">客户问题解决办法 (Q&A)</span>
+                <span>▼</span>
+            </div>
+            <div class="category-content">
+                <div class="quiz-grid" id="quiz-container"></div>
+            </div>
+        </div>
+
+        <div class="category-section" id="section-2">
+            <div class="category-header" onclick="toggleSection('section-2')">
+                <span class="category-title">必须做的事情 (DO)</span>
+                <span>▼</span>
+            </div>
+            <div class="category-content">
+                <div class="rule-list">
+                    <div class="rule-item">必须保持礼貌和VIP级别的沟通语气。</div>
+                    <div class="rule-item">必须在3分钟内回复客户的任何疑问。</div>
+                    <div class="rule-item">必须引导客户查看当前的实时 RTP 数据。</div>
+                    <div class="rule-item">必须确保客户使用的注册号码是正确的。</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-section" id="section-3">
+            <div class="category-header" onclick="toggleSection('section-3')">
+                <span class="category-title">禁止做的事情 (DON'T)</span>
+                <span>▼</span>
+            </div>
+            <div class="category-content">
+                <div class="rule-list">
+                    <div class="rule-item prohibit">严禁向客户百分之百保证盈利。</div>
+                    <div class="rule-item prohibit">严禁攻击客户或使用侮辱性语言。</div>
+                    <div class="rule-item prohibit">严禁在没有核实的情况下随意更改客户 ID。</div>
+                    <div class="rule-item prohibit">严禁私自向客户承诺站外交易。</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <script>
         const quizData = [
-            { q: "wd berapa ?", a: "Saya tidak bisa jamin wd berapa kak karena kaka bisa cek live rtp disitu dan live wd di situsnya dan bisa lihat wd banyak dari game apa coba kaka bisa ikutin game tersebut." },
-            { q: "kalo gak wd gimana ?", a: "Kalo ga wd, situs menyediakan kompensasi kaa dalam 1x24 jam nanti kaka akan dapat beberapa jumlah saldo disitus Kembali." },
-            { q: "bisa maxwin gak ?", a: "Kalo maxwin bisa aja ka, tapi saranku coba aja kaa dari modal kecil kalo wd kaka lanjut barangkali kaka maxwin." },
-            { q: "kalo wd bisa ajak teman ?", a: "Tentu saja bisa kak, jika kakak bisa mengajak teman untuk bermain bersama, peluang kemenangan akan jauh lebih besar." },
-            { q: "FB itu penipuan ?", a: "Akun Facebook tersebut adalah akun buzzer dari situs pesaing yang sengaja menjelekkan kami. Jangan khawatir, situs kami resmi." },
-            { q: "wd dijamin aman ?", a: "WD itu tergantung keberuntungan kak, tapi saya bisa bantu kirim pola gacor dan bantu klaim bonus deposit." },
-            { q: "ini situs tipu-tipu ya ?", a: "Maaf kak, itu admin situs sebelah yang sengaja menjelekkan. Situs kami resmi dan berlisensi, dijamin aman." },
-            { q: "berapa banyak bisa wd ?", a: "Untuk nominal tidak bisa dipastikan, tapi kakak bisa coba pola gacor yang saya kirim. Ada bonus 10x free spin juga 🥰" },
-            { q: "apakah pasti bisa wd ?", a: "Kami tidak bisa menjamin kemenangan, tetapi ada data RTP live untuk memilih game dengan peluang menang tinggi." },
-            { q: "nominal wd-nya berapa ?", a: "Nominal wd sepenuhnya tergantung dari permainan dan keberuntungan taruhan kakak selanjutnya." },
-            { q: "main di game apa ?", a: "Kakak bisa memilih game yang sedang gacor atau yang memiliki persentase RTP tinggi saat ini." }
+            { q: "wd berapa ?", a: "Saya tidak bisa jamin wd berapa kak karena kaka bisa cek live rtp disitu dan live wd di situsnya." },
+            { q: "kalo gak wd gimana ?", a: "Kalo ga wd, situs menyediakan kompensasi kaa dalam 1x24 jam nanti kaka akan dapat beberapa jumlah saldo." },
+            { q: "bisa maxwin gak ?", a: "Kalo maxwin bisa aja ka, tapi saranku coba aja kaa dari modal kecil kalo wd kaka lanjut." },
+            { q: "kalo wd bisa ajak teman ?", a: "Tentu saja bisa kak, peluang kemenangan akan jauh lebih besar jika mabar." },
+            { q: "FB itu penipuan ?", a: "Itu akun buzzer pesaing yang sengaja menjelekkan kami. Situs kami resmi dan berlisensi." },
+            { q: "wd dijamin aman ?", a: "WD itu keberuntungan kak, tapi saya bisa bantu kirim pola gacor dan bantu klaim bonus." },
+            { q: "ini situs tipu-tipu ya ?", a: "Maaf kak, itu admin situs sebelah. Kami dijamin aman dan berlisensi." },
+            { q: "berapa banyak bisa wd ?", a: "Untuk nominal tidak bisa dipastikan, tapi bisa coba pola gacor. Ada bonus 10x free spin 🥰" },
+            { q: "apakah pasti bisa wd ?", a: "Kami tidak jamin menang, tapi ada data RTP live untuk membantu peluang kakak." },
+            { q: "nominal wd-nya berapa ?", a: "Nominal wd tergantung dari permainan dan keberuntungan taruhan kakak." },
+            { q: "main di game apa ?", a: "Kakak bisa memilih game yang sedang gacor atau RTP tinggi saat ini." }
         ];
 
-        const grid = document.getElementById('mainGrid');
-
+        // 渲染问答
+        const container = document.getElementById('quiz-container');
         quizData.forEach((item, i) => {
             const card = document.createElement('div');
-            card.className = 'casino-card';
-            card.onclick = () => card.classList.toggle('flipped');
+            card.className = 'qa-card';
+            card.onclick = (e) => {
+                e.stopPropagation();
+                const ans = card.querySelector('.answer');
+                ans.classList.toggle('show');
+            };
             card.innerHTML = `
-                <div class="card-inner">
-                    <div class="card-front">
-                        <div class="q-tag">ELITE CASE ${i+1}</div>
-                        <div class="question-txt">${item.q}</div>
-                    </div>
-                    <div class="card-back">
-                        <div class="q-tag" style="color:#2e7d32">MANMAN ANSWER</div>
-                        <div class="answer-txt">${item.a}</div>
-                    </div>
-                </div>
+                <div class="question">${i+1}. ${item.q}</div>
+                <div class="answer">${item.a}</div>
             `;
-            grid.appendChild(card);
+            container.appendChild(card);
         });
 
-        // 背景粒子
-        for(let i=0; i<25; i++) {
-            let d = document.createElement('div');
-            d.className = 'green-dust';
-            d.style.left = Math.random() * 100 + 'vw';
-            d.style.width = d.style.height = Math.random() * 4 + 'px';
-            d.style.animationDuration = (Math.random() * 10 + 10) + 's';
-            d.style.animationDelay = Math.random() * 5 + 's';
-            document.body.appendChild(d);
+        // 切换模块展开/收起
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('active');
         }
     </script>
 </body>
 </html>
- 
