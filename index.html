@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manman Strategy Elite</title>
+    <title>Manman Elite Strategy VIP</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;600&display=swap');
 
@@ -31,7 +31,6 @@
             padding: 50px 0;
             width: 100%;
             border-bottom: 1px solid rgba(76, 175, 80, 0.2);
-            position: relative;
         }
 
         h1 {
@@ -57,7 +56,6 @@
         body::before { left: 2%; }
         body::after { right: 2%; }
 
-        /* 主容器 */
         .main-wrapper {
             width: 90%;
             max-width: 1200px;
@@ -65,7 +63,6 @@
             padding-bottom: 100px;
         }
 
-        /* 大模块样式 */
         .category-section {
             margin-bottom: 25px;
             border: 1px solid rgba(76, 175, 80, 0.3);
@@ -84,9 +81,7 @@
             background: linear-gradient(90deg, rgba(46, 125, 50, 0.1), transparent);
         }
 
-        .category-header:hover {
-            background: rgba(46, 125, 50, 0.2);
-        }
+        .category-header:hover { background: rgba(46, 125, 50, 0.2); }
 
         .category-title {
             font-family: 'Cinzel', serif;
@@ -96,43 +91,20 @@
         }
 
         .category-content {
-            display: none; /* 默认隐藏 */
+            display: none;
             padding: 30px;
             border-top: 1px solid rgba(76, 175, 80, 0.2);
         }
 
-        /* 当点击展开时使用的类 */
-        .active .category-content {
-            display: block;
-        }
+        .active .category-content { display: block; }
 
-        /* 内部网格：解决大屏横向填充问题 */
+        /* 问答三列布局 */
         .quiz-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
 
-        .rule-list {
-            list-style: none;
-            padding: 0;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .rule-item {
-            padding: 15px 25px;
-            background: rgba(255, 255, 255, 0.03);
-            border-left: 4px solid var(--neon-green);
-            font-size: 1rem;
-        }
-
-        .rule-item.prohibit {
-            border-left-color: #c62828; /* 禁止事项用红色 */
-        }
-
-        /* 问答卡片样式 */
         .qa-card {
             background: rgba(255, 255, 255, 0.05);
             padding: 20px;
@@ -142,29 +114,29 @@
             transition: 0.3s;
         }
 
-        .qa-card:hover {
-            border-color: var(--neon-green);
-            background: rgba(76, 175, 80, 0.05);
-        }
+        .qa-card:hover { border-color: var(--neon-green); background: rgba(76, 175, 80, 0.05); }
 
-        .question {
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
+        .question { font-weight: 600; color: #fff; margin-bottom: 10px; font-size: 1.1rem; }
         .answer {
-            font-size: 0.9rem;
-            color: #aaa;
-            line-height: 1.6;
-            display: none; /* 默认隐藏答案 */
-            padding-top: 10px;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.9rem; color: #aaa; line-height: 1.6; display: none;
+            padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .answer.show { display: block; }
+
+        /* 规则列表 */
+        .rule-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
         }
 
-        .answer.show {
-            display: block;
+        .rule-placeholder {
+            padding: 40px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.2);
+            border: 2px dashed rgba(76, 175, 80, 0.2);
+            border-radius: 8px;
+            font-style: italic;
         }
 
         @media (max-width: 1100px) { .quiz-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -177,14 +149,14 @@
 <body>
 
     <header>
-        <h1>MANMAN ELITE STRATEGY</h1>
+        <h1>MANMAN VIP ELITE</h1>
     </header>
 
     <div class="main-wrapper">
         
         <div class="category-section" id="section-1">
             <div class="category-header" onclick="toggleSection('section-1')">
-                <span class="category-title">客户问题解决办法 (Q&A)</span>
+                <span class="category-title">Customer Solutions (Q&A)</span>
                 <span>▼</span>
             </div>
             <div class="category-content">
@@ -194,30 +166,24 @@
 
         <div class="category-section" id="section-2">
             <div class="category-header" onclick="toggleSection('section-2')">
-                <span class="category-title">必须做的事情 (DO)</span>
+                <span class="category-title">Golden Rules (MUST DO)</span>
                 <span>▼</span>
             </div>
             <div class="category-content">
                 <div class="rule-list">
-                    <div class="rule-item">必须保持礼貌和VIP级别的沟通语气。</div>
-                    <div class="rule-item">必须在3分钟内回复客户的任何疑问。</div>
-                    <div class="rule-item">必须引导客户查看当前的实时 RTP 数据。</div>
-                    <div class="rule-item">必须确保客户使用的注册号码是正确的。</div>
+                    <div class="rule-placeholder">Tambahkan konten "MUST DO" Anda di sini...</div>
                 </div>
             </div>
         </div>
 
         <div class="category-section" id="section-3">
             <div class="category-header" onclick="toggleSection('section-3')">
-                <span class="category-title">禁止做的事情 (DON'T)</span>
+                <span class="category-title">Restricted (DON'T DO)</span>
                 <span>▼</span>
             </div>
             <div class="category-content">
                 <div class="rule-list">
-                    <div class="rule-item prohibit">严禁向客户百分之百保证盈利。</div>
-                    <div class="rule-item prohibit">严禁攻击客户或使用侮辱性语言。</div>
-                    <div class="rule-item prohibit">严禁在没有核实的情况下随意更改客户 ID。</div>
-                    <div class="rule-item prohibit">严禁私自向客户承诺站外交易。</div>
+                    <div class="rule-placeholder">Tambahkan konten "DON'T DO" Anda di sini...</div>
                 </div>
             </div>
         </div>
@@ -239,7 +205,6 @@
             { q: "main di game apa ?", a: "Kakak bisa memilih game yang sedang gacor atau RTP tinggi saat ini." }
         ];
 
-        // 渲染问答
         const container = document.getElementById('quiz-container');
         quizData.forEach((item, i) => {
             const card = document.createElement('div');
@@ -249,14 +214,10 @@
                 const ans = card.querySelector('.answer');
                 ans.classList.toggle('show');
             };
-            card.innerHTML = `
-                <div class="question">${i+1}. ${item.q}</div>
-                <div class="answer">${item.a}</div>
-            `;
+            card.innerHTML = `<div class="question">${i+1}. ${item.q}</div><div class="answer">${item.a}</div>`;
             container.appendChild(card);
         });
 
-        // 切换模块展开/收起
         function toggleSection(id) {
             document.getElementById(id).classList.toggle('active');
         }
