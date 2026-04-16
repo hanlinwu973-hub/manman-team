@@ -6,127 +6,154 @@
     <title>Bank Soal Manman-team</title>
     <style>
         :root {
-            --primary-color: #4a90e2;
-            --secondary-color: #357abd;
-            --bg-color: #f4f7f6;
-            --text-color: #333;
-            --card-bg: #ffffff;
-            --accent-color: #e74c3c;
+            --bg-color: #f5f5f7; /* 苹果系统背景色 */
+            --card-bg: rgba(255, 255, 255, 0.7); /* 毛玻璃卡片背景 */
+            --text-color: #1d1d1f; /* 苹果系统主文字色 */
+            --secondary-text: #86868b; /* 苹果系统次级文字色 */
+            --accent-color: #0071e3; /* 苹果系统蓝色 */
+            --accent-hover: #007aff;
+            --ans-bg: rgba(245, 245, 247, 0.8); /* 答案框毛玻璃 */
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%); /* 柔和渐变背景 */
             color: var(--text-color);
             display: flex;
             justify-content: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
             margin: 0;
-            -webkit-font-smoothing: antialiased;
+            -webkit-font-smoothing: antialiased; /* 抗锯齿，更精致 */
+            min-height: 100vh;
         }
 
         .container {
-            max-width: 650px;
+            max-width: 680px;
             width: 100%;
         }
 
         h2 {
             text-align: center;
-            color: #2c3e50;
-            margin-bottom: 35px;
-            font-size: 2rem;
+            color: #1d1d1f;
+            margin-bottom: 50px;
+            font-size: 2.4rem;
             font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        h2::before {
-            content: '📖 ';
-            font-size: 1.8rem;
+            letter-spacing: -0.015em; /* 苹果系统字距微调 */
         }
 
         .card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border: 1px solid rgba(0,0,0,0.03);
+            background: var(--card-bg);
+            backdrop-filter: blur(20px); /* 核心毛玻璃效果 */
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px; /* 更圆润的圆角 */
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3); /* 精细边框 */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03); /* 极细腻的阴影 */
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
 
         .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.04);
+            transform: translateY(-5px); /* 悬浮吸附感 */
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
         }
 
         .question {
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             font-weight: 600;
-            color: #1a252f;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
+            color: var(--text-color);
+            margin-bottom: 18px;
+            line-height: 1.4;
         }
 
-        .question::before {
-            content: '❓ ';
-            font-size: 1rem;
-            margin-right: 8px;
-            opacity: 0.7;
-        }
-
+        /* 优雅的答案展开动画 */
         .answer-wrapper {
+            opacity: 0;
+            transform: scale(0.9); /* 初始缩小 */
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease-out, opacity 0.4s ease-in;
-            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* 弹性过渡 */
+            pointer-events: none; /* 隐藏时不可点 */
         }
 
         .answer-wrapper.open {
-            max-height: 500px; /* 足够容纳长文本 */
             opacity: 1;
-            transition: max-height 0.4s ease-in, opacity 0.4s ease-out;
+            transform: scale(1); /* 放大回正 */
+            max-height: 500px; /* 容纳长文本 */
+            margin-top: 20px;
+            pointer-events: auto; /* 展开后可点 */
         }
 
         .answer-box {
-            background-color: #fafafa;
-            border-left: 4px solid var(--accent-color);
-            padding: 16px 20px;
-            margin-top: 15px;
-            border-radius: 8px;
+            background: var(--ans-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 16px;
             color: #444;
             line-height: 1.6;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .answer-title {
             font-weight: 700;
-            color: var(--accent-color);
-            margin-bottom: 5px;
+            color: var(--text-color);
+            margin-bottom: 8px;
             display: block;
+            opacity: 0.8;
         }
 
+        /* 苹果风格的毛玻璃按钮 */
         .show-btn {
-            background-color: var(--primary-color);
+            background: rgba(0, 113, 227, 0.8);
+            backdrop-filter: blur(5px);
             color: white;
             border: none;
-            padding: 10px 22px;
-            border-radius: 8px;
+            padding: 12px 26px;
+            border-radius: 14px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 600;
             transition: background-color 0.2s ease, transform 0.1s ease;
-            box-shadow: 0 2px 4px rgba(74, 144, 226, 0.2);
+            position: absolute;
+            top: 20px;
+            right: 20px;
         }
 
         .show-btn:hover {
-            background-color: var(--secondary-color);
-            box-shadow: 0 4px 8px rgba(74, 144, 226, 0.3);
+            background: rgba(0, 122, 255, 1);
         }
 
         .show-btn:active {
-            transform: translateY(1px);
-            box-shadow: 0 1px 2px rgba(74, 144, 226, 0.2);
+            transform: scale(0.97); /* 点击时的按压感 */
+        }
+
+        /* 手机端适配 */
+        @media (max-width: 600px) {
+            .card {
+                padding: 25px;
+                position: static; /* 手机端按钮放在问题下方 */
+            }
+            .question {
+                font-size: 1.15rem;
+                margin-bottom: 20px;
+            }
+            .show-btn {
+                position: relative;
+                top: auto;
+                right: auto;
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin-bottom: -10px;
+            }
+            h2 {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
         }
     </style>
 </head>
@@ -156,7 +183,7 @@
         const list = document.getElementById('quiz-list');
         list.innerHTML = myData.map((item, i) => `
             <div class="card">
-                <div class="question">${item.q}</div>
+                <div class="question">${i + 1}. ${item.q}</div>
                 <button class="show-btn" id="btn-${i}" onclick="toggle(${i})">Lihat Jawaban</button>
                 <div class="answer-wrapper" id="wrapper-${i}">
                     <div class="answer-box">
