@@ -3,102 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manman Elite VIP</title>
+    <title>Elite Green Casino - Manman-team</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;600&display=swap');
 
         :root {
-            --gold: #d4af37;
-            --dark-gold: #8e6d13;
-            --black: #050505;
-            --card-bg: rgba(15, 15, 15, 0.95);
+            /* 顶级赌场：翡翠绿与炭黑配色 */
+            --emerald: #2e7d32;
+            --light-green: #4caf50;
+            --black: #080808;
+            --glass: rgba(15, 25, 15, 0.9);
         }
 
         body {
             background-color: var(--black);
-            background-image: 
-                linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-                url('https://www.transparenttextures.com/patterns/dark-leather.png'); /* 皮革纹理背景 */
-            color: white;
+            background-image: radial-gradient(circle at center, #101a10 0%, #050505 100%);
+            color: #e0e0e0;
             font-family: 'Montserrat', sans-serif;
             margin: 0;
-            padding: 0;
             overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             min-height: 100vh;
         }
 
-        /* 顶部装饰栏 */
-        .top-bar {
+        /* 顶部装饰 */
+        .header-line {
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            box-shadow: 0 0 15px var(--gold);
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--light-green), transparent);
+            box-shadow: 0 0 20px var(--emerald);
         }
 
         header {
             text-align: center;
-            padding: 60px 20px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            width: 80%;
+            padding: 40px 0;
+            border-bottom: 1px solid rgba(76, 175, 80, 0.2);
         }
 
         h1 {
             font-family: 'Cinzel', serif;
-            font-size: 3rem;
+            font-size: 2.8rem;
+            letter-spacing: 12px;
             margin: 0;
-            background: linear-gradient(to bottom, #fcf6ba 0%, #bf953f 100%);
+            background: linear-gradient(to bottom, #a5d6a7, #2e7d32);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 8px;
-            filter: drop-shadow(0 0 10px rgba(198, 163, 108, 0.5));
+            filter: drop-shadow(0 0 10px rgba(76, 175, 80, 0.3));
         }
 
-        /* 解决两边太空：侧边装饰物 */
-        .decor-bird {
+        /* 解决太空：两侧深绿青蛙图腾 */
+        .side-frog {
             position: fixed;
-            left: 2%;
             top: 50%;
             transform: translateY(-50%);
-            width: 15vw;
-            opacity: 0.15;
+            width: 18vw;
+            opacity: 0.1;
             pointer-events: none;
+            filter: grayscale(1) sepia(1) hue-rotate(80deg);
+            transition: opacity 0.5s, filter 0.5s;
+        }
+        .frog-left { left: 2%; }
+        .frog-right { right: 2%; transform: translateY(-50%) scaleX(-1); }
+
+        body:hover .side-frog {
+            opacity: 0.2;
+            filter: grayscale(0) drop-shadow(0 0 15px var(--light-green));
         }
 
-        .decor-dragon {
-            position: fixed;
-            right: 2%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 15vw;
-            opacity: 0.15;
-            pointer-events: none;
-        }
-
-        .main-container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 40px 0;
+        /* 内容布局：3列平铺解决中间缩成一团的问题 */
+        .main-grid {
+            width: 92%;
+            max-width: 1400px;
+            margin: 40px auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            position: relative;
             z-index: 10;
         }
 
-        /* 赌场筹码/卡片样式 */
         .casino-card {
-            perspective: 1000px; /* 为翻转效果准备 */
+            perspective: 1000px;
+            height: 240px;
             cursor: pointer;
-            height: 220px;
         }
 
         .card-inner {
             position: relative;
             width: 100%;
             height: 100%;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
             transform-style: preserve-3d;
         }
 
@@ -111,78 +104,86 @@
             width: 100%;
             height: 100%;
             backface-visibility: hidden;
+            border-radius: 15px;
+            padding: 25px;
+            box-sizing: border-box;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            padding: 30px;
-            box-sizing: border-box;
-            border-radius: 12px;
-            border: 2px solid var(--dark-gold);
-            background: var(--card-bg);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            background: var(--glass);
         }
 
-        .card-front::after {
-            content: 'CLICK TO REVEAL';
-            position: absolute;
-            bottom: 15px;
-            font-size: 0.7rem;
-            color: var(--gold);
-            letter-spacing: 2px;
-            opacity: 0.6;
+        .card-front {
+            background: linear-gradient(135deg, #121a12 0%, #080808 100%);
+        }
+
+        .card-front:hover {
+            border-color: var(--light-green);
+            box-shadow: 0 0 25px rgba(76, 175, 80, 0.2);
         }
 
         .card-back {
             transform: rotateY(180deg);
-            border-color: #fff;
-            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+            background: #e0e0e0;
+            color: #050505;
+            border: 2px solid var(--emerald);
         }
 
-        .question-text {
+        .q-tag {
+            color: var(--light-green);
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .question-txt {
             font-size: 1.2rem;
-            text-align: center;
             font-weight: 600;
-            color: #fcf6ba;
+            line-height: 1.4;
         }
 
-        .answer-text {
-            font-size: 1rem;
-            text-align: center;
+        .answer-txt {
+            font-size: 0.95rem;
             line-height: 1.6;
-            color: #ddd;
+            font-weight: 500;
         }
 
-        /* 装饰粒子效果 */
-        .dot {
+        /* 装饰背景点 */
+        .green-dust {
             position: fixed;
-            width: 2px;
-            height: 2px;
-            background: var(--gold);
+            background: var(--light-green);
             border-radius: 50%;
-            opacity: 0.3;
             pointer-events: none;
+            opacity: 0.2;
+            animation: move 15s infinite linear;
         }
 
-        @media (max-width: 600px) {
-            .main-container { grid-template-columns: 1fr; }
-            h1 { font-size: 1.8rem; }
-            .decor-bird, .decor-dragon { display: none; }
+        @keyframes move {
+            from { transform: translateY(100vh); }
+            to { transform: translateY(-10vh); }
+        }
+
+        @media (max-width: 1200px) { .main-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { 
+            .main-grid { grid-template-columns: 1fr; }
+            .side-frog { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <div class="top-bar"></div>
+    <div class="header-line"></div>
 
-    <img class="decor-bird" src="https://cdn-icons-png.flaticon.com/512/2619/2619277.png" alt="bird">
-    <img class="decor-dragon" src="https://cdn-icons-png.flaticon.com/512/2830/2830305.png" alt="dragon">
+    <img src="https://cdn-icons-png.flaticon.com/512/3516/3516358.png" class="side-frog frog-left" alt="frog">
+    <img src="https://cdn-icons-png.flaticon.com/512/3516/3516358.png" class="side-frog frog-right" alt="frog">
 
     <header>
-        <h1>MANMAN ELITE VIP</h1>
+        <h1>MANMAN GREEN ELITE</h1>
     </header>
 
-    <div class="main-container" id="quiz-grid"></div>
+    <main class="main-grid" id="mainGrid"></main>
 
     <script>
         const quizData = [
@@ -191,10 +192,15 @@
             { q: "bisa maxwin gak ?", a: "Kalo maxwin bisa aja ka, tapi saranku coba aja kaa dari modal kecil kalo wd kaka lanjut barangkali kaka maxwin." },
             { q: "kalo wd bisa ajak teman ?", a: "Tentu saja bisa kak, jika kakak bisa mengajak teman untuk bermain bersama, peluang kemenangan akan jauh lebih besar." },
             { q: "FB itu penipuan ?", a: "Akun Facebook tersebut adalah akun buzzer dari situs pesaing yang sengaja menjelekkan kami. Jangan khawatir, situs kami resmi." },
-            { q: "wd dijamin aman ?", a: "WD itu tergantung keberuntungan kak, tapi saya bisa bantu kirim pola gacor dan bantu klaim bonus deposit." }
+            { q: "wd dijamin aman ?", a: "WD itu tergantung keberuntungan kak, tapi saya bisa bantu kirim pola gacor dan bantu klaim bonus deposit." },
+            { q: "ini situs tipu-tipu ya ?", a: "Maaf kak, itu admin situs sebelah yang sengaja menjelekkan. Situs kami resmi dan berlisensi, dijamin aman." },
+            { q: "berapa banyak bisa wd ?", a: "Untuk nominal tidak bisa dipastikan, tapi kakak bisa coba pola gacor yang saya kirim. Ada bonus 10x free spin juga 🥰" },
+            { q: "apakah pasti bisa wd ?", a: "Kami tidak bisa menjamin kemenangan, tetapi ada data RTP live untuk memilih game dengan peluang menang tinggi." },
+            { q: "nominal wd-nya berapa ?", a: "Nominal wd sepenuhnya tergantung dari permainan dan keberuntungan taruhan kakak selanjutnya." },
+            { q: "main di game apa ?", a: "Kakak bisa memilih game yang sedang gacor atau yang memiliki persentase RTP tinggi saat ini." }
         ];
 
-        const grid = document.getElementById('quiz-grid');
+        const grid = document.getElementById('mainGrid');
 
         quizData.forEach((item, i) => {
             const card = document.createElement('div');
@@ -203,24 +209,29 @@
             card.innerHTML = `
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="question-text">${item.q}</div>
+                        <div class="q-tag">ELITE CASE ${i+1}</div>
+                        <div class="question-txt">${item.q}</div>
                     </div>
                     <div class="card-back">
-                        <div class="answer-text">${item.a}</div>
+                        <div class="q-tag" style="color:#2e7d32">MANMAN ANSWER</div>
+                        <div class="answer-txt">${item.a}</div>
                     </div>
                 </div>
             `;
             grid.appendChild(card);
         });
 
-        // 随机生成背景微光点
-        for(let i=0; i<30; i++) {
-            let dot = document.createElement('div');
-            dot.className = 'dot';
-            dot.style.top = Math.random() * 100 + 'vh';
-            dot.style.left = Math.random() * 100 + 'vw';
-            document.body.appendChild(dot);
+        // 背景粒子
+        for(let i=0; i<25; i++) {
+            let d = document.createElement('div');
+            d.className = 'green-dust';
+            d.style.left = Math.random() * 100 + 'vw';
+            d.style.width = d.style.height = Math.random() * 4 + 'px';
+            d.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            d.style.animationDelay = Math.random() * 5 + 's';
+            document.body.appendChild(d);
         }
     </script>
 </body>
 </html>
+ 
