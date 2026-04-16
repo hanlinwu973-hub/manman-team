@@ -5,29 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank Soal Manman-team</title>
     <style>
-        body { font-family: 'PingFang SC', sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
+        body { font-family: sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
         .container { max-width: 600px; width: 100%; }
         h2 { text-align: center; color: #333; }
         .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .question { font-size: 1.1rem; font-weight: bold; color: #2c3e50; margin-bottom: 10px; }
-        .answer-box { 
-            background: #f8f9fa; 
-            border-left: 4px solid #4a90e2; 
-            padding: 10px 15px; 
-            margin-top: 10px; 
-            display: none; 
-            color: #d9534f;
-            font-weight: 500;
-        }
-        .show-btn { 
-            background: #4a90e2; 
-            color: white; 
-            border: none; 
-            padding: 8px 15px; 
-            border-radius: 4px; 
-            cursor: pointer; 
-            font-size: 0.9rem;
-        }
+        .answer-box { background: #f8f9fa; border-left: 4px solid #4a90e2; padding: 10px 15px; margin-top: 10px; display: none; color: #d9534f; font-weight: 500; }
+        .show-btn { background: #4a90e2; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-size: 0.9rem; }
         .show-btn:hover { background: #357abd; }
     </style>
 </head>
@@ -39,7 +23,6 @@
 </div>
 
 <script>
-    // Data Pertanyaan dan Jawaban
     const myData = [
         {
             q: "wd berapa ?",
@@ -73,10 +56,10 @@
         const btn = document.getElementById(`btn-${i}`);
         if (box.style.display === 'block') {
             box.style.display = 'none';
-            btn.innerText = 'Lihat Jawaban';
+            btn.innerText = 'Lihat Jawaban'; // 这里是隐藏时的文字
         } else {
             box.style.display = 'block';
-            btn.innerText = 'Sembunyikan';
+            btn.innerText = 'Sembunyikan'; // 这里是展开时的文字 (隐藏)
         }
     };
 
