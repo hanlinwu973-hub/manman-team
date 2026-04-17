@@ -19,8 +19,7 @@
 
         body {
             background-color: var(--casino-black);
-            background-image: 
-                radial-gradient(circle at 50% 50%, rgba(30,30,30,1) 0%, rgba(10,10,10,1) 100%);
+            background-image: radial-gradient(circle at 50% 50%, rgba(30,30,30,1) 0%, rgba(10,10,10,1) 100%);
             color: var(--text-silver);
             font-family: 'Montserrat', sans-serif;
             margin: 0;
@@ -30,7 +29,6 @@
             min-height: 100vh;
         }
 
-        /* 顶部标题：极其正式的高级感 */
         header {
             width: 100%;
             padding: 80px 0;
@@ -54,13 +52,11 @@
             width: 90%;
             max-width: 1100px;
             padding: 60px 0;
-            z-index: 2;
         }
 
-        /* 集合大模块：像珠宝盒一样的质感 */
+        /* 集合大模块框架 */
         .category-group {
             background: var(--card-gray);
-            border-radius: 2px; /* 赌场风格多用硬朗直角或极小圆角 */
             margin-bottom: 35px;
             border: 1px solid rgba(212, 175, 55, 0.15);
             overflow: hidden;
@@ -83,7 +79,6 @@
             position: relative;
         }
 
-        /* 标题前的小装饰线 */
         .category-header::before {
             content: '';
             position: absolute;
@@ -110,7 +105,7 @@
 
         .active .category-content { display: block; }
 
-        /* 问答列表：全宽高级感 */
+        /* Q&A 列表项 */
         .qa-item {
             background: #1a1a1a;
             padding: 30px;
@@ -118,7 +113,6 @@
             border: 1px solid rgba(255,255,255,0.03);
             cursor: pointer;
             transition: all 0.3s;
-            position: relative;
         }
 
         .qa-item:hover {
@@ -132,15 +126,6 @@
             color: #ffffff;
             display: flex;
             align-items: center;
-        }
-
-        .question::after {
-            content: 'VIEW DETAILS';
-            font-size: 0.65rem;
-            margin-left: auto;
-            color: var(--soft-gold);
-            letter-spacing: 2px;
-            opacity: 0.5;
         }
 
         .answer {
@@ -160,23 +145,19 @@
             border-top: 1px solid rgba(212, 175, 55, 0.1);
         }
 
-        /* 规则网格 (DO/DON'T) */
-        .rule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .rule-card {
-            background: #151515;
-            padding: 25px;
-            border: 1px solid rgba(255,255,255,0.05);
-            font-size: 1rem;
-            position: relative;
+        /* 空内容占位提示 */
+        .empty-placeholder {
+            text-align: center;
+            color: rgba(255,255,255,0.1);
+            font-style: italic;
+            padding: 20px;
+            border: 1px dashed rgba(212, 175, 55, 0.1);
         }
-        .do-card { border-left: 3px solid #00c853; }
-        .dont-card { border-left: 3px solid #d50000; }
 
         .arrow { font-size: 0.8rem; color: var(--soft-gold); transition: transform 0.3s; }
         .active .arrow { transform: rotate(180deg); }
 
         @media (max-width: 768px) {
-            .rule-grid { grid-template-columns: 1fr; }
             h1 { font-size: 1.8rem; }
             .category-header { padding: 25px; }
         }
@@ -195,8 +176,7 @@
                 <span class="category-title">VIP SOLUTIONS (Q&A)</span>
                 <span class="arrow">▼</span>
             </div>
-            <div class="category-content" id="qa-container">
-                </div>
+            <div class="category-content" id="qa-container"></div>
         </div>
 
         <div class="category-group" id="group-do">
@@ -205,12 +185,7 @@
                 <span class="arrow">▼</span>
             </div>
             <div class="category-content">
-                <div class="rule-grid">
-                    <div class="rule-card do-card">Wajib menjaga nada bicara yang sopan dan level VIP.</div>
-                    <div class="rule-card do-card">Wajib membalas pertanyaan pelanggan dalam waktu 3 menit.</div>
-                    <div class="rule-card do-card">Wajib memandu pelanggan melihat data RTP live saat ini.</div>
-                    <div class="rule-card do-card">Wajib memastikan nomor registrasi pelanggan benar.</div>
-                </div>
+                <div class="empty-placeholder">Konten standar akan segera hadir...</div>
             </div>
         </div>
 
@@ -220,12 +195,7 @@
                 <span class="arrow">▼</span>
             </div>
             <div class="category-content">
-                <div class="rule-grid">
-                    <div class="rule-card dont-card">Dilarang keras menjamin kemenangan 100% kepada pelanggan.</div>
-                    <div class="rule-card dont-card">Dilarang menyerang pelanggan atau menggunakan kata kasar.</div>
-                    <div class="rule-card dont-card">Dilarang mengubah ID pelanggan tanpa verifikasi.</div>
-                    <div class="rule-card dont-card">Dilarang menjanjikan transaksi di luar situs secara pribadi.</div>
-                </div>
+                <div class="empty-placeholder">Konten restriksi akan segera hadir...</div>
             </div>
         </div>
 
