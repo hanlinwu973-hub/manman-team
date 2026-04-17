@@ -151,4 +151,84 @@
         </div>
 
         <!-- ✅ HAL YANG HARUS DILAKUKAN（已优化加强版） -->
-        <div class="
+        <div class="category-group">
+            <div class="category-header" onclick="toggleSection(this)">
+                <span class="category-title">✅ HAL YANG HARUS DILAKUKAN (MUST DO)</span>
+                <span>▼</span>
+            </div>
+            <div class="category-content" style="display: block;">
+                <div class="notice-board" style="border-left: 5px solid #28a745;">
+                    <h3 style="color: #28a745; text-align:center; margin-bottom: 15px;">✅ PROSEDUR VIP YANG BENAR & AMAN ✅</h3>
+                    <ul class="mustdo-list">
+                        <li>Selalu gunakan link resmi yang diberikan tim VIP untuk registrasi dan login</li>
+                        <li>Verifikasi akun lengkap (KTP / data pribadi) sebelum melakukan deposit pertama</li>
+                        <li>Kirim bukti transfer deposit ke LiveChat resmi segera setelah transfer</li>
+                        <li>Ikuti pola / strategi yang diberikan tim VIP secara disiplin dan konsisten</li>
+                        <li>Screenshot atau rekam layar setiap transaksi deposit & withdraw sebagai bukti</li>
+                        <li>Hubungi LiveChat resmi untuk semua pertanyaan atau kendala akun</li>
+                        <li>Main sesuai aturan dan turnover yang ditentukan agar WD lancar</li>
+                        <li>Gunakan hanya rekening atas nama sendiri untuk deposit dan withdraw</li>
+                        <li>Simpan semua chat / bukti komunikasi dengan tim VIP</li>
+                        <li>Laporkan segera jika menemukan promotor atau link palsu</li>
+                        <li>Patuhi batas minimal WD (50K) dan syarat yang berlaku</li>
+                        <li>Jaga kerahasiaan akun dan jangan bagikan password ke siapapun</li>
+                    </ul>
+                    <p style="text-align: center; margin-top: 15px; color: #d4af37; font-weight: 600;">
+                        ✅ Patuhi semua poin di atas = Proses WD lebih cepat & aman
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIP RESTRICTIONS (DON'T) -->
+        <div class="category-group">
+            <div class="category-header" onclick="toggleSection(this)">
+                <span class="category-title">VIP RESTRICTIONS (DON'T)</span>
+                <span>▼</span>
+            </div>
+            <div class="category-content">
+                <div class="notice-board" style="border-left: 5px solid var(--warning-red);">
+                    <h3 style="color: var(--warning-red); text-align:center;">⚠️ HAL YANG DI LARANG ⚠️</h3>
+                    <ul class="restriction-list">
+                        <li>Mendaftarkan akun dan membantu deposit pengguna</li>
+                        <li>Mendaftarkan diri sendiri sebagai pengguna</li>
+                        <li>Meminta komisi dari kemenangan pengguna</li>
+                        <li>Tidak mengirimkan gambar peringatan</li>
+                        <li>Tidak klik profil wa saat rekam layar deposit</li>
+                        <li>Mengirimkan link lebih dari 1 secara bersamaan</li>
+                        <li>Menjanjikan kemenangan nominal JP tertentu</li>
+                        <li>Login akun dan mengambil uang pengguna</li>
+                        <li>Memberikan rekening pribadi untuk deposit</li>
+                        <li>Menjanjikan bonus di luar format Web</li>
+                        <li>Mengirimkan video seperti memegang kendali/hacker</li>
+                        <li>Membantu pelanggan menerima kode verifikasi</li>
+                    </ul>
+                </div>
+                <div class="notice-board" style="border: 1px solid #ff4d4d; background: rgba(255,77,77,0.05);">
+                    <h3 style="color: #ff4d4d; text-align:center;">PEJUANG CASINO</h3>
+                    <p style="text-align: center; font-weight: bold;">🚫 TOLAK TRANSAKSI ILEGAL, LAPOR & DAPATKAN 100K!</p>
+                    <p style="font-size: 0.85rem; color: #ccc;">Jika Anda menemukan promotor yang menawarkan cashback pribadi, lapor ke LiveChat resmi. Bonus 100.000 IDR menanti!</p>
+                    <p style="font-size: 0.8rem; color: #aaa;"><strong>🛡 JAMINAN KEAMANAN:</strong> Identitas pelapor DIJAMIN 100% RAHASIA.</p>
+                    <a href="https://direct.lc.chat/12891963/20" target="_blank" class="report-btn">📌 LINK PELAPORAN RESMI</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function toggleAnswer(item) {
+            const panel = item.nextElementSibling;
+            const allPanels = document.querySelectorAll('.answer-panel');
+            allPanels.forEach(p => { 
+                if(p !== panel) p.style.display = 'none'; 
+            });
+            panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
