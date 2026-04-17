@@ -8,7 +8,6 @@
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;600&display=swap');
 
         :root {
-            /* 顶级赌场配色：黑金、暗灰、香槟色 */
             --casino-black: #0a0a0a;
             --vip-gold: linear-gradient(135deg, #fcf6ba 0%, #bf953f 22%, #fbf5b7 45%, #aa771c 80%, #917a39 100%);
             --soft-gold: #d4af37;
@@ -31,7 +30,7 @@
 
         header {
             width: 100%;
-            padding: 80px 0;
+            padding: 70px 0;
             text-align: center;
             background: linear-gradient(to bottom, #151515, var(--casino-black));
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
@@ -39,43 +38,42 @@
 
         h1 {
             font-family: 'Cinzel', serif;
-            font-size: 3rem;
+            font-size: 2.8rem;
             margin: 0;
             background: var(--vip-gold);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 12px;
-            filter: drop-shadow(0 0 10px rgba(191, 149, 63, 0.4));
+            letter-spacing: 10px;
+            filter: drop-shadow(0 0 10px rgba(191, 149, 63, 0.3));
         }
 
         .container {
             width: 90%;
-            max-width: 1100px;
-            padding: 60px 0;
+            max-width: 1000px;
+            padding: 50px 0;
         }
 
-        /* 集合大模块框架 */
+        /* 三段式集合框架 */
         .category-group {
             background: var(--card-gray);
-            margin-bottom: 35px;
+            margin-bottom: 30px;
             border: 1px solid rgba(212, 175, 55, 0.15);
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
             transition: all 0.4s ease;
         }
 
         .category-group.active {
             border-color: var(--soft-gold);
-            box-shadow: 0 0 30px var(--border-glow);
+            box-shadow: 0 0 25px var(--border-glow);
         }
 
         .category-header {
-            padding: 35px 45px;
+            padding: 30px 40px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(90deg, #1f1f1f, #151515);
+            background: #151515;
             position: relative;
         }
 
@@ -83,83 +81,80 @@
             content: '';
             position: absolute;
             left: 0;
-            height: 40%;
+            height: 50%;
             width: 4px;
             background: var(--vip-gold);
         }
 
         .category-title {
             font-family: 'Cinzel', serif;
-            font-size: 1.6rem;
-            letter-spacing: 3px;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
             color: var(--soft-gold);
-            font-weight: 700;
         }
 
         .category-content {
             display: none;
-            padding: 40px;
-            background: #121212;
+            padding: 30px;
+            background: #0f0f0f;
             border-top: 1px solid rgba(212, 175, 55, 0.1);
         }
 
         .active .category-content { display: block; }
 
-        /* Q&A 列表项 */
+        /* Q&A 列表交互 */
         .qa-item {
-            background: #1a1a1a;
-            padding: 30px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255,255,255,0.03);
+            background: #181818;
+            padding: 25px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255,255,255,0.02);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: 0.3s;
         }
 
-        .qa-item:hover {
-            background: #222;
-            border-color: rgba(212, 175, 55, 0.3);
-        }
+        .qa-item:hover { border-color: rgba(212, 175, 55, 0.3); background: #202020; }
 
-        .question {
-            font-weight: 600;
-            font-size: 1.15rem;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-        }
+        .question { font-weight: 600; color: #fff; font-size: 1.1rem; }
 
         .answer {
             max-height: 0;
             overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s ease;
             opacity: 0;
-            color: #aaa;
-            line-height: 1.8;
+            color: #999;
+            line-height: 1.7;
         }
 
         .qa-item.open .answer {
-            max-height: 600px;
+            max-height: 500px;
             opacity: 1;
-            margin-top: 25px;
-            padding-top: 25px;
+            margin-top: 20px;
+            padding-top: 20px;
             border-top: 1px solid rgba(212, 175, 55, 0.1);
         }
 
-        /* 空内容占位提示 */
-        .empty-placeholder {
-            text-align: center;
-            color: rgba(255,255,255,0.1);
-            font-style: italic;
-            padding: 20px;
-            border: 1px dashed rgba(212, 175, 55, 0.1);
+        /* 图片容器样式 */
+        .media-container {
+            width: 100%;
+            max-width: 750px;
+            margin: 0 auto;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.2);
         }
 
-        .arrow { font-size: 0.8rem; color: var(--soft-gold); transition: transform 0.3s; }
+        .media-container img {
+            width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        .arrow { color: var(--soft-gold); transition: 0.3s; }
         .active .arrow { transform: rotate(180deg); }
 
         @media (max-width: 768px) {
-            h1 { font-size: 1.8rem; }
-            .category-header { padding: 25px; }
+            h1 { font-size: 1.6rem; letter-spacing: 5px; }
+            .category-header { padding: 20px; }
         }
     </style>
 </head>
@@ -185,7 +180,9 @@
                 <span class="arrow">▼</span>
             </div>
             <div class="category-content">
-                <div class="empty-placeholder">Konten standar akan segera hadir...</div>
+                <div class="media-container">
+                    <img src="image_38caa4.jpg" alt="Panduan Keamanan Casino">
+                </div>
             </div>
         </div>
 
@@ -195,7 +192,9 @@
                 <span class="arrow">▼</span>
             </div>
             <div class="category-content">
-                <div class="empty-placeholder">Konten restriksi akan segera hadir...</div>
+                <div class="media-container" style="border-color: #d50000;">
+                    <img src="image_38c708.jpg" alt="Peringatan Keras">
+                </div>
             </div>
         </div>
 
@@ -203,17 +202,17 @@
 
     <script>
         const quizData = [
-            { q: "wd berapa ?", a: "Saya tidak bisa jamin wd berapa kak karena kaka bisa cek live rtp disitu dan live wd di situsnya dan bisa lihat wd banyak dari game apa coba kaka bisa ikutin game tersebut." },
-            { q: "kalo gak wd gimana ?", a: "Kalo ga wd, situs menyediakan kompensasi kaa dalam 1x24 jam nanti kaka akan dapat beberapa jumlah saldo disitus Kembali." },
-            { q: "bisa maxwin gak kalo bisa aku main ?", a: "Kalo maxwin bisa aja ka, tapi saranku coba aja kaa dari modal kecil kalo wd kaka lanjut barangkali kaka maxwin." },
-            { q: "kalo wd bisa ajak teman mabar ?", a: "Tentu saja bisa kak, jika kakak bisa mengajak teman untuk bermain bersama, peluang kemenangan akan jauh lebih besar." },
-            { q: "FB itu penipuan ?", a: "Akun Facebook tersebut adalah akun buzzer dari situs pesaing yang sengaja menjelekkan kami. Situs kami resmi dan berlisensi VIP." },
-            { q: "wd dijamin aman ?", a: "WD itu tergantung keberuntungan kak, tapi saya bisa bantu kirim pola gacor dan bantu klaim bonus deposit." },
-            { q: "ini situs tipu-tipu ya ?", a: "Maaf kak, itu admin situs sebelah yang sengaja menjelekkan. Situs kami resmi dan berlisensi, dijamin aman." },
-            { q: "berapa banyak bisa wd ?", a: "Untuk nominal tidak bisa dipastikan, tapi kakak bisa coba pola gacor yang saya kirim. Ada bonus 10x free spin juga 🥰" },
-            { q: "apakah pasti bisa wd ?", a: "Kami tidak bisa menjamin kemenangan, tetapi ada data RTP live untuk memilih game dengan peluang menang tinggi." },
-            { q: "nominal wd-nya berapa ?", a: "Nominal wd sepenuhnya tergantung dari permainan dan keberuntungan taruhan kakak selanjutnya." },
-            { q: "main di game apa ?", a: "Kakak bisa memilih game yang sedang gacor atau RTP tinggi saat ini." }
+            { q: "wd berapa ?", a: "Saya tidak bisa jamin wd berapa kak karena kaka bisa cek live rtp disitu dan live wd di situsnya." },
+            { q: "kalo gak wd gimana ?", a: "Kalo ga wd, situs menyediakan kompensasi kaa dalam 1x24 jam nanti kaka akan dapat saldo Kembali." },
+            { q: "bisa maxwin gak kalo bisa aku main ?", a: "Kalo maxwin bisa aja ka, tapi saranku coba aja kaa dari modal kecil dulu." },
+            { q: "kalo wd bisa ajak teman mabar ?", a: "Tentu saja bisa kak, mengajak teman bermain bersama meningkatkan peluang kemenangan." },
+            { q: "FB itu penipuan ?", a: "Akun FB itu buzzer pesaing kak. Situs kami resmi dan berlisensi VIP." },
+            { q: "wd dijamin aman ?", a: "WD aman kak, saya bantu kirim pola gacor dan bantu klaim bonus deposit." },
+            { q: "ini situs tipu-tipu ya ?", a: "Maaf kak, itu admin situs sebelah. Situs kami resmi, berlisensi, dan dijamin aman." },
+            { q: "berapa banyak bisa wd ?", a: "Tergantung keberuntungan, tapi coba pola gacor yang saya kirim kak. Ada bonus free spin juga!" },
+            { q: "apakah pasti bisa wd ?", a: "Kami tidak jamin menang, tapi ada RTP live untuk pilih game peluang tinggi." },
+            { q: "nominal wd-nya berapa ?", a: "Nominal wd tergantung permainan dan keberuntungan taruhan kakak." },
+            { q: "main di game apa ?", a: "Pilih game yang sedang gacor atau memiliki RTP tinggi saat ini kak." }
         ];
 
         const qaContainer = document.getElementById('qa-container');
