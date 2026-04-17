@@ -6,328 +6,165 @@
     <title>Manman VIP Elite Strategy</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;600&display=swap');
+
         :root {
             --casino-black: #0a0a0a;
             --vip-gold: linear-gradient(135deg, #fcf6ba 0%, #bf953f 22%, #fbf5b7 45%, #aa771c 80%, #917a39 100%);
             --soft-gold: #d4af37;
             --card-gray: #1a1a1a;
             --text-silver: #e0e0e0;
-            --border-glow: rgba(212, 175, 55, 0.3);
+            --warning-red: #ff4d4d;
         }
+
         body {
             background-color: var(--casino-black);
-            background-image: radial-gradient(circle at 50% 50%, rgba(30,30,30,1) 0%, rgba(10,10,10,1) 100%);
             color: var(--text-silver);
             font-family: 'Montserrat', sans-serif;
             margin: 0;
-            padding: 0;
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        header {
-            width: 100%;
-            padding: 80px 20px;
-            text-align: center;
-            background: linear-gradient(to bottom, #151515, var(--casino-black));
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-        }
-        h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 3rem;
-            margin: 0;
-            background: var(--vip-gold);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 12px;
-            filter: drop-shadow(0 0 15px rgba(191, 149, 63, 0.5));
-        }
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            padding: 60px 0;
-        }
+
+        .container { width: 90%; max-width: 1000px; padding: 50px 0; }
+
         .category-group {
             background: var(--card-gray);
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             border: 1px solid rgba(212, 175, 55, 0.15);
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-            transition: all 0.4s ease;
-            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
         }
-        .category-group.active {
-            border-color: var(--soft-gold);
-            box-shadow: 0 0 35px var(--border-glow);
-        }
+
         .category-header {
-            padding: 35px 45px;
+            padding: 30px 40px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(90deg, #1f1f1f, #151515);
-            position: relative;
+            background: #151515;
+            border-left: 4px solid var(--soft-gold);
         }
-        .category-header::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 5px;
-            background: var(--vip-gold);
-        }
+
         .category-title {
             font-family: 'Cinzel', serif;
-            font-size: 1.65rem;
-            letter-spacing: 4px;
             color: var(--soft-gold);
-            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
         }
-        .category-content {
-            display: none;
-            padding: 40px;
-            background: #121212;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-        }
-        .active .category-content { display: block; }
 
-        /* Q&A 样式 */
-        .qa-item {
-            background: #1a1a1a;
-            padding: 28px;
-            margin-bottom: 18px;
-            border: 1px solid rgba(255,255,255,0.04);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .qa-item:hover {
-            background: #222;
-            border-color: rgba(212, 175, 55, 0.35);
-        }
-        .question {
-            font-weight: 600;
-            font-size: 1.18rem;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0;
-            color: #bbb;
-            line-height: 1.75;
-        }
-        .qa-item.open .answer {
-            max-height: 800px;
-            opacity: 1;
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 1px solid rgba(212, 175, 55, 0.15);
-        }
-        .arrow { font-size: 1.1rem; color: var(--soft-gold); transition: transform 0.4s ease; }
-        .qa-item.open .arrow { transform: rotate(180deg); }
+        .category-content { padding: 35px; background: #0f0f0f; }
 
-        /* 添加新问题区域 */
-        .add-section {
-            background: #1f1f1f;
-            padding: 30px;
-            border-radius: 8px;
-            margin-top: 30px;
+        /* 告示板通用样式 */
+        .notice-board {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
             border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 30px;
+            margin-bottom: 25px;
         }
-        input, textarea {
-            width: 100%;
-            padding: 14px;
-            margin: 10px 0;
-            background: #2a2a2a;
-            border: 1px solid #444;
-            color: #eee;
-            border-radius: 6px;
+
+        .notice-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            margin: 0 0 20px 0;
+            text-align: center;
+        }
+
+        /* 禁止项列表样式 */
+        .restriction-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .restriction-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: flex-start;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .restriction-list li::before {
+            content: '❌';
+            margin-right: 15px;
             font-size: 1rem;
         }
-        button {
-            background: var(--vip-gold);
-            color: #0a0a0a;
-            font-weight: 600;
-            border: none;
-            padding: 12px 28px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1.05rem;
-            transition: all 0.3s;
-        }
-        button:hover {
-            filter: brightness(1.15);
-            transform: translateY(-2px);
-        }
 
-        .search-box {
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 25px;
-            background: #2a2a2a;
-            border: 1px solid #555;
-            color: #eee;
-            border-radius: 6px;
-        }
-
-        .empty-placeholder {
+        .footer-note {
             text-align: center;
-            color: rgba(255,255,255,0.15);
-            font-style: italic;
-            padding: 40px;
-            border: 1px dashed rgba(212, 175, 55, 0.15);
-            border-radius: 8px;
+            color: var(--soft-gold);
+            font-weight: 600;
+            margin-top: 25px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
         }
 
-        @media (max-width: 768px) {
-            h1 { font-size: 2.1rem; letter-spacing: 6px; }
-            .category-header { padding: 25px 20px; }
-            .category-title { font-size: 1.45rem; }
-        }
+        .media-container img { width: 100%; height: auto; display: block; border: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
-    <header>
-        <h1>MANMAN ELITE VIP</h1>
-    </header>
 
     <div class="container">
-        <!-- VIP SOLUTIONS (Q&A) -->
-        <div class="category-group active" id="group-qa">
-            <div class="category-header" onclick="toggleGroup('group-qa')">
+        
+        <div class="category-group">
+            <div class="category-header">
                 <span class="category-title">VIP SOLUTIONS (Q&A)</span>
-                <span class="arrow">▼</span>
+            </div>
+            </div>
+
+        <div class="category-group">
+            <div class="category-header">
+                <span class="category-title">ELITE STANDARDS (DO)</span>
             </div>
             <div class="category-content">
-                <input type="text" id="searchInput" class="search-box" placeholder="Cari pertanyaan... (misal: wd, maxwin)" onkeyup="filterQA()">
-                
-                <div id="qa-container"></div>
-
-                <!-- 添加新 Q&A -->
-                <div class="add-section">
-                    <h3 style="color:var(--soft-gold); margin-top:0;">Tambah Response Baru (VIP Elite)</h3>
-                    <input type="text" id="newQuestion" placeholder="Pertanyaan (contoh: wd berapa hari?)">
-                    <textarea id="newAnswer" rows="4" placeholder="Jawaban Elite Response..."></textarea>
-                    <button onclick="addNewQA()">Tambahkan ke VIP Database</button>
+                <div class="notice-board" style="border-left: 5px solid var(--soft-gold);">
+                    <h3 class="notice-title" style="color: var(--warning-red);">PEJUANG CASINO</h3>
+                    <p style="color: var(--soft-gold); font-weight: 700; text-align: center; margin-bottom: 20px;">
+                        🚫 TOLAK TRANSAKSI ILEGAL, LAPOR & DAPATKAN 100K!
+                    </p>
+                    <a href="https://direct.lc.chat/12891963/20" target="_blank" style="display: block; text-align: center; padding: 15px; background: var(--vip-gold); color: #000; text-decoration: none; font-weight: 700; border-radius: 2px;">
+                        📌 LINK PELAPORAN RESMI
+                    </a>
                 </div>
             </div>
         </div>
 
-        <!-- ELITE STANDARDS (DO) -->
-        <div class="category-group" id="group-do">
-            <div class="category-header" onclick="toggleGroup('group-do')">
-                <span class="category-title">ELITE STANDARDS (DO)</span>
-                <span class="arrow">▼</span>
+        <div class="category-group">
+            <div class="category-header">
+                <span class="category-title">VIP RESTRICTIONS (DON'T)</span>
             </div>
             <div class="category-content">
-                <div class="empty-placeholder">Konten Elite Standards (DO) akan segera hadir dengan pola dan strategi premium...</div>
+                <div class="notice-board" style="border-left: 5px solid var(--warning-red);">
+                    <h3 class="notice-title" style="color: var(--warning-red);">⚠️ HAL YANG DI LARANG ⚠️</h3>
+                    
+                    <ul class="restriction-list">
+                        <li>Mendaftarkan akun pengguna dan membantu pembayaran deposit pengguna</li>
+                        <li>Mendaftarkan diri sendiri sebagai pengguna</li>
+                        <li>Meminta komisi dari kemenangan pengguna</li>
+                        <li>Tidak mengirimkan gambar peringatan</li>
+                        <li>Tidak mengklik profil wa pengguna saat rekam layar deposit</li>
+                        <li>Mengirimkan link lebih dari 1 dalam waktu bersamaan</li>
+                        <li>Menjanjikan kemenangan dengan menyebutkan nominal jp (jamin jp 600-1 juta)</li>
+                        <li>Login akun pengguna dan mengambil uang pengguna</li>
+                        <li>Menipu pengguna dengan memberikan rekening pribadi untuk deposit</li>
+                        <li>Menjanjikan bonus di luar format Web</li>
+                        <li>Mengirimkan video seperti memegang kendali / hacker</li>
+                        <li>Dilarang membantu pelanggan menerima kode verifikasi</li>
+                    </ul>
+
+                    <div class="footer-note">
+                        🔔 BIASAKAN MEMBERIKAN RESPON KETIKA MEMBACA PEMBERITAHUAN 🔔
+                    </div>
+                </div>
+
+                <div class="media-container">
+                    <img src="image_38c708.jpg" alt="Peringatan Keras" onerror="this.style.display='none'">
+                </div>
             </div>
         </div>
 
-        <!-- VIP RESTRICTIONS (DON'T) -->
-        <div class="category-group" id="group-dont">
-            <div class="category-header" onclick="toggleGroup('group-dont')">
-                <span class="category-title">VIP RESTRICTIONS (DON'T)</span>
-                <span class="arrow">▼</span>
-            </div>
-            <div class="category-content">
-                <div class="empty-placeholder">Konten Restrictions (DON'T) akan segera hadir...</div>
-            </div>
-        </div>
     </div>
 
-    <script>
-        let qaData = [
-            { q: "wd berapa ?", a: "Saya tidak bisa jamin wd berapa kak karena kaka bisa cek live rtp disitu dan live wd di situsnya dan bisa lihat wd banyak dari game apa coba kaka bisa ikutin game tersebut." },
-            { q: "kalo gak wd gimana ?", a: "Kalo ga wd, situs menyediakan kompensasi kaa dalam 1x24 jam nanti kaka akan dapat beberapa jumlah saldo disitus Kembali." },
-            { q: "bisa maxwin gak kalo bisa aku main ?", a: "Kalo maxwin bisa aja ka, tapi saranku coba aja kaa dari modal kecil kalo wd kaka lanjut barangkali kaka maxwin." },
-            { q: "kalo wd bisa ajak teman mabar ?", a: "Tentu saja bisa kak, jika kakak bisa mengajak teman untuk bermain bersama, peluang kemenangan akan jauh lebih besar." },
-            { q: "FB itu penipuan ?", a: "Akun Facebook tersebut adalah akun buzzer dari situs pesaing yang sengaja menjelekkan kami. Situs kami resmi dan berlisensi VIP." },
-            { q: "wd dijamin aman ?", a: "WD itu tergantung keberuntungan kak, tapi saya bisa bantu kirim pola gacor dan bantu klaim bonus deposit." },
-            { q: "ini situs tipu-tipu ya ?", a: "Maaf kak, itu admin situs sebelah yang sengaja menjelekkan. Situs kami resmi dan berlisensi, dijamin aman." },
-            { q: "berapa banyak bisa wd ?", a: "Untuk nominal tidak bisa dipastikan, tapi kakak bisa coba pola gacor yang saya kirim. Ada bonus 10x free spin juga 🥰" },
-            { q: "apakah pasti bisa wd ?", a: "Kami tidak bisa menjamin kemenangan, tetapi ada data RTP live untuk memilih game dengan peluang menang tinggi." },
-            { q: "nominal wd-nya berapa ?", a: "Nominal wd sepenuhnya tergantung dari permainan dan keberuntungan taruhan kakak selanjutnya." },
-            { q: "main di game apa ?", a: "Kakak bisa memilih game yang sedang gacor atau RTP tinggi saat ini." }
-        ];
-
-        const qaContainer = document.getElementById('qa-container');
-
-        function renderQA(filteredData = qaData) {
-            qaContainer.innerHTML = '';
-            if (filteredData.length === 0) {
-                qaContainer.innerHTML = '<div class="empty-placeholder">Tidak ada hasil pencarian...</div>';
-                return;
-            }
-            filteredData.forEach((item, i) => {
-                const div = document.createElement('div');
-                div.className = 'qa-item';
-                div.innerHTML = `
-                    <div class="question">
-                        <span>${i + 1}.</span>
-                        <span>${item.q}</span>
-                    </div>
-                    <div class="answer">
-                        <strong style="color:var(--soft-gold)">ELITE RESPONSE:</strong><br>${item.a}
-                    </div>
-                `;
-                div.onclick = (e) => {
-                    e.stopPropagation();
-                    div.classList.toggle('open');
-                };
-                qaContainer.appendChild(div);
-            });
-        }
-
-        function filterQA() {
-            const keyword = document.getElementById('searchInput').value.toLowerCase().trim();
-            if (!keyword) {
-                renderQA(qaData);
-                return;
-            }
-            const filtered = qaData.filter(item => 
-                item.q.toLowerCase().includes(keyword) || 
-                item.a.toLowerCase().includes(keyword)
-            );
-            renderQA(filtered);
-        }
-
-        function addNewQA() {
-            const qInput = document.getElementById('newQuestion').value.trim();
-            const aInput = document.getElementById('newAnswer').value.trim();
-            
-            if (!qInput || !aInput) {
-                alert('Pertanyaan dan Jawaban tidak boleh kosong!');
-                return;
-            }
-
-            qaData.unshift({ q: qInput, a: aInput }); // 添加到最前面
-            renderQA();
-            
-            // 清空输入框
-            document.getElementById('newQuestion').value = '';
-            document.getElementById('newAnswer').value = '';
-            
-            alert('Response VIP baru berhasil ditambahkan ke database!');
-        }
-
-        function toggleGroup(id) {
-            const group = document.getElementById(id);
-            group.classList.toggle('active');
-        }
-
-        // 初始化
-        window.onload = () => {
-            renderQA();
-        };
-    </script>
 </body>
 </html>
