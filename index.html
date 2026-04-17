@@ -36,7 +36,7 @@
         }
 
         .category-header {
-            padding: 30px 40px;
+            padding: 25px 35px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
@@ -48,59 +48,66 @@
         .category-title {
             font-family: 'Cinzel', serif;
             color: var(--soft-gold);
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             letter-spacing: 2px;
         }
 
-        .category-content { padding: 35px; background: #0f0f0f; }
+        .category-content { padding: 30px; background: #0f0f0f; }
+
+        /* Q&A 风格容器 */
+        .qa-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .qa-item {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border: 1px solid rgba(212,175,55,0.1);
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .qa-item:hover { background: rgba(212,175,55,0.05); border-color: var(--soft-gold); }
 
         /* 告示板通用样式 */
         .notice-board {
             background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
             border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 30px;
-            margin-bottom: 25px;
+            padding: 25px;
+            margin-bottom: 20px;
         }
 
         .notice-title {
             font-family: 'Cinzel', serif;
-            font-size: 1.6rem;
-            margin: 0 0 20px 0;
+            font-size: 1.5rem;
+            margin: 0 0 15px 0;
             text-align: center;
         }
 
-        /* 禁止项列表样式 */
-        .restriction-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
+        /* 禁止项列表 */
+        .restriction-list { list-style: none; padding: 0; margin: 0; }
         .restriction-list li {
-            padding: 12px 0;
+            padding: 10px 0;
             border-bottom: 1px solid rgba(255,255,255,0.05);
             display: flex;
-            align-items: flex-start;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .restriction-list li::before {
-            content: '❌';
-            margin-right: 15px;
-            font-size: 1rem;
-        }
-
-        .footer-note {
-            text-align: center;
-            color: var(--soft-gold);
-            font-weight: 600;
-            margin-top: 25px;
             font-size: 0.9rem;
-            letter-spacing: 1px;
+        }
+        .restriction-list li::before { content: '❌'; margin-right: 12px; }
+
+        .report-btn {
+            display: block;
+            text-align: center;
+            padding: 15px;
+            background: var(--vip-gold);
+            color: #000;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 20px;
         }
 
-        .media-container img { width: 100%; height: auto; display: block; border: 1px solid rgba(255,255,255,0.1); }
+        .media-container img { width: 100%; height: auto; display: block; margin-top: 15px; }
     </style>
 </head>
 <body>
@@ -110,61 +117,80 @@
         <div class="category-group">
             <div class="category-header">
                 <span class="category-title">VIP SOLUTIONS (Q&A)</span>
+                <span>▼</span>
             </div>
+            <div class="category-content">
+                <div class="qa-grid">
+                    <div class="qa-item">1. wd berapa ?</div>
+                    <div class="qa-item">2. kalo gak wd gimana ?</div>
+                    <div class="qa-item">3. bisa maxwin gak ?</div>
+                    <div class="qa-item">4. kalo wd bisa ajak teman ?</div>
+                    <div class="qa-item">5. FB itu penipuan ?</div>
+                    <div class="qa-item">6. wd dijamin aman ?</div>
+                    <div class="qa-item">7. ini situs tipu-tipu ya ?</div>
+                    <div class="qa-item">8. berapa banyak bisa wd ?</div>
+                    <div class="qa-item">9. apakah pasti bisa wd ?</div>
+                    <div class="qa-item">10. nominal wd-nya berapa ?</div>
+                    <div class="qa-item">11. main di game apa ?</div>
+                </div>
             </div>
+        </div>
 
         <div class="category-group">
             <div class="category-header">
                 <span class="category-title">ELITE STANDARDS (DO)</span>
+                <span>▼</span>
             </div>
             <div class="category-content">
                 <div class="notice-board" style="border-left: 5px solid var(--soft-gold);">
                     <h3 class="notice-title" style="color: var(--warning-red);">PEJUANG CASINO</h3>
-                    <p style="color: var(--soft-gold); font-weight: 700; text-align: center; margin-bottom: 20px;">
-                        🚫 TOLAK TRANSAKSI ILEGAL, LAPOR & DAPATKAN 100K!
-                    </p>
-                    <a href="https://direct.lc.chat/12891963/20" target="_blank" style="display: block; text-align: center; padding: 15px; background: var(--vip-gold); color: #000; text-decoration: none; font-weight: 700; border-radius: 2px;">
-                        📌 LINK PELAPORAN RESMI
-                    </a>
+                    <p style="text-align: center; color: var(--soft-gold); font-weight: 700;">🚫 TOLAK TRANSAKSI ILEGAL, LAPOR & DAPATKAN 100K!</p>
+                    <p style="font-size: 0.85rem; line-height: 1.6; margin-top: 10px;">Jika menemukan promotor yang menawarkan cashback pribadi, lapor ke LiveChat. Bonus 100.000 IDR menanti setelah verifikasi.</p>
+                    <a href="https://direct.lc.chat/12891963/20" target="_blank" class="report-btn">📌 LINK PELAPORAN RESMI</a>
                 </div>
+                <img src="image_38caa4.jpg" style="width:100%;" onerror="this.style.display='none'">
             </div>
         </div>
 
         <div class="category-group">
             <div class="category-header">
                 <span class="category-title">VIP RESTRICTIONS (DON'T)</span>
+                <span>▼</span>
             </div>
             <div class="category-content">
                 <div class="notice-board" style="border-left: 5px solid var(--warning-red);">
                     <h3 class="notice-title" style="color: var(--warning-red);">⚠️ HAL YANG DI LARANG ⚠️</h3>
-                    
                     <ul class="restriction-list">
-                        <li>Mendaftarkan akun pengguna dan membantu pembayaran deposit pengguna</li>
+                        <li>Mendaftarkan akun dan membantu deposit pengguna</li>
                         <li>Mendaftarkan diri sendiri sebagai pengguna</li>
                         <li>Meminta komisi dari kemenangan pengguna</li>
                         <li>Tidak mengirimkan gambar peringatan</li>
-                        <li>Tidak mengklik profil wa pengguna saat rekam layar deposit</li>
-                        <li>Mengirimkan link lebih dari 1 dalam waktu bersamaan</li>
-                        <li>Menjanjikan kemenangan dengan menyebutkan nominal jp (jamin jp 600-1 juta)</li>
-                        <li>Login akun pengguna dan mengambil uang pengguna</li>
-                        <li>Menipu pengguna dengan memberikan rekening pribadi untuk deposit</li>
+                        <li>Tidak klik profil wa saat rekam layar deposit</li>
+                        <li>Mengirimkan link lebih dari 1 secara bersamaan</li>
+                        <li>Menjanjikan kemenangan nominal JP tertentu</li>
+                        <li>Login akun dan mengambil uang pengguna</li>
+                        <li>Memberikan rekening pribadi untuk deposit</li>
                         <li>Menjanjikan bonus di luar format Web</li>
-                        <li>Mengirimkan video seperti memegang kendali / hacker</li>
-                        <li>Dilarang membantu pelanggan menerima kode verifikasi</li>
+                        <li>Mengirimkan video seperti memegang kendali/hacker</li>
+                        <li>Membantu pelanggan menerima kode verifikasi</li>
                     </ul>
-
-                    <div class="footer-note">
-                        🔔 BIASAKAN MEMBERIKAN RESPON KETIKA MEMBACA PEMBERITAHUAN 🔔
-                    </div>
+                    <p style="text-align:center; color:var(--soft-gold); font-size:0.8rem; margin-top:15px;">🔔 BIASAKAN RESPON KETIKA MEMBACA PEMBERITAHUAN 🔔</p>
                 </div>
-
-                <div class="media-container">
-                    <img src="image_38c708.jpg" alt="Peringatan Keras" onerror="this.style.display='none'">
-                </div>
+                <img src="image_38c708.jpg" style="width:100%;" onerror="this.style.display='none'">
             </div>
         </div>
 
     </div>
 
+    <script>
+        // 简单的折叠控制脚本
+        function toggleGroup(el) {
+            const content = el.nextElementSibling;
+            content.style.display = content.style.display === 'none' ? 'block' : 'none';
+        }
+        document.querySelectorAll('.category-header').forEach(header => {
+            header.addEventListener('click', () => toggleGroup(header));
+        });
+    </script>
 </body>
 </html>
