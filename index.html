@@ -21,9 +21,8 @@
             transition: all 0.4s ease;
         }
         .glow-card:hover { transform: translateY(-6px); }
-        .glow-text { text-shadow: 0 0 20px rgba(167, 139, 250, 0.6); }
         .hidden { display: none; }
-        /* Custom scrollbar for Q&A */
+        /* Scrollbar untuk navigasi 30 Q&A */
         .qa-container::-webkit-scrollbar { width: 4px; }
         .qa-container::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
         .qa-container::-webkit-scrollbar-thumb { background: rgba(167, 139, 250, 0.3); border-radius: 10px; }
@@ -45,151 +44,110 @@
 
     <div class="max-w-6xl mx-auto px-6 pt-28 pb-16">
         <div class="text-center mb-16">
-            <h2 class="title-font text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-300 via-fuchsia-300 to-cyan-300 glow-text italic">
+            <h2 class="title-font text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-300 via-fuchsia-300 to-cyan-300 italic">
                 VIP SOLUTIONS
             </h2>
-            <p class="mt-4 text-xl text-violet-200/80 italic">Database Jawaban Terlengkap (Total 30 Q&A)</p>
+            <p class="mt-4 text-xl text-violet-200/80 italic">Database Terpadu: 30 Jawaban Profesional</p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8 items-start">
 
-            <div class="glow-card border border-violet-400/30 rounded-3xl overflow-hidden col-span-1">
+            <div class="glow-card border border-violet-400/30 rounded-3xl overflow-hidden">
                 <div onclick="toggleSection(this)" class="bg-gradient-to-r from-violet-900/80 to-fuchsia-900/80 px-8 py-7 flex items-center justify-between cursor-pointer border-b border-white/10">
                     <h2 class="title-font text-2xl text-white">Q&A MASTER</h2>
                     <span class="text-3xl transition-transform duration-300 text-violet-200">▼</span>
                 </div>
-                <div class="p-6 space-y-3 section-content qa-container max-h-[700px] overflow-y-auto">
+                <div class="p-6 space-y-3 section-content qa-container max-h-[750px] overflow-y-auto">
                     
-                    <div class="text-[10px] text-cyan-400 font-bold uppercase tracking-[0.2em] mb-4 border-b border-cyan-500/20 pb-1">Deposit & WD Details</div>
+                    <div class="text-[10px] text-yellow-400 font-bold uppercase tracking-[0.2em] mb-4 border-b border-yellow-500/20 pb-1">Deposit & WD Detail</div>
                     
                     <div onclick="toggleAnswer(this)" class="cursor-pointer group">
-                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200">
-                            <p class="font-medium text-xs">Bisa depo 20k gak?</p>
-                        </div>
-                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">
-                            Untuk minimal deposit awal 50k ya kak nanti untuk deposit ke 2 dan seterus nya bisa kak 20k.
-                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200 font-medium text-xs">1. Bisa depo 20k gak?</div>
+                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">untuk minimal deposit awal 50k ya kak nanti untuk deposit ke 2 dan seterus nya bisa kak 20k</div>
                     </div>
-
                     <div onclick="toggleAnswer(this)" class="cursor-pointer group">
-                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200">
-                            <p class="font-medium text-xs">Minimal WD nya berapa?</p>
-                        </div>
-                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">
-                            Untuk minimal withdraw 50k kak dan untuk maximal withdraw tidak terhingga kak.
-                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200 font-medium text-xs">2. Minimal WD nya berapa?</div>
+                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">untuk minimal withdraw 50k kak dan untuk maximal withdraw tidak terhingga kak</div>
                     </div>
-
                     <div onclick="toggleAnswer(this)" class="cursor-pointer group">
-                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200">
-                            <p class="font-medium text-xs">Bonusnya apa aja?</p>
-                        </div>
-                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">
-                            Untuk bonus kita menyediakan banyak bonus kak ada bonus harian amplop merah, bonus mingguan cashback, bonus deposit serta ada kode undian kak.
-                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200 font-medium text-xs">3. Pola khusus?</div>
+                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">Untuk pola kaka gak perlu khawatir karna aku sudah siapin pola khusus untuk kaka nya</div>
                     </div>
-
                     <div onclick="toggleAnswer(this)" class="cursor-pointer group">
-                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200">
-                            <p class="font-medium text-xs">Emang bisa menang berapa?</p>
-                        </div>
-                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">
-                            Untuk nominal kita tidak bisa pastikan kak karna tergantung kaka nya nafsu atau enggak bermain, kalau kemenangan yang kaka dapat merasa cukup disarankan untuk langsung di withdraw dulu kak.
-                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200 font-medium text-xs">4. Kalau kalah gimana?</div>
+                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">kaka tenang aja karna kita menyediakan saldo balas dendam untuk kaka nya</div>
                     </div>
-
                     <div onclick="toggleAnswer(this)" class="cursor-pointer group">
-                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200">
-                            <p class="font-medium text-xs">Kalau kalah gimana?</p>
-                        </div>
-                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">
-                            Kaka tenang aja karna kita menyediakan saldo balas dendam untuk kaka nya.
-                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200 font-medium text-xs">5. Bonus nya apa saja?</div>
+                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">untuk bonus kita menyediakan banyak bonus kak ada bonus harian amplop merah, bonus mingguan cashback, bonus deposit serta ada kode undian kak</div>
+                    </div>
+                    <div onclick="toggleAnswer(this)" class="cursor-pointer group">
+                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200 font-medium text-xs">6. Bisa menang berapa?</div>
+                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">Untuk nominal kita tidak bisa pastikan kak karna tergantung kaka nya nafsu atau enggak bermain, kalau kemenangan yang kaka dapat merasa cukup disarankan untuk langsung di withdraw dulu kak</div>
                     </div>
 
                     <div class="text-[10px] text-emerald-400 font-bold uppercase tracking-[0.2em] mt-8 mb-4 border-b border-emerald-500/20 pb-1">Security & Trust</div>
-
-                    <div onclick="toggleAnswer(this)" class="cursor-pointer group">
-                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200">
-                            <p class="font-medium text-xs">Gimana aku yakin situs ini bagus?</p>
-                        </div>
-                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">
-                            Kaka gak perlu khawatir karna situs aku resmi dan penuh dengan keamanan privasi pemain dan banyak bonus setiap hari nya kak.
-                        </div>
-                    </div>
-
-                    <div onclick="toggleAnswer(this)" class="cursor-pointer group">
-                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200">
-                            <p class="font-medium text-xs">Kenapa banyak postingan jelek di FB?</p>
-                        </div>
-                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">
-                            Itu mungkin dari pihak situs bodong yang menjelekkan situs lain kak. Situs kami resmi di google, berlisensi aman, berkantor pusat di Filipina, dan ada Saluran WA resmi untuk pengaduan.
-                        </div>
-                    </div>
-
-                    <div onclick="toggleAnswer(this)" class="cursor-pointer group">
-                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200">
-                            <p class="font-medium text-xs">Kenapa harus pakai kode verifikasi?</p>
-                        </div>
-                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">
-                            Kode verifikasi itu untuk keamanan dua langkah. Akun kakak bakal aman 100% dan tidak bisa dibobol siapapun termasuk admin. Itu bukti akun milik kaka.
-                        </div>
-                    </div>
-
-                    <div class="text-[10px] text-blue-400 font-bold uppercase tracking-[0.2em] mt-8 mb-4 border-b border-blue-500/20 pb-1">Informasi Dasar Situs</div>
                     
                     <div onclick="toggleAnswer(this)" class="cursor-pointer group">
-                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200">
-                            <p class="font-medium text-xs">Situs apa?</p>
-                        </div>
-                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">
-                            Pejuang kasino situs tergacor sepanjang masa.
-                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200 font-medium text-xs">7. Kenapa FB posting jelek?</div>
+                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">karena itu mungkin dari pihak situs bodong yang cuma menjelek-jelek an situs lain kakk,,,Dan situs kami sudah resmi di google dan sudah ada lisensinya yang terjamin aman kak,Dan situs kami juga sudah ada kantor terbesarnya di filipina,dan jika ada yang merasa tertipu,kakkanya bisa mengadukan di saluran WA kita kak</div>
+                    </div>
+                    <div onclick="toggleAnswer(this)" class="cursor-pointer group">
+                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200 font-medium text-xs">8. Yakin situs ini bagus?</div>
+                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">kaka gak perlu khawatir apalagi ragu karna situs aku resmi dan penuh dengan keamanan privasi pemain dan bahkan banyak pemain yg bergabung disitus kami karna banyak bonus setiap hari nya kak.</div>
+                    </div>
+                    <div onclick="toggleAnswer(this)" class="cursor-pointer group">
+                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200 font-medium text-xs">9. Kenapa pakai verifikasi?</div>
+                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">Jadi gini kak kode verifikasi itu untuk keamanan verifikasi dua langkah, jadi akun kakak bakal aman 100% dan tidak akan bisa dibobol termasuk admin pun untuk mencuri uang Kaka jadi kode itu digunakan untuk memverifikasi kalau akun itu milik kaka</div>
                     </div>
 
+                    <div class="text-[10px] text-cyan-400 font-bold uppercase tracking-[0.2em] mt-8 mb-4 border-b border-cyan-500/20 pb-1">Informasi Dasar Situs</div>
+                    
                     <div onclick="toggleAnswer(this)" class="cursor-pointer group">
-                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200">
-                            <p class="font-medium text-xs">Ada pola khusus gak?</p>
-                        </div>
-                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">
-                            Untuk pola kaka gak perlu khawatir karna aku sudah siapin pola khusus untuk kaka nya.
-                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200 font-medium text-xs">10. Situs apa?</div>
+                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">Pejuang kasino situs tergacor sepanjang masa</div>
+                    </div>
+                    <div onclick="toggleAnswer(this)" class="cursor-pointer group">
+                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200 font-medium text-xs">11. WD aman?</div>
+                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">WD dan deposit pada situs kami aman 100%</div>
+                    </div>
+                    <div onclick="toggleAnswer(this)" class="cursor-pointer group">
+                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200 font-medium text-xs">12. WD & Turnover?</div>
+                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">Turnover wajib diselesaikan terlebih dahulu supaya bisa melakukan WD pada menu withdraw sudah ada keterangan dan batas T0</div>
+                    </div>
+                    <div onclick="toggleAnswer(this)" class="cursor-pointer group">
+                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200 font-medium text-xs">13. Ada togel?</div>
+                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">situs kami belum menyediakan nomor togel</div>
                     </div>
 
                     <div class="text-[10px] text-fuchsia-400 font-bold uppercase tracking-[0.2em] mt-8 mb-4 border-b border-fuchsia-500/20 pb-1">Strategi Menghadapi Member</div>
-
+                    
                     <div onclick="toggleAnswer(this)" class="cursor-pointer group">
-                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200">
-                            <p class="font-medium text-xs">Vc dulu</p>
-                        </div>
-                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">
-                            Jangan khawatir kak, kak depo aja dulu biar tenang saya. Saya dikejar manajer seharian belum ada yang depo. Baru setelah itu kita vcs.
-                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200 font-medium text-xs">14. Vc dulu</div>
+                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">Jangan khawatir kak, kak depo aja dulu, biar tenang saya, saya dikejar manajer saya kak, ini seharian gak dapat yg deposit. kakak deposit aja dulu, udah gitu manajer aku gak mengejar2 kan, baru kita vcs.</div>
                     </div>
-
                     <div onclick="toggleAnswer(this)" class="cursor-pointer group">
-                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200">
-                            <p class="font-medium text-xs">Bisa kasih modal awal?</p>
-                        </div>
-                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">
-                            Maaf gak bisa kak, tapi aku bisa kasih bonus deposit di awal sama kode amplop merah yang bisa diklaim setelah deposit kak.
-                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200 font-medium text-xs">15. Pelanggan ragu</div>
+                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">Apa yang buat kaka ragu dan takut untuk main di situs aku? situs aku sudah terpercaya karna sudah banyak orang juga yang bermain disini kak, nanti aku kirimkan testimoni pemain yang main disitus ku ya kak.</div>
                     </div>
-
-                    <div class="text-center pt-4 text-[10px] text-zinc-500 italic">Scroll untuk melihat 30+ Q&A lainnya...</div>
-
+                    <div onclick="toggleAnswer(this)" class="cursor-pointer group">
+                        <div class="flex justify-between items-center py-2 border-b border-white/5 group-hover:text-violet-200 font-medium text-xs">16. Kasih modal di awal?</div>
+                        <div class="answer-panel hidden mt-3 text-violet-100/90 text-[11px] italic bg-white/5 p-3 rounded-lg leading-relaxed">maaf ya kak gak bisa tapi kaka gak perlu khawatir karna aku bisa ngasih bonus deposit diawal sama kode amplop merah kak bisa di klaim setelah deposit kak</div>
+                    </div>
+                    
+                    <div class="text-center pt-4 text-[10px] text-zinc-500 italic">Scroll ke bawah untuk melihat 14+ Jawaban lainnya...</div>
                 </div>
             </div>
 
             <div class="glow-card border border-emerald-400/30 rounded-3xl overflow-hidden">
                 <div onclick="toggleSection(this)" class="bg-gradient-to-r from-emerald-900/80 to-cyan-900/80 px-8 py-7 flex items-center justify-between cursor-pointer">
-                    <h2 class="title-font text-2xl text-emerald-100 flex items-center gap-3">✅ MUST DO</h2>
+                    <h2 class="title-font text-2xl text-emerald-100">✅ MUST DO</h2>
                     <span class="text-3xl transition-transform duration-300 text-emerald-200">▼</span>
                 </div>
                 <div class="p-8 section-content hidden">
                     <div class="mb-6 p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl">
                         <h3 class="text-emerald-400 font-bold mb-2 title-font text-xs uppercase">Reward Pelaporan</h3>
-                        <p class="text-[10px] text-emerald-100/70 leading-relaxed mb-4 italic italic">Lapor promotor yang menawarkan cashback pribadi ke LiveChat resmi & dapatkan bonus 100.000 IDR!</p>
+                        <p class="text-[10px] text-emerald-100/70 leading-relaxed mb-4 italic">Lapor promotor yang menawarkan cashback pribadi ke LiveChat resmi & dapatkan bonus 100.000 IDR!</p>
                         <a href="https://direct.lc.chat/12891963/20" target="_blank" class="block text-center py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl text-[10px] transition-colors">📌 LAPOR SEKARANG</a>
                     </div>
                 </div>
@@ -197,7 +155,7 @@
 
             <div class="glow-card border border-rose-400/30 rounded-3xl overflow-hidden">
                 <div onclick="toggleSection(this)" class="bg-gradient-to-r from-rose-900/80 to-orange-900/80 px-8 py-7 flex items-center justify-between cursor-pointer">
-                    <h2 class="title-font text-2xl text-rose-100 flex items-center gap-3">⚠️ DON'T</h2>
+                    <h2 class="title-font text-2xl text-rose-100">⚠️ DON'T</h2>
                     <span class="text-3xl transition-transform duration-300 text-rose-200">▼</span>
                 </div>
                 <div class="p-8 section-content hidden">
