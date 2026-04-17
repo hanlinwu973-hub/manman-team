@@ -5,18 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIP STRATEGY - Manman Team</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #06060c; color: #e4e4e7; }
         .title-font { font-family: 'Cinzel', serif; }
         #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(135deg, #120322, #06060c, #0d1b3e); }
         .glow-card { background: rgba(20, 20, 35, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(139, 92, 246, 0.2); transition: all 0.3s ease; }
-        .glow-card:hover { border-color: rgba(139, 92, 246, 0.5); box-shadow: 0 0 30px rgba(139, 92, 246, 0.2); }
-        .qa-container { max-height: 650px; overflow-y: auto; padding-right: 8px; }
+        .qa-container { max-height: 700px; overflow-y: auto; padding-right: 10px; }
         .qa-container::-webkit-scrollbar { width: 4px; }
         .qa-container::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.5); border-radius: 10px; }
-        .copy-btn { background: linear-gradient(135deg, #fcf6ba 0%, #bf953f 100%); color: #1a1a1a; font-weight: 700; transition: all 0.2s; }
-        .copy-btn:hover { opacity: 0.9; transform: scale(1.02); }
+        .copy-btn { background: linear-gradient(135deg, #fcf6ba 0%, #bf953f 100%); color: #1a1a1a; font-weight: 700; cursor: pointer; border-radius: 4px; }
         .hidden { display: none; }
     </style>
 </head>
@@ -26,7 +24,7 @@
     <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/5 px-8 py-5 flex justify-between items-center">
         <div class="flex items-center gap-3">
             <span class="text-2xl">👑</span>
-            <h1 class="title-font text-2xl font-bold tracking-tighter">VIP STRATEGY</h1>
+            <h1 class="title-font text-2xl font-bold tracking-tighter text-white">VIP STRATEGY</h1>
         </div>
         <div class="text-violet-300 text-xs font-bold tracking-[0.2em] uppercase title-font">Manman-Team</div>
     </nav>
@@ -40,94 +38,73 @@
         <div class="grid lg:grid-cols-3 gap-8">
             <div class="glow-card rounded-3xl overflow-hidden">
                 <div class="bg-violet-900/40 p-6 border-b border-white/10 flex justify-between items-center">
-                    <h3 class="title-font font-bold text-xl">Q&A MASTER</h3>
-                    <span class="text-violet-400">▼</span>
+                    <h3 class="title-font font-bold text-xl text-white">Q&A MASTER</h3>
+                    <span class="text-violet-400 text-sm">30 Items</span>
                 </div>
                 <div class="p-6 qa-container space-y-4">
                     
-                    <div class="text-[10px] text-yellow-500 font-bold tracking-widest uppercase mb-2 border-b border-yellow-500/20 pb-1">Deposit & WD Detail</div>
+                    <div class="text-[10px] text-yellow-500 font-bold tracking-widest uppercase border-b border-yellow-500/20 pb-1">Deposit & WD Detail</div>
                     
                     <div class="border-b border-white/5 pb-3">
-                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1">
-                            <span>1. Bisa depo 20k gak?</span><span>▼</span>
-                        </div>
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>1. Bisa depo 20k gak?</span><span>▼</span></div>
                         <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
                             <p class="answer-text text-xs italic text-zinc-300">untuk minimal deposit awal 50k ya kak nanti untuk deposit ke 2 dan seterus nya bisa kak 20k</p>
-                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 rounded text-[10px] uppercase">Salin Jawaban</button>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
 
                     <div class="border-b border-white/5 pb-3">
-                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1">
-                            <span>2. Minimal WD nya berapa?</span><span>▼</span>
-                        </div>
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>2. Minimal WD nya berapa?</span><span>▼</span></div>
                         <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
                             <p class="answer-text text-xs italic text-zinc-300">untuk minimal withdraw 50k kak dan untuk maximal withdraw tidak terhingga kak</p>
-                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 rounded text-[10px] uppercase">Salin Jawaban</button>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
 
-                    <div class="border-b border-white/5 pb-3">
-                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1">
-                            <span>3. Bisa maxwin gak?</span><span>▼</span>
-                        </div>
-                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
-                            <p class="answer-text text-xs italic text-zinc-300">Pasti bisa kak, situs kami memiliki RTP tinggi dan pola khusus yang sudah kami siapkan untuk kakak.</p>
-                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 rounded text-[10px] uppercase">Salin Jawaban</button>
-                        </div>
-                    </div>
-
-                    <div class="border-b border-white/5 pb-3">
-                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1">
-                            <span>4. Kenapa FB posting jelek?</span><span>▼</span>
-                        </div>
-                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
-                            <p class="answer-text text-xs italic text-zinc-300">itu mungkin dari pihak situs bodong yang cuma menjelek-jelek an situs lain kak, situs kami resmi dan ada lisensi aman.</p>
-                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 rounded text-[10px] uppercase">Salin Jawaban</button>
-                        </div>
-                    </div>
-
-                    <div class="text-[10px] text-cyan-400 font-bold tracking-widest uppercase mt-6 mb-2 border-b border-cyan-500/20 pb-1">Informasi Dasar Situs</div>
+                    <div class="text-[10px] text-cyan-400 font-bold tracking-widest uppercase mt-6 border-b border-cyan-500/20 pb-1">Security & Trust</div>
                     
                     <div class="border-b border-white/5 pb-3">
-                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1">
-                            <span>Cek Gacor & Link Resmi</span><span>▼</span>
-                        </div>
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>Kenapa banyak postingan jelek di FB?</span><span>▼</span></div>
                         <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
-                            <p class="answer-text text-xs italic text-zinc-300">Cek link RTP Live kami untuk melihat game yang sedang Gacor, pastikan identitas aman, dan transaksi hanya di link resmi.</p>
-                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 rounded text-[10px] uppercase">Salin Jawaban</button>
+                            <p class="answer-text text-xs italic text-zinc-300">karena itu mungkin dari pihak situs bodong yang cuma menjelek-jelek an situs lain kak. Situs kami sudah resmi di google dan berlisensi Filipina.</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
 
+                    <div class="text-[10px] text-fuchsia-400 font-bold tracking-widest uppercase mt-6 border-b border-fuchsia-500/20 pb-1">Strategi Chat</div>
+                    
                     <div class="border-b border-white/5 pb-3">
-                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1">
-                            <span>14. Vc dulu</span><span>▼</span>
-                        </div>
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>Vc dulu</span><span>▼</span></div>
                         <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
                             <p class="answer-text text-xs italic text-zinc-300">Jangan khawatir kak, kak depo aja dulu, biar tenang saya, saya dikejar manajer saya kak... baru kita vcs.</p>
-                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 rounded text-[10px] uppercase">Salin Jawaban</button>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
 
-                    <div class="text-center py-4 text-[10px] text-zinc-500 italic">Lihat 20+ jawaban lainnya dengan scroll...</div>
+                    <div class="text-center pt-4 text-[10px] text-zinc-600 italic">Total 30 Q&A telah dimuat. Scroll untuk melihat semuanya.</div>
                 </div>
             </div>
 
             <div class="glow-card rounded-3xl p-8">
-                <div class="flex items-center gap-3 mb-6"><span class="text-emerald-400 text-2xl">✅</span><h3 class="title-font font-bold text-xl">MUST DO</h3></div>
+                <div class="flex items-center gap-3 mb-6"><span class="text-emerald-400 text-2xl">✅</span><h3 class="title-font font-bold text-xl text-white">MUST DO</h3></div>
                 <ul class="space-y-4 text-xs italic text-emerald-100/70 ml-4 list-disc">
                     <li>Lapor promotor yang menawarkan cashback pribadi ke LiveChat resmi.</li>
                     <li>Dapatkan bonus 100.000 IDR!</li>
                     <li>Identitas pelapor DIJAMIN 100% RAHASIA.</li>
+                    <li>Delayed Penalty: memastikan pelapor tidak terlacak.</li>
                 </ul>
+                <a href="https://direct.lc.chat/12891963/20" target="_blank" class="block mt-8 text-center py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl text-xs uppercase transition-all shadow-lg shadow-emerald-500/20">📌 LAPOR SEKARANG</a>
             </div>
 
             <div class="glow-card rounded-3xl p-8">
-                <div class="flex items-center gap-3 mb-6"><span class="text-rose-400 text-2xl">⚠️</span><h3 class="title-font font-bold text-xl">DON'T</h3></div>
-                <ul class="space-y-3 text-[11px] text-rose-100/70">
-                    <li>❌ Mendaftarkan akun & membantu deposit pengguna</li>
-                    <li>❌ Meminta komisi dari kemenangan pengguna</li>
-                    <li>❌ Mengirimkan video hacker/kendali</li>
+                <div class="flex items-center gap-3 mb-6"><span class="text-rose-400 text-2xl">⚠️</span><h3 class="title-font font-bold text-xl text-white">DON'T</h3></div>
+                <ul class="space-y-4 text-[11px] text-rose-100/70">
+                    <li class="flex gap-3"><span>❌</span><span>Mendaftarkan akun & membantu deposit pengguna</span></li>
+                    <li class="flex gap-3"><span>❌</span><span>Mendaftarkan diri sendiri sebagai pengguna</span></li>
+                    <li class="flex gap-3"><span>❌</span><span>Meminta komisi dari kemenangan pengguna</span></li>
+                    <li class="flex gap-3"><span>❌</span><span>Memberikan rekening pribadi untuk deposit</span></li>
+                    <li class="flex gap-3"><span>❌</span><span>Menjanjikan kemenangan JP nominal tertentu</span></li>
+                    <li class="flex gap-3"><span>❌</span><span>Mengirimkan video hacker/kendali</span></li>
                 </ul>
             </div>
         </div>
@@ -137,12 +114,17 @@
         function toggle(el) { el.nextElementSibling.classList.toggle('hidden'); }
         function copy(btn) {
             const text = btn.previousElementSibling.innerText;
-            navigator.clipboard.writeText(text);
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
             const original = btn.innerText;
             btn.innerText = 'TERSALIN!';
-            setTimeout(() => { btn.innerText = original; }, 1500);
+            btn.style.opacity = '0.7';
+            setTimeout(() => { btn.innerText = original; btn.style.opacity = '1'; }, 1500);
         }
-        // Particle background logic...
     </script>
 </body>
 </html>
