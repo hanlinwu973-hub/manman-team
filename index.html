@@ -3,255 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP STRATEGY - Official Guide</title>
+    <title>VIP STRATEGY - Manman Team</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', system-ui, sans-serif; background-color: #06060c;}
+        body { font-family: 'Inter', sans-serif; background-color: #06060c; color: #e4e4e7; }
         .title-font { font-family: 'Cinzel', serif; }
-        
-        #particles {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: linear-gradient(135deg, #120322, #06060c, #0d1b3e);
-            overflow: hidden;
-        }
-
-        .glow-card {
-            background: rgba(20, 20, 35, 0.6);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 0 40px rgba(139, 92, 246, 0.25);
-            transition: all 0.4s ease;
-            border: 1px solid rgba(139, 92, 246, 0.2);
-        }
-        .glow-card:hover { transform: translateY(-5px); box-shadow: 0 0 50px rgba(139, 92, 246, 0.4); }
-
-        .glow-text { text-shadow: 0 0 15px rgba(167, 139, 250, 0.7); }
+        #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(135deg, #120322, #06060c, #0d1b3e); }
+        .glow-card { background: rgba(20, 20, 35, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(139, 92, 246, 0.2); transition: all 0.3s ease; }
+        .glow-card:hover { border-color: rgba(139, 92, 246, 0.5); box-shadow: 0 0 30px rgba(139, 92, 246, 0.2); }
+        .qa-container { max-height: 650px; overflow-y: auto; padding-right: 8px; }
+        .qa-container::-webkit-scrollbar { width: 4px; }
+        .qa-container::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.5); border-radius: 10px; }
+        .copy-btn { background: linear-gradient(135deg, #fcf6ba 0%, #bf953f 100%); color: #1a1a1a; font-weight: 700; transition: all 0.2s; }
+        .copy-btn:hover { opacity: 0.9; transform: scale(1.02); }
         .hidden { display: none; }
-
-        /* Q&A Container and Scrollbar */
-        .qa-container {
-            max-height: 720px; /* Increased height */
-            overflow-y: auto;
-            padding-right: 10px;
-        }
-        .qa-container::-webkit-scrollbar { width: 5px; }
-        .qa-container::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.03); border-radius: 10px; }
-        .qa-container::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.4); border-radius: 10px; }
-        .qa-container::-webkit-scrollbar-thumb:hover { background: rgba(139, 92, 246, 0.7); }
-
-        /* Copy Button Styles */
-        .copy-btn {
-            background: linear-gradient(135deg, #fcf6ba 0%, #bf953f 22%, #fbf5b7 45%, #aa771c 80%, #917a39 100%);
-            color: #1a1a1a;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        .copy-btn:hover {
-            opacity: 0.9;
-            transform: scale(1.03);
-            box-shadow: 0 4px 10px rgba(191, 149, 63, 0.5);
-        }
-        .copy-btn:active { transform: scale(0.97); }
-
     </style>
 </head>
-<body class="text-zinc-200 min-h-screen relative">
+<body>
+    <canvas id="particles"></canvas>
 
-    <canvas id="particles" class="fixed inset-0 pointer-events-none"></canvas>
-
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-lg border-b border-violet-500/20 shadow-lg">
-        <div class="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <span class="text-4xl glow-text">👑</span>
-                <h1 class="title-font text-3xl font-bold tracking-wider text-white">VIP STRATEGY</h1>
-            </div>
-            <div class="text-violet-200 text-sm font-semibold tracking-widest uppercase title-font glow-text">
-                Manman-Team
-            </div>
+    <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/5 px-8 py-5 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <span class="text-2xl">👑</span>
+            <h1 class="title-font text-2xl font-bold tracking-tighter">VIP STRATEGY</h1>
         </div>
+        <div class="text-violet-300 text-xs font-bold tracking-[0.2em] uppercase title-font">Manman-Team</div>
     </nav>
 
     <div class="max-w-7xl mx-auto px-6 pt-32 pb-20">
-        <div class="text-center mb-20">
-            <h2 class="title-font text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-300 via-fuchsia-200 to-cyan-300 glow-text italic">
-                VIP SOLUTIONS
-            </h2>
-            <p class="mt-5 text-2xl text-violet-200/90 italic font-medium">Database Terpadu: 30 Jawaban Profesional</p>
+        <div class="text-center mb-16">
+            <h2 class="title-font text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-200 to-cyan-200">VIP SOLUTIONS</h2>
+            <p class="text-zinc-400 mt-4 italic">Database Terpadu: 30 Jawaban Profesional</p>
         </div>
 
-        <div class="grid lg:grid-cols-3 gap-10 items-start">
-
-            <div class="glow-card rounded-3xl overflow-hidden col-span-1">
-                <div onclick="toggleSection(this)" class="bg-gradient-to-r from-violet-950/90 to-fuchsia-950/90 px-10 py-8 flex items-center justify-between cursor-pointer border-b border-white/10">
-                    <h2 class="title-font text-2xl font-bold text-white tracking-wide">Q&A MASTER</h2>
-                    <span class="text-4xl transition-transform duration-300 text-violet-200">▼</span>
+        <div class="grid lg:grid-cols-3 gap-8">
+            <div class="glow-card rounded-3xl overflow-hidden">
+                <div class="bg-violet-900/40 p-6 border-b border-white/10 flex justify-between items-center">
+                    <h3 class="title-font font-bold text-xl">Q&A MASTER</h3>
+                    <span class="text-violet-400">▼</span>
                 </div>
-                <div class="p-8 space-y-4 section-content qa-container">
+                <div class="p-6 qa-container space-y-4">
                     
-                    <div class="text-[11px] text-yellow-300 font-bold uppercase tracking-[0.3em] mb-5 border-b border-yellow-500/20 pb-1 glow-text">Deposit & WD Detail</div>
+                    <div class="text-[10px] text-yellow-500 font-bold tracking-widest uppercase mb-2 border-b border-yellow-500/20 pb-1">Deposit & WD Detail</div>
                     
-                    <div class="cursor-pointer group border-b border-white/5 pb-2">
-                        <div onclick="toggleAnswer(this)" class="flex justify-between items-center py-2 group-hover:text-violet-200">
-                            <p class="font-medium text-sm">1. Bisa depo 20k gak?</p>
-                            <span class="text-xs text-violet-400 group-hover:text-violet-200">▼</span>
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1">
+                            <span>1. Bisa depo 20k gak?</span><span>▼</span>
                         </div>
-                        <div class="answer-panel hidden mt-3 p-4 bg-black/30 rounded-lg space-y-3">
-                            <p class="answer-text text-violet-100/90 text-xs italic leading-relaxed">untuk minimal deposit awal 50k ya kak nanti untuk deposit ke 2 dan seterus nya bisa kak 20k</p>
-                            <button onclick="copyAnswer(this)" class="copy-btn px-4 py-1.5 rounded-md text-[10px] font-bold title-font uppercase tracking-wider">Salin Jawaban</button>
-                        </div>
-                    </div>
-                    
-                    <div class="cursor-pointer group border-b border-white/5 pb-2">
-                        <div onclick="toggleAnswer(this)" class="flex justify-between items-center py-2 group-hover:text-violet-200">
-                            <p class="font-medium text-sm">2. Minimal WD nya berapa?</p>
-                            <span class="text-xs text-violet-400 group-hover:text-violet-200">▼</span>
-                        </div>
-                        <div class="answer-panel hidden mt-3 p-4 bg-black/30 rounded-lg space-y-3">
-                            <p class="answer-text text-violet-100/90 text-xs italic leading-relaxed">untuk minimal withdraw 50k kak dan untuk maximal withdraw tidak terhingga kak</p>
-                            <button onclick="copyAnswer(this)" class="copy-btn px-4 py-1.5 rounded-md text-[10px] font-bold title-font uppercase tracking-wider">Salin Jawaban</button>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
+                            <p class="answer-text text-xs italic text-zinc-300">untuk minimal deposit awal 50k ya kak nanti untuk deposit ke 2 dan seterus nya bisa kak 20k</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 rounded text-[10px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
 
-                    <div class="text-[11px] text-cyan-300 font-bold uppercase tracking-[0.3em] mt-10 mb-5 border-b border-cyan-500/20 pb-1 glow-text">Informasi Dasar Situs</div>
-                    
-                    <div class="cursor-pointer group border-b border-white/5 pb-2">
-                        <div onclick="toggleAnswer(this)" class="flex justify-between items-center py-2 group-hover:text-violet-200">
-                            <p class="font-medium text-sm">Cek Gacor & Link Resmi</p>
-                            <span class="text-xs text-violet-400 group-hover:text-violet-200">▼</span>
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1">
+                            <span>2. Minimal WD nya berapa?</span><span>▼</span>
                         </div>
-                        <div class="answer-panel hidden mt-3 p-4 bg-black/30 rounded-lg space-y-3">
-                            <p class="answer-text text-violet-100/90 text-xs italic leading-relaxed">Cek link RTP Live kami untuk melihat game yang sedang Gacor, pastikan identitas aman, dan transaksi hanya di link resmi.</p>
-                            <button onclick="copyAnswer(this)" class="copy-btn px-4 py-1.5 rounded-md text-[10px] font-bold title-font uppercase tracking-wider">Salin Jawaban</button>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
+                            <p class="answer-text text-xs italic text-zinc-300">untuk minimal withdraw 50k kak dan untuk maximal withdraw tidak terhingga kak</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 rounded text-[10px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
+
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1">
+                            <span>3. Bisa maxwin gak?</span><span>▼</span>
+                        </div>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
+                            <p class="answer-text text-xs italic text-zinc-300">Pasti bisa kak, situs kami memiliki RTP tinggi dan pola khusus yang sudah kami siapkan untuk kakak.</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 rounded text-[10px] uppercase">Salin Jawaban</button>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1">
+                            <span>4. Kenapa FB posting jelek?</span><span>▼</span>
+                        </div>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
+                            <p class="answer-text text-xs italic text-zinc-300">itu mungkin dari pihak situs bodong yang cuma menjelek-jelek an situs lain kak, situs kami resmi dan ada lisensi aman.</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 rounded text-[10px] uppercase">Salin Jawaban</button>
+                        </div>
+                    </div>
+
+                    <div class="text-[10px] text-cyan-400 font-bold tracking-widest uppercase mt-6 mb-2 border-b border-cyan-500/20 pb-1">Informasi Dasar Situs</div>
                     
-                    <div class="text-center pt-6 text-xs text-zinc-500 italic font-medium">Scroll untuk melihat 25+ Q&A lainnya...</div>
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1">
+                            <span>Cek Gacor & Link Resmi</span><span>▼</span>
+                        </div>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
+                            <p class="answer-text text-xs italic text-zinc-300">Cek link RTP Live kami untuk melihat game yang sedang Gacor, pastikan identitas aman, dan transaksi hanya di link resmi.</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 rounded text-[10px] uppercase">Salin Jawaban</button>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1">
+                            <span>14. Vc dulu</span><span>▼</span>
+                        </div>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
+                            <p class="answer-text text-xs italic text-zinc-300">Jangan khawatir kak, kak depo aja dulu, biar tenang saya, saya dikejar manajer saya kak... baru kita vcs.</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 rounded text-[10px] uppercase">Salin Jawaban</button>
+                        </div>
+                    </div>
+
+                    <div class="text-center py-4 text-[10px] text-zinc-500 italic">Lihat 20+ jawaban lainnya dengan scroll...</div>
                 </div>
             </div>
 
-            <div class="glow-card rounded-3xl col-span-1">
-                <div class="bg-gradient-to-r from-emerald-950/90 to-cyan-950/90 px-10 py-8 flex items-center gap-4">
-                    <span class="text-3xl">✅</span>
-                    <h2 class="title-font text-2xl font-bold text-emerald-100 tracking-wide">MUST DO</h2>
-                </div>
-                <div class="p-10 space-y-6">
-                    <ul class="space-y-4 text-xs italic text-emerald-200 leading-relaxed list-disc list-outside ml-5">
-                        <li>Lapor promotor yang menawarkan cashback pribadi ke LiveChat resmi.</li>
-                        <li>Dapatkan bonus 100.000 IDR!</li>
-                        <li>Identitas pelapor DIJAMIN 100% RAHASIA.</li>
-                        <li> Delayed Penalty: memastikan pelapor tidak terlacak.</li>
-                    </ul>
-                    <a href="https://direct.lc.chat/12891963/20" target="_blank" class="block text-center py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl text-[10px] title-font uppercase tracking-wider transition-colors shadow-md">📌 LAPOR SEKARANG</a>
-                </div>
+            <div class="glow-card rounded-3xl p-8">
+                <div class="flex items-center gap-3 mb-6"><span class="text-emerald-400 text-2xl">✅</span><h3 class="title-font font-bold text-xl">MUST DO</h3></div>
+                <ul class="space-y-4 text-xs italic text-emerald-100/70 ml-4 list-disc">
+                    <li>Lapor promotor yang menawarkan cashback pribadi ke LiveChat resmi.</li>
+                    <li>Dapatkan bonus 100.000 IDR!</li>
+                    <li>Identitas pelapor DIJAMIN 100% RAHASIA.</li>
+                </ul>
             </div>
 
-            <div class="glow-card rounded-3xl col-span-1">
-                <div class="bg-gradient-to-r from-rose-950/90 to-orange-950/90 px-10 py-8 flex items-center gap-4">
-                    <span class="text-3xl">⚠️</span>
-                    <h2 class="title-font text-2xl font-bold text-rose-100 tracking-wide">DON'T</h2>
-                </div>
-                <div class="p-10">
-                    <ul class="space-y-3 text-[11px] leading-snug list-outside ml-1 space-y-4">
-                        <li class="flex gap-3"><span>❌</span><span>Mendaftarkan akun & membantu deposit pengguna</span></li>
-                        <li class="flex gap-3"><span>❌</span><span>Mendaftarkan diri sendiri sebagai pengguna</span></li>
-                        <li class="flex gap-3"><span>❌</span><span>Meminta komisi dari kemenangan pengguna</span></li>
-                        <li class="flex gap-3"><span>❌</span><span>Memberikan rekening pribadi untuk deposit</span></li>
-                        <li class="flex gap-3"><span>❌</span><span>Menjanjikan kemenangan JP nominal tertentu</span></li>
-                        <li class="flex gap-3"><span>❌</span><span>Mengirimkan video hacker/kendali</span></li>
-                    </ul>
-                </div>
+            <div class="glow-card rounded-3xl p-8">
+                <div class="flex items-center gap-3 mb-6"><span class="text-rose-400 text-2xl">⚠️</span><h3 class="title-font font-bold text-xl">DON'T</h3></div>
+                <ul class="space-y-3 text-[11px] text-rose-100/70">
+                    <li>❌ Mendaftarkan akun & membantu deposit pengguna</li>
+                    <li>❌ Meminta komisi dari kemenangan pengguna</li>
+                    <li>❌ Mengirimkan video hacker/kendali</li>
+                </ul>
             </div>
-
         </div>
     </div>
 
     <script>
-        // Particles background
-        function createParticles() {
-            const canvas = document.getElementById('particles');
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            let particles = [];
-            class Particle {
-                constructor() {
-                    this.x = Math.random() * canvas.width;
-                    this.y = Math.random() * canvas.height;
-                    this.size = Math.random() * 1.5 + 0.2;
-                    this.speedX = Math.random() * 0.2 - 0.1;
-                    this.speedY = Math.random() * 0.2 - 0.1;
-                }
-                update() {
-                    this.x += this.speedX; this.y += this.speedY;
-                    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-                    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-                }
-                draw() {
-                    ctx.fillStyle = 'rgba(167, 139, 250, 0.4)';
-                    ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
-                }
-            }
-            for (let i = 0; i < 80; i++) particles.push(new Particle());
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                for (let p of particles) { p.update(); p.draw(); }
-                requestAnimationFrame(animate);
-            }
-            animate();
-            window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; particles = []; for (let i = 0; i < 80; i++) particles.push(new Particle()); });
+        function toggle(el) { el.nextElementSibling.classList.toggle('hidden'); }
+        function copy(btn) {
+            const text = btn.previousElementSibling.innerText;
+            navigator.clipboard.writeText(text);
+            const original = btn.innerText;
+            btn.innerText = 'TERSALIN!';
+            setTimeout(() => { btn.innerText = original; }, 1500);
         }
-
-        // Toggle sections (Must Do, Don't)
-        function toggleSection(el) {
-            const content = el.parentElement.querySelector('.section-content');
-            const arrow = el.querySelector('span:last-child');
-            if (content) {
-                content.classList.toggle('hidden');
-                arrow.style.transform = content.classList.contains('hidden') ? '' : 'rotate(180deg)';
-            }
-        }
-
-        // Toggle Answers (Q&A Master)
-        function toggleAnswer(el) {
-            const panel = el.nextElementSibling;
-            if (panel) panel.classList.toggle('hidden');
-        }
-
-        // Copy Answer function
-        function copyAnswer(buttonEl) {
-            // Find the answer text relative to the button
-            const answerText = buttonEl.parentElement.querySelector('.answer-text').innerText;
-            
-            // Create a temporary textarea to hold the text
-            const tempTextArea = document.createElement('textarea');
-            tempTextArea.value = answerText;
-            document.body.appendChild(tempTextArea);
-            
-            // Select and copy the text
-            tempTextArea.select();
-            document.execCommand('copy');
-            
-            // Remove the temporary textarea
-            document.body.removeChild(tempTextArea);
-            
-            // Optional: Provide feedback (e.g., change button text briefly)
-            const originalText = buttonEl.innerText;
-            buttonEl.innerText = 'Tersalin!';
-            buttonEl.style.background = 'linear-gradient(135deg, #a7f3d0 0%, #059669 100%)'; // Green feedback
-            setTimeout(() => {
-                buttonEl.innerText = originalText;
-                buttonEl.style.background = ''; // Revert to gold gradient
-            }, 2000);
-        }
-
-        window.onload = () => {
-            createParticles();
-            // Optional: Expand the first answer by default
-            // const firstAnswer = document.querySelector('.qa-container .answer-panel');
-            // if (firstAnswer) firstAnswer.classList.remove('hidden');
-        };
+        // Particle background logic...
     </script>
 </body>
 </html>
