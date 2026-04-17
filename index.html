@@ -3,137 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manman VIP Strategy - Ultimate Collection</title>
+    <title>Manman VIP Elite Strategy</title>
     <style>
-        /* 极致整合风格：三段式大集合 + 全宽高级列表 */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;600&display=swap');
+
         :root {
-            --bg-color: #f5f5f7;
-            --main-blue: #1d1d1f;
-            --accent-blue: #0071e3;
-            --card-bg: #ffffff;
-            --border-color: rgba(0,0,0,0.08);
+            /* 顶级赌场配色：黑金、暗灰、香槟色 */
+            --casino-black: #0a0a0a;
+            --vip-gold: linear-gradient(135deg, #fcf6ba 0%, #bf953f 22%, #fbf5b7 45%, #aa771c 80%, #917a39 100%);
+            --soft-gold: #d4af37;
+            --card-gray: #1a1a1a;
+            --text-silver: #e0e0e0;
+            --border-glow: rgba(212, 175, 55, 0.3);
         }
 
         body {
-            font-family: -apple-system, system-ui, sans-serif;
-            background-color: var(--bg-color);
+            background-color: var(--casino-black);
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(30,30,30,1) 0%, rgba(10,10,10,1) 100%);
+            color: var(--text-silver);
+            font-family: 'Montserrat', sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: var(--main-blue);
-            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
         }
 
+        /* 顶部标题：极其正式的高级感 */
         header {
             width: 100%;
-            padding: 60px 0;
-            background: white;
-            border-bottom: 1px solid var(--border-color);
+            padding: 80px 0;
             text-align: center;
-            margin-bottom: 40px;
+            background: linear-gradient(to bottom, #151515, var(--casino-black));
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
 
-        h1 { font-size: 2.2rem; font-weight: 700; margin: 0; letter-spacing: -0.02em; }
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            margin: 0;
+            background: var(--vip-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 12px;
+            filter: drop-shadow(0 0 10px rgba(191, 149, 63, 0.4));
+        }
 
-        .container { width: 90%; max-width: 1100px; padding-bottom: 100px; }
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            padding: 60px 0;
+            z-index: 2;
+        }
 
-        /* 集合大模块样式 */
+        /* 集合大模块：像珠宝盒一样的质感 */
         .category-group {
-            background: white;
-            border-radius: 18px;
-            margin-bottom: 25px;
-            border: 1px solid var(--border-color);
+            background: var(--card-gray);
+            border-radius: 2px; /* 赌场风格多用硬朗直角或极小圆角 */
+            margin-bottom: 35px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-            transition: all 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            transition: all 0.4s ease;
+        }
+
+        .category-group.active {
+            border-color: var(--soft-gold);
+            box-shadow: 0 0 30px var(--border-glow);
         }
 
         .category-header {
-            padding: 30px 40px;
+            padding: 35px 45px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #fff;
-            transition: background 0.2s;
+            background: linear-gradient(90deg, #1f1f1f, #151515);
+            position: relative;
         }
 
-        .category-header:hover { background: #f9f9f9; }
+        /* 标题前的小装饰线 */
+        .category-header::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            height: 40%;
+            width: 4px;
+            background: var(--vip-gold);
+        }
 
-        .category-title { font-size: 1.4rem; font-weight: 700; color: var(--main-blue); }
+        .category-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            letter-spacing: 3px;
+            color: var(--soft-gold);
+            font-weight: 700;
+        }
 
         .category-content {
-            display: none; /* 默认隐藏 */
-            padding: 20px 40px 40px;
-            background: #fafafa;
-            border-top: 1px solid var(--border-color);
+            display: none;
+            padding: 40px;
+            background: #121212;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
         }
 
         .active .category-content { display: block; }
 
-        /* 问答高级列表布局 */
+        /* 问答列表：全宽高级感 */
         .qa-item {
-            background: white;
-            padding: 25px 30px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            border: 1px solid var(--border-color);
+            background: #1a1a1a;
+            padding: 30px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.03);
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s;
+            position: relative;
         }
 
-        .qa-item:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .qa-item:hover {
+            background: #222;
+            border-color: rgba(212, 175, 55, 0.3);
+        }
 
-        .question { font-weight: 600; font-size: 1.1rem; color: #333; }
+        .question {
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+        }
+
+        .question::after {
+            content: 'VIEW DETAILS';
+            font-size: 0.65rem;
+            margin-left: auto;
+            color: var(--soft-gold);
+            letter-spacing: 2px;
+            opacity: 0.5;
+        }
 
         .answer {
             max-height: 0;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             opacity: 0;
-            color: #666;
-            line-height: 1.6;
-            font-size: 1rem;
+            color: #aaa;
+            line-height: 1.8;
         }
 
         .qa-item.open .answer {
-            max-height: 500px;
+            max-height: 600px;
             opacity: 1;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(0,0,0,0.05);
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
         }
 
-        /* 规则卡片布局 (DO/DON'T) */
-        .rule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        /* 规则网格 (DO/DON'T) */
+        .rule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .rule-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 4px solid #ccc;
-            font-size: 0.95rem;
+            background: #151515;
+            padding: 25px;
+            border: 1px solid rgba(255,255,255,0.05);
+            font-size: 1rem;
+            position: relative;
         }
-        .do-card { border-left-color: #34c759; }
-        .dont-card { border-left-color: #ff3b30; }
+        .do-card { border-left: 3px solid #00c853; }
+        .dont-card { border-left: 3px solid #d50000; }
+
+        .arrow { font-size: 0.8rem; color: var(--soft-gold); transition: transform 0.3s; }
+        .active .arrow { transform: rotate(180deg); }
 
         @media (max-width: 768px) {
             .rule-grid { grid-template-columns: 1fr; }
-            .category-header { padding: 20px; }
+            h1 { font-size: 1.8rem; }
+            .category-header { padding: 25px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>📖 Bank Soal Manman-team</h1>
+        <h1>MANMAN ELITE VIP</h1>
     </header>
 
     <div class="container">
         
         <div class="category-group" id="group-qa">
             <div class="category-header" onclick="toggleGroup('group-qa')">
-                <span class="category-title">Customer Solutions (Q&A)</span>
+                <span class="category-title">VIP SOLUTIONS (Q&A)</span>
                 <span class="arrow">▼</span>
             </div>
             <div class="category-content" id="qa-container">
@@ -142,7 +201,7 @@
 
         <div class="category-group" id="group-do">
             <div class="category-header" onclick="toggleGroup('group-do')">
-                <span class="category-title">Operational Guidelines (DO)</span>
+                <span class="category-title">ELITE STANDARDS (DO)</span>
                 <span class="arrow">▼</span>
             </div>
             <div class="category-content">
@@ -157,7 +216,7 @@
 
         <div class="category-group" id="group-dont">
             <div class="category-header" onclick="toggleGroup('group-dont')">
-                <span class="category-title">Restricted Actions (DON'T)</span>
+                <span class="category-title">VIP RESTRICTIONS (DON'T)</span>
                 <span class="arrow">▼</span>
             </div>
             <div class="category-content">
@@ -178,16 +237,15 @@
             { q: "kalo gak wd gimana ?", a: "Kalo ga wd, situs menyediakan kompensasi kaa dalam 1x24 jam nanti kaka akan dapat beberapa jumlah saldo disitus Kembali." },
             { q: "bisa maxwin gak kalo bisa aku main ?", a: "Kalo maxwin bisa aja ka, tapi saranku coba aja kaa dari modal kecil kalo wd kaka lanjut barangkali kaka maxwin." },
             { q: "kalo wd bisa ajak teman mabar ?", a: "Tentu saja bisa kak, jika kakak bisa mengajak teman untuk bermain bersama, peluang kemenangan akan jauh lebih besar." },
-            { q: "apa situs di Facebook itu penipuan ?", a: "Akun Facebook tersebut adalah akun buzzer dari situs pesaing yang sengaja menjelekkan kami. Situs kami resmi." },
-            { q: "wd ke Dijamin/JP beneran aman ?", a: "WD itu tergantung keberuntungan kak, tapi saya bisa bantu kirim pola gacor dan bantu klaim bonus deposit." },
-            { q: "ini situs tipu-tipu ya ?", a: "Maaf kak, itu admin situs sebelah yang sengaja menjelekkan. Situs kami resmi dan berlisensi." },
+            { q: "FB itu penipuan ?", a: "Akun Facebook tersebut adalah akun buzzer dari situs pesaing yang sengaja menjelekkan kami. Situs kami resmi dan berlisensi VIP." },
+            { q: "wd dijamin aman ?", a: "WD itu tergantung keberuntungan kak, tapi saya bisa bantu kirim pola gacor dan bantu klaim bonus deposit." },
+            { q: "ini situs tipu-tipu ya ?", a: "Maaf kak, itu admin situs sebelah yang sengaja menjelekkan. Situs kami resmi dan berlisensi, dijamin aman." },
             { q: "berapa banyak bisa wd ?", a: "Untuk nominal tidak bisa dipastikan, tapi kakak bisa coba pola gacor yang saya kirim. Ada bonus 10x free spin juga 🥰" },
             { q: "apakah pasti bisa wd ?", a: "Kami tidak bisa menjamin kemenangan, tetapi ada data RTP live untuk memilih game dengan peluang menang tinggi." },
             { q: "nominal wd-nya berapa ?", a: "Nominal wd sepenuhnya tergantung dari permainan dan keberuntungan taruhan kakak selanjutnya." },
             { q: "main di game apa ?", a: "Kakak bisa memilih game yang sedang gacor atau RTP tinggi saat ini." }
         ];
 
-        // 渲染 Q&A 列表
         const qaContainer = document.getElementById('qa-container');
         quizData.forEach((item, i) => {
             const div = document.createElement('div');
@@ -195,12 +253,11 @@
             div.onclick = (e) => { e.stopPropagation(); div.classList.toggle('open'); };
             div.innerHTML = `
                 <div class="question">${i + 1}. ${item.q}</div>
-                <div class="answer"><strong>Manman Jawaban:</strong><br>${item.a}</div>
+                <div class="answer"><strong style="color:var(--soft-gold)">ELITE RESPONSE:</strong><br>${item.a}</div>
             `;
             qaContainer.appendChild(div);
         });
 
-        // 切换集合大模块
         function toggleGroup(id) {
             document.getElementById(id).classList.toggle('active');
         }
