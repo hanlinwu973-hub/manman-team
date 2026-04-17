@@ -3,337 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP Manman Elite Strategy</title>
+    <title>Manman VIP Strategy - Ultimate Collection</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;600&display=swap');
-
+        /* 极致整合风格：三段式大集合 + 全宽高级列表 */
         :root {
-            /* 拉斯维加斯日出配色：紫罗兰与金 */
-            --bg-color: #fcfcfc; /* 明亮洁白背景 */
-            --card-bg: #1a1a1a; /* 暗色卡片，突出金光 */
-            --text-on-card: #e0e0e0;
-            --vip-gold: #fcf6ba; /* 亮金色 */
-            --deep-gold: #bf953f; /* 深金色 */
-            --violet: #6a1b9a; /* 紫罗兰色 */
-            --deep-violet: #4a148c;
-            --accent-glow: rgba(191, 149, 63, 0.4); /* 金色光晕 */
-        }
-
-        /* 核心特效：金色筹码粒子飘动 */
-        @keyframes goldFloat {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
-        }
-
-        /* 青蛙金蟾浮雕呼吸灯特效 */
-        @keyframes totemGlow {
-            0% { opacity: 0.1; transform: scale(1) translateY(-50%); filter: drop-shadow(0 0 2px var(--deep-gold)); }
-            50% { opacity: 0.4; transform: scale(1.02) translateY(-55%); filter: drop-shadow(0 0 10px var(--deep-gold)); }
-            100% { opacity: 0.1; transform: scale(1) translateY(-50%); filter: drop-shadow(0 0 2px var(--deep-gold)); }
+            --bg-color: #f5f5f7;
+            --main-blue: #1d1d1f;
+            --accent-blue: #0071e3;
+            --card-bg: #ffffff;
+            --border-color: rgba(0,0,0,0.08);
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: -apple-system, system-ui, sans-serif;
             background-color: var(--bg-color);
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)),
-                url('https://www.transparenttextures.com/patterns/white-diamond-dark.png'); /* 极淡的大理石纹理 */
-            color: #333;
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden;
+            color: var(--main-blue);
             -webkit-font-smoothing: antialiased;
         }
 
         header {
-            text-align: center;
+            width: 100%;
             padding: 60px 0;
-            width: 100%;
-            background: linear-gradient(135deg, var(--deep-violet) 0%, var(--violet) 100%);
-            border-bottom: 4px solid var(--deep-gold);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            position: relative;
-            z-index: 10;
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+            margin-bottom: 40px;
         }
 
-        h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 3rem;
-            margin: 0;
-            background: linear-gradient(to bottom, var(--vip-gold) 0%, var(--deep-gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 8px;
-            filter: drop-shadow(0 0 10px rgba(191, 149, 63, 0.6));
-        }
+        h1 { font-size: 2.2rem; font-weight: 700; margin: 0; letter-spacing: -0.02em; }
 
-        /* 解决太空问题：两侧背景装饰（金色筹码扑克符号） */
-        .side-decor {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 15vw;
-            color: var(--violet);
-            opacity: 0.03;
-            pointer-events: none;
-            z-index: 1;
-        }
-        .decor-left { left: 2%; }
-        .decor-right { right: 2%; }
+        .container { width: 90%; max-width: 1100px; padding-bottom: 100px; }
 
-        /* 沉浸式侧边装饰物 */
-        .wrapper {
-            display: flex;
-            width: 100%;
-            position: relative;
-            z-index: 2; /* 保证在粒子上方 */
-        }
-
-        .sidebar {
-            flex: 1; /* 占据剩余空间 */
-            background: transparent;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-
-        .sidebar:hover {
-            opacity: 1;
-        }
-
-        /* 主角：金色筹码扑克金蟾赌圣图腾（使用SVG勾勒线条） */
-        .golden-totem {
-            width: 70%;
-            max-width: 250px;
-            height: auto;
-            opacity: 0.2;
-            animation: totemGlow 6s ease-in-out infinite; /* 呼呼吸灯特效 */
-            transition: opacity 0.3s ease, transform 0.2s ease;
-        }
-
-        .sidebar:hover .golden-totem {
-            opacity: 0.5;
-            transform: scale(1.05) translateY(-10px);
-        }
-
-        .main-container {
-            width: 100%;
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 80px 40px;
-            box-sizing: border-box;
-            background-color: rgba(255, 255, 255, 0.85); /* 稍微深一点，突出中间 */
-            border-left: 1px solid rgba(0,0,0,0.03);
-            border-right: 1px solid rgba(0,0,0,0.03);
-        }
-
-        /* 大模块标题设计：极简拟物玻璃风格 */
-        .category-section {
-            margin-bottom: 30px;
-            background: #fff;
-            backdrop-filter: blur(20px); /* 核心毛玻璃效果 */
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 24px; /* 更圆润的圆角 */
-            border: 1px solid rgba(0,0,0,0.03); /* 精细边框 */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03); /* 极细腻的阴影 */
+        /* 集合大模块样式 */
+        .category-group {
+            background: white;
+            border-radius: 18px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
         }
 
         .category-header {
-            padding: 25px 35px;
+            padding: 30px 40px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: transparent;
+            background: #fff;
+            transition: background 0.2s;
         }
 
-        .category-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            color: #333;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-            text-transform: uppercase; /* 按钮文字全大写 */
-        }
+        .category-header:hover { background: #f9f9f9; }
+
+        .category-title { font-size: 1.4rem; font-weight: 700; color: var(--main-blue); }
 
         .category-content {
             display: none; /* 默认隐藏 */
-            padding: 30px;
-            border-top: 1px solid rgba(0, 0, 0, 0.03);
+            padding: 20px 40px 40px;
+            background: #fafafa;
+            border-top: 1px solid var(--border-color);
         }
 
-        /* 优雅的答案展开动画 */
-        .category-section.active .category-content {
-            display: block;
-            pointer-events: auto; /* 展开后可点 */
-        }
+        .active .category-content { display: block; }
 
-        /* 问答三列布局 */
-        .quiz-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .qa-card {
-            background: rgba(0, 0, 0, 0.02);
-            padding: 22px;
-            border-radius: 16px;
-            border: 1px solid rgba(0, 0, 0, 0.03);
-            cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .qa-card:hover {
-            background-color: #fafafa;
-            border-color: rgba(198, 163, 108, 0.5);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-        }
-
-        .question {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-color);
+        /* 问答高级列表布局 */
+        .qa-item {
+            background: white;
+            padding: 25px 30px;
+            border-radius: 12px;
             margin-bottom: 12px;
-            display: flex;
-            align-items: center;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.2s;
         }
+
+        .qa-item:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+        .question { font-weight: 600; font-size: 1.1rem; color: #333; }
 
         .answer {
-            opacity: 0;
-            transform: scale(0.9); /* 初始缩小 */
             max-height: 0;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* 弹性过渡 */
-            pointer-events: none; /* 隐藏时不可点 */
-            padding-top: 10px;
-            border-top: 1px solid rgba(0,0,0,0.03);
-            color: var(--secondary-text);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            color: #666;
             line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .qa-item.open .answer {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* 规则卡片布局 (DO/DON'T) */
+        .rule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .rule-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ccc;
             font-size: 0.95rem;
         }
+        .do-card { border-left-color: #34c759; }
+        .dont-card { border-left-color: #ff3b30; }
 
-        .answer.show {
-            opacity: 1;
-            transform: scale(1); /* 放大回正 */
-            max-height: 500px; /* 容纳长文本 */
-            margin-top: 15px;
-            pointer-events: auto; /* 展开后可点 */
-        }
-
-        /* 赌场高级感按钮：暗玻璃金边 */
-        .show-btn {
-            background: transparent;
-            color: var(--accent-gold);
-            border: 2px solid var(--accent-gold);
-            padding: 12px 28px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 700;
-            transition: all 0.2s ease;
-            text-transform: uppercase; /* 按钮文字全大写 */
-            letter-spacing: 0.1em;
-        }
-
-        /* 装饰粒子样式 */
-        .particle {
-            position: fixed;
-            background: var(--deep-gold);
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0.3;
-            animation: goldFloat infinite linear;
-        }
-
-        @media (max-width: 1024px) {
-            .wrapper {
-                flex-direction: column;
-            }
-            .sidebar {
-                display: none; /* 手机端暂时隐藏侧边栏动物，保持整洁 */
-            }
-            .main-content {
-                width: 100%;
-                max-width: 100%;
-                padding: 60px 20px;
-            }
-            h1 {
-                font-size: 2rem;
-                margin-bottom: 40px;
-            }
+        @media (max-width: 768px) {
+            .rule-grid { grid-template-columns: 1fr; }
+            .category-header { padding: 20px; }
         }
     </style>
 </head>
 <body>
 
-<div class="wrapper">
-    <aside class="sidebar left-sidebar">
-        <svg class="golden-totem" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <path d="M50 10 Q60 5 70 10 Q80 15 80 25 L80 50 Q80 60 70 70 Q60 80 50 85 Q40 80 30 70 Q20 60 20 50 L20 25 Q20 15 30 10 Q40 5 50 10" fill="none" stroke="#bf953f" stroke-width="0.8"/>
-            <circle cx="35" cy="25" r="2" fill="#fcf6ba"/> <circle cx="65" cy="25" r="2" fill="#fcf6ba"/>
-            <text x="50" y="55" text-anchor="middle" fill="#bf953f" font-size="6">Cendrawasih - VIP</text>
-        </svg>
-    </aside>
+    <header>
+        <h1>📖 Bank Soal Manman-team</h1>
+    </header>
 
-    <main class="main-content">
-        <h2>Bank Soal Manman-team</h2>
-        <div id="quiz-list"></div>
-    </main>
+    <div class="container">
+        
+        <div class="category-group" id="group-qa">
+            <div class="category-header" onclick="toggleGroup('group-qa')">
+                <span class="category-title">Customer Solutions (Q&A)</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="category-content" id="qa-container">
+                </div>
+        </div>
 
-    <aside class="sidebar right-sidebar">
-        <svg class="golden-totem" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <path d="M50 10 Q60 5 70 10 Q80 15 80 25 L80 50 Q80 60 70 70 Q60 80 50 85 Q40 80 30 70 Q20 60 20 50 L20 25 Q20 15 30 10 Q40 5 50 10" fill="none" stroke="#bf953f" stroke-width="0.8"/>
-            <circle cx="35" cy="25" r="2" fill="#fcf6ba"/> <circle cx="65" cy="25" r="2" fill="#fcf6ba"/>
-            <text x="50" y="55" text-anchor="middle" fill="#bf953f" font-size="6">Manman ELITE</text>
-        </svg>
-    </aside>
-</div>
+        <div class="category-group" id="group-do">
+            <div class="category-header" onclick="toggleGroup('group-do')">
+                <span class="category-title">Operational Guidelines (DO)</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="category-content">
+                <div class="rule-grid">
+                    <div class="rule-card do-card">Wajib menjaga nada bicara yang sopan dan level VIP.</div>
+                    <div class="rule-card do-card">Wajib membalas pertanyaan pelanggan dalam waktu 3 menit.</div>
+                    <div class="rule-card do-card">Wajib memandu pelanggan melihat data RTP live saat ini.</div>
+                    <div class="rule-card do-card">Wajib memastikan nomor registrasi pelanggan benar.</div>
+                </div>
+            </div>
+        </div>
 
-<script>
-    const quizData = [
-        { q: "wd berapa ?", a: "Saya tidak bisa jamin wd berapa kak karena kaka bisa cek live rtp disitu dan live wd di situsnya dan bisa lihat wd banyak dari game apa coba kaka bisa ikutin game tersebut." },
-        { q: "kalo gak wd gimana ?", a: "Kalo ga wd, situs menyediakan kompensasi kaa dalam 1x24 jam nanti kaka akan dapat beberapa jumlah saldo disitus Kembali." },
-        { q: "bisa maxwin gak kalo bisa aku main ?", a: "Kalo maxwin bisa aja ka, tapi saranku coba aja kaa dari modal kecil kalo wd kaka lanjut barangkali kaka maxwin dan semisal ga maxwin paling-paling wd tipis dan kalo ga wd ada kompensasi ka." },
-        { q: "kalo wd bisa ajak teman mabar ?", a: "Tentu saja bisa kak, jika kakak bisa mengajak teman untuk bermain bersama, peluang kemenangan akan jauh lebih besar." },
-        { q: "apa situs di Facebook itu penipuan ?", a: "Akun Facebook tersebut adalah akun buzzer dari situs pesaing yang sengaja menjelekkan kami. Jangan khawatir, situs kami resmi." },
-        { q: "wd ke Dijamin/JP beneran aman ?", a: "WD itu tergantung keberuntungan kak, tapi saya bisa bantu kirim pola gacor dan bantu klaim bonus deposit." },
-        { q: "ini situs tipu-tipu ya ?", a: "Maaf kak, itu admin situs sebelah yang sengaja menjelekkan. Situs kami resmi dan berlisensi, dijamin aman." },
-        { q: "berapa banyak bisa wd ?", a: "Untuk nominal tidak bisa dipastikan, tapi kakak bisa coba pola gacor yang saya kirim. Ada bonus 10x free spin juga 🥰" },
-        { q: "apakah pasti bisa wd ?", a: "Kami tidak bisa menjamin kemenangan，tetapi ada data RTP live untuk memilih game dengan peluang menang tinggi." },
-        { q: "nominal wd-nya berapa ?", a: "Nominal wd sepenuhnya tergantung dari permainan和 keberuntungan taruhan kakak selanjutnya." },
-        { q: "main di game apa ?", a: "Kakak bisa memilih game yang sedang gacor atau RTP tinggi saat ini." }
-    ];
+        <div class="category-group" id="group-dont">
+            <div class="category-header" onclick="toggleGroup('group-dont')">
+                <span class="category-title">Restricted Actions (DON'T)</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="category-content">
+                <div class="rule-grid">
+                    <div class="rule-card dont-card">Dilarang keras menjamin kemenangan 100% kepada pelanggan.</div>
+                    <div class="rule-card dont-card">Dilarang menyerang pelanggan atau menggunakan kata kasar.</div>
+                    <div class="rule-card dont-card">Dilarang mengubah ID pelanggan tanpa verifikasi.</div>
+                    <div class="rule-card dont-card">Dilarang menjanjikan transaksi di luar situs secara pribadi.</div>
+                </div>
+            </div>
+        </div>
 
-    function render() {
-        const list = document.getElementById('quiz-list');
+    </div>
+
+    <script>
+        const quizData = [
+            { q: "wd berapa ?", a: "Saya tidak bisa jamin wd berapa kak karena kaka bisa cek live rtp disitu dan live wd di situsnya dan bisa lihat wd banyak dari game apa coba kaka bisa ikutin game tersebut." },
+            { q: "kalo gak wd gimana ?", a: "Kalo ga wd, situs menyediakan kompensasi kaa dalam 1x24 jam nanti kaka akan dapat beberapa jumlah saldo disitus Kembali." },
+            { q: "bisa maxwin gak kalo bisa aku main ?", a: "Kalo maxwin bisa aja ka, tapi saranku coba aja kaa dari modal kecil kalo wd kaka lanjut barangkali kaka maxwin." },
+            { q: "kalo wd bisa ajak teman mabar ?", a: "Tentu saja bisa kak, jika kakak bisa mengajak teman untuk bermain bersama, peluang kemenangan akan jauh lebih besar." },
+            { q: "apa situs di Facebook itu penipuan ?", a: "Akun Facebook tersebut adalah akun buzzer dari situs pesaing yang sengaja menjelekkan kami. Situs kami resmi." },
+            { q: "wd ke Dijamin/JP beneran aman ?", a: "WD itu tergantung keberuntungan kak, tapi saya bisa bantu kirim pola gacor dan bantu klaim bonus deposit." },
+            { q: "ini situs tipu-tipu ya ?", a: "Maaf kak, itu admin situs sebelah yang sengaja menjelekkan. Situs kami resmi dan berlisensi." },
+            { q: "berapa banyak bisa wd ?", a: "Untuk nominal tidak bisa dipastikan, tapi kakak bisa coba pola gacor yang saya kirim. Ada bonus 10x free spin juga 🥰" },
+            { q: "apakah pasti bisa wd ?", a: "Kami tidak bisa menjamin kemenangan, tetapi ada data RTP live untuk memilih game dengan peluang menang tinggi." },
+            { q: "nominal wd-nya berapa ?", a: "Nominal wd sepenuhnya tergantung dari permainan dan keberuntungan taruhan kakak selanjutnya." },
+            { q: "main di game apa ?", a: "Kakak bisa memilih game yang sedang gacor atau RTP tinggi saat ini." }
+        ];
+
+        // 渲染 Q&A 列表
+        const qaContainer = document.getElementById('qa-container');
         quizData.forEach((item, i) => {
-            const card = document.createElement('div');
-            card.className = 'qa-card';
-            card.onclick = (e) => {
-                e.stopPropagation();
-                const ans = card.querySelector('.answer');
-                ans.classList.toggle('show');
-            };
-            card.innerHTML = `<div class="question">${i+1}. ${item.q}</div><div class="answer">${item.a}</div>`;
-            list.appendChild(card);
+            const div = document.createElement('div');
+            div.className = 'qa-item';
+            div.onclick = (e) => { e.stopPropagation(); div.classList.toggle('open'); };
+            div.innerHTML = `
+                <div class="question">${i + 1}. ${item.q}</div>
+                <div class="answer"><strong>Manman Jawaban:</strong><br>${item.a}</div>
+            `;
+            qaContainer.appendChild(div);
         });
-    }
 
-    render();
-</script>
-
+        // 切换集合大模块
+        function toggleGroup(id) {
+            document.getElementById(id).classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
