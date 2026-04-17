@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manman VIP Elite Strategy</title>
+    <title>Manman VIP Strategy Final</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;600&display=swap');
 
@@ -16,179 +16,112 @@
             --warning-red: #ff4d4d;
         }
 
-        body {
-            background-color: var(--casino-black);
-            color: var(--text-silver);
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        body { background-color: var(--casino-black); color: var(--text-silver); font-family: 'Montserrat', sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; }
+        .container { width: 95%; max-width: 1000px; padding: 40px 0; }
+
+        /* 栏目样式 */
+        .category-group { background: var(--card-gray); margin-bottom: 25px; border: 1px solid rgba(212, 175, 55, 0.15); }
+        .category-header { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; background: #151515; border-left: 4px solid var(--soft-gold); }
+        .category-title { font-family: 'Cinzel', serif; color: var(--soft-gold); font-size: 1.1rem; letter-spacing: 1px; }
+        .category-content { padding: 20px; display: none; background: #0f0f0f; }
+
+        /* Q&A 网格与交互 */
+        .qa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+        .qa-item { 
+            background: rgba(255,255,255,0.03); padding: 15px; border: 1px solid rgba(212,175,55,0.1); 
+            font-size: 0.85rem; cursor: pointer; transition: 0.3s; 
+        }
+        .qa-item:hover { border-color: var(--soft-gold); background: rgba(212,175,55,0.08); }
+
+        /* 答案层 (核心修复部分) */
+        .answer-panel { 
+            display: none; background: #1a1a1a; border: 1px solid var(--soft-gold); 
+            padding: 15px; margin-top: 10px; font-size: 0.9rem; line-height: 1.6; color: #fff;
         }
 
-        .container { width: 90%; max-width: 1000px; padding: 50px 0; }
+        /* 提示板样式 */
+        .notice-board { background: #111; border: 1px solid rgba(212,175,55,0.2); padding: 20px; margin-bottom: 20px; }
+        .restriction-list { list-style: none; padding: 0; }
+        .restriction-list li { padding: 8px 0; border-bottom: 1px dashed #333; font-size: 0.85rem; display: flex; }
+        .restriction-list li::before { content: '❌'; margin-right: 10px; }
 
-        .category-group {
-            background: var(--card-gray);
-            margin-bottom: 30px;
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        .report-btn { 
+            display: block; text-align: center; padding: 12px; background: var(--vip-gold); 
+            color: #000; text-decoration: none; font-weight: 700; margin-top: 15px; 
         }
-
-        .category-header {
-            padding: 25px 35px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #151515;
-            border-left: 4px solid var(--soft-gold);
-        }
-
-        .category-title {
-            font-family: 'Cinzel', serif;
-            color: var(--soft-gold);
-            font-size: 1.3rem;
-            letter-spacing: 2px;
-        }
-
-        .category-content { padding: 30px; background: #0f0f0f; }
-
-        .qa-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-        }
-
-        .qa-item {
-            background: rgba(255,255,255,0.05);
-            padding: 15px;
-            border: 1px solid rgba(212,175,55,0.1);
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-
-        .notice-board {
-            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 25px;
-            margin-bottom: 20px;
-        }
-
-        .notice-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            margin: 0 0 15px 0;
-            text-align: center;
-        }
-
-        .restriction-list { list-style: none; padding: 0; margin: 0; }
-        .restriction-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            display: flex;
-            font-size: 0.9rem;
-        }
-        .restriction-list li::before { content: '❌'; margin-right: 12px; }
-
-        .report-btn {
-            display: block;
-            text-align: center;
-            padding: 15px;
-            background: var(--vip-gold);
-            color: #000;
-            text-decoration: none;
-            font-weight: 700;
-            margin-top: 15px;
-        }
-
-        .media-container img { width: 100%; height: auto; display: block; margin-top: 15px; border: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
 
     <div class="container">
         
-        <div class="category-group" id="group-qa">
-            <div class="category-header" onclick="toggleGroup('group-qa')">
+        <div class="category-group">
+            <div class="category-header" onclick="toggleSection(this)">
                 <span class="category-title">VIP SOLUTIONS (Q&A)</span>
-                <span class="arrow">▼</span>
+                <span>▼</span>
             </div>
             <div class="category-content" style="display: block;">
                 <div class="qa-grid">
-                    <div class="qa-item">1. wd berapa ?</div>
-                    <div class="qa-item">2. kalo gak wd gimana ?</div>
-                    <div class="qa-item">3. bisa maxwin gak ?</div>
-                    <div class="qa-item">4. kalo wd bisa ajak teman ?</div>
-                    <div class="qa-item">5. FB itu penipuan ?</div>
-                    <div class="qa-item">6. wd dijamin aman ?</div>
-                    <div class="qa-item">7. ini situs tipu-tipu ya ?</div>
-                    <div class="qa-item">8. berapa banyak bisa wd ?</div>
-                    <div class="qa-item">9. apakah pasti bisa wd ?</div>
-                    <div class="qa-item">10. nominal wd-nya berapa ?</div>
-                    <div class="qa-item">11. main di game apa ?</div>
+                    <div class="qa-wrapper">
+                        <div class="qa-item" onclick="toggleAnswer(this)">1. wd berapa ?</div>
+                        <div class="answer-panel">Tergantung pada riwayat akun. Biasanya proses JP memakan waktu 5-15 menit setelah verifikasi.</div>
+                    </div>
+                    <div class="qa-wrapper">
+                        <div class="qa-item" onclick="toggleAnswer(this)">2. kalo gak wd gimana ?</div>
+                        <div class="answer-panel">Jika belum bisa WD, pastikan semua syarat turnover sudah terpenuhi atau hubungi LiveChat untuk cek status akun.</div>
+                    </div>
+                    <div class="qa-wrapper">
+                        <div class="qa-item" onclick="toggleAnswer(this)">3. bisa maxwin gak ?</div>
+                        <div class="answer-panel">Kesempatan Maxwin selalu ada di level VIP. Gunakan pola yang kami berikan secara konsisten.</div>
+                    </div>
+                    <div class="qa-wrapper">
+                        <div class="qa-item" onclick="toggleAnswer(this)">4. kalo wd bisa ajak teman ?</div>
+                        <div class="answer-panel">Bisa, program referral kami memberikan komisi tambahan untuk setiap teman yang aktif bermain.</div>
+                    </div>
+                    <div class="qa-wrapper">
+                        <div class="qa-item" onclick="toggleAnswer(this)">5. FB itu penipuan ?</div>
+                        <div class="answer-panel">Kami adalah tim resmi. Selalu pastikan Anda bertransaksi hanya melalui link yang terdaftar di halaman ini.</div>
+                    </div>
+                    <div class="qa-wrapper"><div class="qa-item" onclick="toggleAnswer(this)">6. wd dijamin aman ?</div><div class="answer-panel">100% Aman dengan sistem enkripsi terbaru.</div></div>
+                    <div class="qa-wrapper"><div class="qa-item" onclick="toggleAnswer(this)">7. ini situs tipu-tipu ya ?</div><div class="answer-panel">Kami beroperasi secara profesional dengan ribuan member VIP yang aktif setiap hari.</div></div>
+                    <div class="qa-wrapper"><div class="qa-item" onclick="toggleAnswer(this)">8. berapa banyak bisa wd ?</div><div class="answer-panel">Minimal WD adalah 50k, maksimal tidak terbatas sesuai kemenangan Anda.</div></div>
+                    <div class="qa-wrapper"><div class="qa-item" onclick="toggleAnswer(this)">9. apakah pasti bisa wd ?</div><div class="answer-panel">Pasti, selama tidak ada pelanggaran aturan (seperti manipulasi data).</div></div>
+                    <div class="qa-wrapper"><div class="qa-item" onclick="toggleAnswer(this)">10. nominal wd-nya berapa ?</div><div class="answer-panel">Sesuai dengan saldo di akun Anda, minimal 50.000 IDR.</div></div>
+                    <div class="qa-wrapper"><div class="qa-item" onclick="toggleAnswer(this)">11. main di game apa ?</div><div class="answer-panel">Cek RTP Live kami untuk melihat game mana yang sedang dalam status Gacor/Maxwin.</div></div>
                 </div>
             </div>
         </div>
 
-        <div class="category-group" id="group-do">
-            <div class="category-header" onclick="toggleGroup('group-do')">
-                <span class="category-title">ELITE STANDARDS (DO)</span>
-                <span class="arrow">▼</span>
-            </div>
-            <div class="category-content">
-                <div class="notice-board" style="border-left: 5px solid var(--soft-gold);">
-                    <h3 class="notice-title">VIP OPERATIONAL STANDARDS</h3>
-                    <p style="font-size: 0.9rem; line-height: 1.8; color: #ccc;">
-                        1. Wajib menjaga nada bicara yang sopan dan level VIP.<br>
-                        2. Wajib membalas pertanyaan pelanggan dalam waktu 3 menit.<br>
-                        3. Wajib memandu pelanggan melihat data RTP live saat ini.<br>
-                        4. Wajib memastikan nomor registrasi pelanggan benar.
-                    </p>
-                </div>
-                <div class="media-container">
-                    <img src="image_38caa4.jpg" alt="DO Standard" onerror="this.style.display='none'">
-                </div>
-            </div>
-        </div>
-
-        <div class="category-group" id="group-dont">
-            <div class="category-header" onclick="toggleGroup('group-dont')">
+        <div class="category-group">
+            <div class="category-header" onclick="toggleSection(this)">
                 <span class="category-title">VIP RESTRICTIONS (DON'T)</span>
-                <span class="arrow">▼</span>
+                <span>▼</span>
             </div>
             <div class="category-content">
-                
                 <div class="notice-board" style="border-left: 5px solid var(--warning-red);">
-                    <h3 class="notice-title" style="color: var(--warning-red);">⚠️ HAL YANG DI LARANG ⚠️</h3>
+                    <h3 style="color: var(--warning-red); text-align:center;">⚠️ HAL YANG DI LARANG ⚠️</h3>
                     <ul class="restriction-list">
-                        <li>Mendaftarkan akun dan membantu pembayaran deposit pengguna</li>
+                        <li>Mendaftarkan akun dan membantu deposit pengguna</li>
                         <li>Mendaftarkan diri sendiri sebagai pengguna</li>
                         <li>Meminta komisi dari kemenangan pengguna</li>
                         <li>Tidak mengirimkan gambar peringatan</li>
-                        <li>Tidak mengklik profil wa saat rekam layar deposit</li>
-                        <li>Mengirimkan link lebih dari 1 dalam waktu bersamaan</li>
-                        <li>Menjanjikan kemenangan dengan nominal JP tertentu</li>
-                        <li>Login akun pengguna dan mengambil uang pengguna</li>
-                        <li>Menipu pengguna dengan memberikan rekening pribadi</li>
+                        <li>Tidak klik profil wa saat rekam layar deposit</li>
+                        <li>Mengirimkan link lebih dari 1 secara bersamaan</li>
+                        <li>Menjanjikan kemenangan nominal JP tertentu</li>
+                        <li>Login akun dan mengambil uang pengguna</li>
+                        <li>Memberikan rekening pribadi untuk deposit</li>
                         <li>Menjanjikan bonus di luar format Web</li>
-                        <li>Mengirimkan video seperti hacker/memegang kendali</li>
+                        <li>Mengirimkan video seperti memegang kendali/hacker</li>
                         <li>Membantu pelanggan menerima kode verifikasi</li>
                     </ul>
                 </div>
 
                 <div class="notice-board" style="border: 1px solid #ff4d4d; background: rgba(255,77,77,0.05);">
-                    <h3 class="notice-title" style="color: #ff4d4d;">PEJUANG CASINO</h3>
-                    <p style="color: #fff; font-weight: 700; text-align: center;">🚫 TOLAK TRANSAKSI ILEGAL, LAPOR & DAPATKAN 100K!</p>
-                    <div style="font-size: 0.85rem; color: #bbb; margin-top: 10px;">
-                        <p><strong>🛡 JAMINAN KEAMANAN:</strong> Identitas pelapor 100% RAHASIA. Sanksi menggunakan <em>Delayed Penalty</em> agar tidak dapat dilacak.</p>
-                        <p>✅ <strong>Bonus 100.000 IDR</strong> langsung cair setelah verifikasi bukti di LiveChat.</p>
-                    </div>
+                    <h3 style="color: #ff4d4d; text-align:center;">PEJUANG CASINO</h3>
+                    <p style="text-align: center; font-weight: bold;">🚫 TOLAK TRANSAKSI ILEGAL, LAPOR & DAPATKAN 100K!</p>
+                    <p style="font-size: 0.85rem; color: #ccc;">Jika Anda menemukan promotor yang menawarkan cashback pribadi, lapor ke LiveChat resmi. Bonus 100.000 IDR menanti!</p>
+                    <p style="font-size: 0.8rem; color: #aaa;"><strong>🛡 JAMINAN KEAMANAN:</strong> Identitas pelapor DIJAMIN 100% RAHASIA. Sanksi akan diproses dengan <em>Delayed Penalty</em> agar tidak terlacak.</p>
                     <a href="https://direct.lc.chat/12891963/20" target="_blank" class="report-btn">📌 LINK PELAPORAN RESMI</a>
-                </div>
-
-                <div class="media-container">
-                    <img src="image_38c708.jpg" alt="Don't Standard" onerror="this.style.display='none'">
                 </div>
             </div>
         </div>
@@ -196,10 +129,22 @@
     </div>
 
     <script>
-        function toggleGroup(id) {
-            const group = document.getElementById(id);
-            const content = group.querySelector('.category-content');
-            content.style.display = (content.style.display === 'none' || content.style.display === '') ? 'block' : 'none';
+        // 展开/收起大栏目
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+        }
+
+        // 展开/收起具体问题的答案 (修复部分)
+        function toggleAnswer(item) {
+            const panel = item.nextElementSibling;
+            const allPanels = document.querySelectorAll('.answer-panel');
+            
+            // 关闭其他已打开的答案
+            allPanels.forEach(p => { if(p !== panel) p.style.display = 'none'; });
+            
+            // 切换当前答案
+            panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
         }
     </script>
 </body>
