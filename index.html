@@ -54,7 +54,6 @@
 
         .category-content { padding: 30px; background: #0f0f0f; }
 
-        /* Q&A 风格容器 */
         .qa-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -69,9 +68,6 @@
             transition: 0.3s;
         }
 
-        .qa-item:hover { background: rgba(212,175,55,0.05); border-color: var(--soft-gold); }
-
-        /* 告示板通用样式 */
         .notice-board {
             background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
             border: 1px solid rgba(212, 175, 55, 0.2);
@@ -86,7 +82,6 @@
             text-align: center;
         }
 
-        /* 禁止项列表 */
         .restriction-list { list-style: none; padding: 0; margin: 0; }
         .restriction-list li {
             padding: 10px 0;
@@ -104,22 +99,22 @@
             color: #000;
             text-decoration: none;
             font-weight: 700;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
-        .media-container img { width: 100%; height: auto; display: block; margin-top: 15px; }
+        .media-container img { width: 100%; height: auto; display: block; margin-top: 15px; border: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
 
     <div class="container">
         
-        <div class="category-group">
-            <div class="category-header">
+        <div class="category-group" id="group-qa">
+            <div class="category-header" onclick="toggleGroup('group-qa')">
                 <span class="category-title">VIP SOLUTIONS (Q&A)</span>
-                <span>▼</span>
+                <span class="arrow">▼</span>
             </div>
-            <div class="category-content">
+            <div class="category-content" style="display: block;">
                 <div class="qa-grid">
                     <div class="qa-item">1. wd berapa ?</div>
                     <div class="qa-item">2. kalo gak wd gimana ?</div>
@@ -136,61 +131,76 @@
             </div>
         </div>
 
-        <div class="category-group">
-            <div class="category-header">
+        <div class="category-group" id="group-do">
+            <div class="category-header" onclick="toggleGroup('group-do')">
                 <span class="category-title">ELITE STANDARDS (DO)</span>
-                <span>▼</span>
+                <span class="arrow">▼</span>
             </div>
             <div class="category-content">
                 <div class="notice-board" style="border-left: 5px solid var(--soft-gold);">
-                    <h3 class="notice-title" style="color: var(--warning-red);">PEJUANG CASINO</h3>
-                    <p style="text-align: center; color: var(--soft-gold); font-weight: 700;">🚫 TOLAK TRANSAKSI ILEGAL, LAPOR & DAPATKAN 100K!</p>
-                    <p style="font-size: 0.85rem; line-height: 1.6; margin-top: 10px;">Jika menemukan promotor yang menawarkan cashback pribadi, lapor ke LiveChat. Bonus 100.000 IDR menanti setelah verifikasi.</p>
-                    <a href="https://direct.lc.chat/12891963/20" target="_blank" class="report-btn">📌 LINK PELAPORAN RESMI</a>
+                    <h3 class="notice-title">VIP OPERATIONAL STANDARDS</h3>
+                    <p style="font-size: 0.9rem; line-height: 1.8; color: #ccc;">
+                        1. Wajib menjaga nada bicara yang sopan dan level VIP.<br>
+                        2. Wajib membalas pertanyaan pelanggan dalam waktu 3 menit.<br>
+                        3. Wajib memandu pelanggan melihat data RTP live saat ini.<br>
+                        4. Wajib memastikan nomor registrasi pelanggan benar.
+                    </p>
                 </div>
-                <img src="image_38caa4.jpg" style="width:100%;" onerror="this.style.display='none'">
+                <div class="media-container">
+                    <img src="image_38caa4.jpg" alt="DO Standard" onerror="this.style.display='none'">
+                </div>
             </div>
         </div>
 
-        <div class="category-group">
-            <div class="category-header">
+        <div class="category-group" id="group-dont">
+            <div class="category-header" onclick="toggleGroup('group-dont')">
                 <span class="category-title">VIP RESTRICTIONS (DON'T)</span>
-                <span>▼</span>
+                <span class="arrow">▼</span>
             </div>
             <div class="category-content">
+                
                 <div class="notice-board" style="border-left: 5px solid var(--warning-red);">
                     <h3 class="notice-title" style="color: var(--warning-red);">⚠️ HAL YANG DI LARANG ⚠️</h3>
                     <ul class="restriction-list">
-                        <li>Mendaftarkan akun dan membantu deposit pengguna</li>
+                        <li>Mendaftarkan akun dan membantu pembayaran deposit pengguna</li>
                         <li>Mendaftarkan diri sendiri sebagai pengguna</li>
                         <li>Meminta komisi dari kemenangan pengguna</li>
                         <li>Tidak mengirimkan gambar peringatan</li>
-                        <li>Tidak klik profil wa saat rekam layar deposit</li>
-                        <li>Mengirimkan link lebih dari 1 secara bersamaan</li>
-                        <li>Menjanjikan kemenangan nominal JP tertentu</li>
-                        <li>Login akun dan mengambil uang pengguna</li>
-                        <li>Memberikan rekening pribadi untuk deposit</li>
+                        <li>Tidak mengklik profil wa saat rekam layar deposit</li>
+                        <li>Mengirimkan link lebih dari 1 dalam waktu bersamaan</li>
+                        <li>Menjanjikan kemenangan dengan nominal JP tertentu</li>
+                        <li>Login akun pengguna dan mengambil uang pengguna</li>
+                        <li>Menipu pengguna dengan memberikan rekening pribadi</li>
                         <li>Menjanjikan bonus di luar format Web</li>
-                        <li>Mengirimkan video seperti memegang kendali/hacker</li>
+                        <li>Mengirimkan video seperti hacker/memegang kendali</li>
                         <li>Membantu pelanggan menerima kode verifikasi</li>
                     </ul>
-                    <p style="text-align:center; color:var(--soft-gold); font-size:0.8rem; margin-top:15px;">🔔 BIASAKAN RESPON KETIKA MEMBACA PEMBERITAHUAN 🔔</p>
                 </div>
-                <img src="image_38c708.jpg" style="width:100%;" onerror="this.style.display='none'">
+
+                <div class="notice-board" style="border: 1px solid #ff4d4d; background: rgba(255,77,77,0.05);">
+                    <h3 class="notice-title" style="color: #ff4d4d;">PEJUANG CASINO</h3>
+                    <p style="color: #fff; font-weight: 700; text-align: center;">🚫 TOLAK TRANSAKSI ILEGAL, LAPOR & DAPATKAN 100K!</p>
+                    <div style="font-size: 0.85rem; color: #bbb; margin-top: 10px;">
+                        <p><strong>🛡 JAMINAN KEAMANAN:</strong> Identitas pelapor 100% RAHASIA. Sanksi menggunakan <em>Delayed Penalty</em> agar tidak dapat dilacak.</p>
+                        <p>✅ <strong>Bonus 100.000 IDR</strong> langsung cair setelah verifikasi bukti di LiveChat.</p>
+                    </div>
+                    <a href="https://direct.lc.chat/12891963/20" target="_blank" class="report-btn">📌 LINK PELAPORAN RESMI</a>
+                </div>
+
+                <div class="media-container">
+                    <img src="image_38c708.jpg" alt="Don't Standard" onerror="this.style.display='none'">
+                </div>
             </div>
         </div>
 
     </div>
 
     <script>
-        // 简单的折叠控制脚本
-        function toggleGroup(el) {
-            const content = el.nextElementSibling;
-            content.style.display = content.style.display === 'none' ? 'block' : 'none';
+        function toggleGroup(id) {
+            const group = document.getElementById(id);
+            const content = group.querySelector('.category-content');
+            content.style.display = (content.style.display === 'none' || content.style.display === '') ? 'block' : 'none';
         }
-        document.querySelectorAll('.category-header').forEach(header => {
-            header.addEventListener('click', () => toggleGroup(header));
-        });
     </script>
 </body>
 </html>
