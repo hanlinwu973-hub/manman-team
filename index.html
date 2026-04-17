@@ -7,16 +7,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #06060c; color: #e4e4e7; }
+        body { font-family: 'Inter', sans-serif; background-color: #06060c; color: #e4e4e7; overflow-x: hidden; }
         .title-font { font-family: 'Cinzel', serif; }
         #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(135deg, #120322, #06060c, #0d1b3e); }
         .glow-card { background: rgba(20, 20, 35, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(139, 92, 246, 0.2); transition: all 0.3s ease; }
-        /* 关键修改：增加容器高度并优化滚动条，确保30个问题可查 */
-        .qa-container { max-height: 850px; overflow-y: auto; padding-right: 10px; }
-        .qa-container::-webkit-scrollbar { width: 4px; }
+        /* 强制高度和滚动，确保 30 个问题全部可见 */
+        .qa-container { height: 750px; overflow-y: auto; padding-right: 12px; }
+        .qa-container::-webkit-scrollbar { width: 6px; }
         .qa-container::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.5); border-radius: 10px; }
         .copy-btn { background: linear-gradient(135deg, #fcf6ba 0%, #bf953f 100%); color: #1a1a1a; font-weight: 700; cursor: pointer; border: none; border-radius: 4px; transition: all 0.2s; }
-        .copy-btn:hover { transform: scale(1.05); opacity: 0.9; }
+        .copy-btn:hover { transform: scale(1.05); filter: brightness(1.1); }
         .hidden { display: none; }
     </style>
 </head>
@@ -28,7 +28,7 @@
             <span class="text-2xl">👑</span>
             <h1 class="title-font text-2xl font-bold tracking-tighter text-white">VIP STRATEGY</h1>
         </div>
-        <div class="text-violet-300 text-xs font-bold tracking-[0.2em] uppercase title-font">Manman-Team</div>
+        <div class="text-violet-300 text-xs font-bold tracking-[0.2em] uppercase title-font">MANMAN-TEAM</div>
     </nav>
 
     <div class="max-w-7xl mx-auto px-6 pt-32 pb-20">
@@ -38,155 +38,282 @@
         </div>
 
         <div class="grid lg:grid-cols-3 gap-8">
-            <div class="glow-card rounded-3xl overflow-hidden col-span-1">
+            <div class="glow-card rounded-3xl overflow-hidden col-span-1 border-violet-500/30">
                 <div class="bg-violet-900/40 p-6 border-b border-white/10 flex justify-between items-center">
                     <h3 class="title-font font-bold text-xl text-white">Q&A MASTER</h3>
+                    <span class="text-xs text-violet-400">30 ITEMS TOTAL</span>
                 </div>
                 <div class="p-6 qa-container space-y-4">
                     
-                    <div class="text-[10px] text-yellow-500 font-bold tracking-widest uppercase border-b border-yellow-500/20 pb-1">Deposit & WD Detail</div>
+                    <div class="text-[10px] text-yellow-500 font-bold tracking-widest uppercase border-b border-yellow-500/20 pb-1">DEPOSIT & WD DETAIL</div>
+                    
                     <div class="border-b border-white/5 pb-3">
                         <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>1. Bisa depo 20k gak?</span><span>▼</span></div>
-                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
-                            <p class="answer-text text-xs italic text-zinc-300">untuk minimal deposit awal 50k ya kak nanti untuk deposit ke 2 dan seterus nya bisa kak 20k</p>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>untuk minimal deposit awal 50k ya kak nanti untuk deposit ke 2 dan seterus nya bisa kak 20k</p>
                             <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
+
                     <div class="border-b border-white/5 pb-3">
                         <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>2. Minimal WD nya berapa?</span><span>▼</span></div>
-                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
-                            <p class="answer-text text-xs italic text-zinc-300">untuk minimal withdraw 50k kak dan untuk maximal withdraw tidak terhingga kak</p>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>untuk minimal withdraw 50k kak dan untuk maximal withdraw tidak terhingga kak</p>
                             <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
+
                     <div class="border-b border-white/5 pb-3">
                         <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>3. Pola khusus?</span><span>▼</span></div>
-                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
-                            <p class="answer-text text-xs italic text-zinc-300">Untuk pola kaka gak perlu khawatir karna aku sudah siapin pola khusus untuk kaka nya</p>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Untuk pola kaka gak perlu khawatir karna aku sudah siapin pola khusus untuk kaka nya</p>
                             <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
+
                     <div class="border-b border-white/5 pb-3">
                         <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>4. Kalau kalah gimana?</span><span>▼</span></div>
-                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
-                            <p class="answer-text text-xs italic text-zinc-300">kaka tenang aja karna kita menyediakan saldo balas dendam untuk kaka nya</p>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>kaka tenang aja karna kita menyediakan saldo balas dendam untuk kaka nya</p>
                             <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
+
                     <div class="border-b border-white/5 pb-3">
                         <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>5. Bonus nya apa saja?</span><span>▼</span></div>
-                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
-                            <p class="answer-text text-xs italic text-zinc-300">bonus harian amplop merah, mingguan cashback, bonus deposit & kode undian kak</p>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>bonus harian amplop merah, mingguan cashback, bonus deposit & kode undian kak</p>
                             <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
+
                     <div class="border-b border-white/5 pb-3">
                         <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>6. Bisa menang berapa?</span><span>▼</span></div>
-                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
-                            <p class="answer-text text-xs italic text-zinc-300">Tergantung nafsu bermain kak, jika sudah cukup disarankan langsung withdraw kak</p>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Tergantung nafsu bermain kak, jika sudah cukup disarankan langsung withdraw kak</p>
                             <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
 
-                    <div class="text-[10px] text-cyan-400 font-bold tracking-widest uppercase mt-6 border-b border-cyan-500/20 pb-1">Security & Trust</div>
+                    <div class="text-[10px] text-cyan-400 font-bold tracking-widest uppercase mt-6 border-b border-cyan-500/20 pb-1">SECURITY & TRUST</div>
+                    
                     <div class="border-b border-white/5 pb-3">
                         <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>7. Kenapa FB posting jelek?</span><span>▼</span></div>
-                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
-                            <p class="answer-text text-xs italic text-zinc-300">Itu pihak situs bodong kak, situs kami resmi google & berlisensi Filipina aman 100%</p>
-                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
-                        </div>
-                    </div>
-                    <div class="border-b border-white/5 pb-3">
-                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>8. Yakin situs ini bagus?</span><span>▼</span></div>
-                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
-                            <p class="answer-text text-xs italic text-zinc-300">Resmi & penuh keamanan privasi pemain, banyak bonus setiap harinya kak</p>
-                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
-                        </div>
-                    </div>
-                    <div class="border-b border-white/5 pb-3">
-                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>9. Kenapa pakai verifikasi?</span><span>▼</span></div>
-                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
-                            <p class="answer-text text-xs italic text-zinc-300">Keamanan dua langkah agar akun tidak dibobol, bahkan admin pun tidak bisa ambil uang kak</p>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Itu pihak situs bodong kak, situs kami resmi google & berlisensi Filipina aman 100%</p>
                             <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
 
-                    <div class="text-[10px] text-fuchsia-400 font-bold tracking-widest uppercase mt-6 border-b border-fuchsia-500/20 pb-1">Strategi Chat & Lainnya</div>
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>8. Yakin situs ini bagus?</span><span>▼</span></div>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Resmi & penuh keamanan privasi pemain, banyak bonus setiap harinya kak</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>9. Kenapa pakai verifikasi?</span><span>▼</span></div>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Keamanan dua langkah agar akun tidak dibobol, bahkan admin pun tidak bisa ambil uang kak</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
+                        </div>
+                    </div>
+
+                    <div class="text-[10px] text-fuchsia-400 font-bold tracking-widest uppercase mt-6 border-b border-fuchsia-500/20 pb-1">STRATEGI CHAT & LAINNYA</div>
+
                     <div class="border-b border-white/5 pb-3">
                         <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>10. Vc dulu</span><span>▼</span></div>
-                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
-                            <p class="answer-text text-xs italic text-zinc-300">Depo dulu kak biar manajer saya gak ngejar-ngejar, baru kita vcs tenang-tenang</p>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Depo dulu kak biar manajer saya gak ngejar-ngejar, baru kita vcs tenang-tenang</p>
                             <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
+
                     <div class="border-b border-white/5 pb-3">
                         <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>11. Pelanggan ragu</span><span>▼</span></div>
-                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
-                            <p class="answer-text text-xs italic text-zinc-300">Banyak yang main disini kak, nanti aku kirim testimoni biar kaka makin yakin</p>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Banyak yang main disini kak, nanti aku kirim testimoni biar kaka makin yakin</p>
                             <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
+
                     <div class="border-b border-white/5 pb-3">
                         <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>12. Modal di awal?</span><span>▼</span></div>
-                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
-                            <p class="answer-text text-xs italic text-zinc-300">Gak bisa kak, tapi ada bonus deposit & amplop merah setelah depo kak</p>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Gak bisa kak, tapi ada bonus deposit & amplop merah setelah depo kak</p>
                             <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
+
                     <div class="border-b border-white/5 pb-3">
                         <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>13. Situs apa ini?</span><span>▼</span></div>
-                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
-                            <p class="answer-text text-xs italic text-zinc-300">Pejuang kasino situs tergacor sepanjang masa</p>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Pejuang kasino situs tergacor sepanjang masa</p>
                             <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
+
                     <div class="border-b border-white/5 pb-3">
                         <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>14. WD aman 100%?</span><span>▼</span></div>
-                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
-                            <p class="answer-text text-xs italic text-zinc-300">WD dan deposit pada situs kami aman 100%</p>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>WD dan deposit pada situs kami aman 100%</p>
                             <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
+
                     <div class="border-b border-white/5 pb-3">
                         <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>15. Aturan Turnover?</span><span>▼</span></div>
-                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
-                            <p class="answer-text text-xs italic text-zinc-300">Wajib selesai agar bisa WD, cek menu withdraw untuk batas T0 nya kak</p>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Wajib selesai agar bisa WD, cek menu withdraw untuk batas T0 nya kak</p>
                             <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
+
                     <div class="border-b border-white/5 pb-3">
                         <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>16. Ada Togel?</span><span>▼</span></div>
-                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
-                            <p class="answer-text text-xs italic text-zinc-300">situs kami belum menyediakan nomor togel</p>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Situs kami belum menyediakan nomor togel saat ini kak</p>
                             <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
 
                     <div class="border-b border-white/5 pb-3">
                         <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>17. Link Alternatif?</span><span>▼</span></div>
-                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg">
-                            <p class="answer-text text-xs italic text-zinc-300">Gunakan link resmi kami agar data dan saldo tetap aman kak</p>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Gunakan link resmi ini saja kak agar data dan saldo kaka tetap aman terjaga</p>
                             <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
                         </div>
                     </div>
-                    <div class="text-center py-4 text-[10px] text-zinc-600">Database 30 Q&A Lengkap Dimuat</div>
+
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>18. Akun saya terkunci</span><span>▼</span></div>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Hubungi LiveChat segera kak, lampirkan bukti kepemilikan akun agar segera dibuka</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>19. Cara jadi VIP?</span><span>▼</span></div>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Tingkatkan akumulasi deposit kaka setiap bulannya untuk otomatis naik ke level VIP</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>20. Kenapa WD lambat?</span><span>▼</span></div>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Mungkin bank sedang maintenance kak, mohon tunggu sebentar pasti akan diproses</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>21. Game paling gacor?</span><span>▼</span></div>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Coba main Pragmatic Play atau PG Soft kak, RTP sedang tinggi sekarang</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>22. CS aktif kapan?</span><span>▼</span></div>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>CS kami aktif 24 jam nonstop siap membantu segala kendala kaka kapan saja</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>23. Minimal bet berapa?</span><span>▼</span></div>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Sangat murah kak, mulai dari 200 perak saja sudah bisa spin dan berpeluang JP</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>24. Lupa password?</span><span>▼</span></div>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Klik 'Lupa Kata Sandi' di menu login atau minta bantuan CS LiveChat kami kak</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>25. Ada aplikasi?</span><span>▼</span></div>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Ada kak, bisa download langsung di situs kami untuk akses lebih cepat dan aman</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>26. Deposit pulsa bisa?</span><span>▼</span></div>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Bisa kak, kami menerima deposit via pulsa Telkomsel dan XL tanpa potongan besar</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>27. Cara klaim bonus?</span><span>▼</span></div>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Masuk ke menu 'Promosi' dan klik ambil pada bonus yang ingin kaka klaim ya</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>28. Data saya aman?</span><span>▼</span></div>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Data kaka dienkripsi ketat dan tidak akan pernah bocor ke pihak manapun kak</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>29. Maxwin berapa?</span><span>▼</span></div>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Bisa sampai x5000 dari nilai bet kaka, sangat besar peluang menangnya kak</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-white/5 pb-3">
+                        <div onclick="toggle(this)" class="flex justify-between cursor-pointer hover:text-violet-300 text-sm py-1"><span>30. Testimoni mana?</span><span>▼</span></div>
+                        <div class="hidden mt-2 p-3 bg-white/5 rounded-lg text-xs italic text-zinc-300">
+                            <p>Cek grup Facebook atau Telegram kami kak, banyak pemain posting bukti JP mereka</p>
+                            <button onclick="copy(this)" class="copy-btn mt-2 px-3 py-1 text-[9px] uppercase">Salin Jawaban</button>
+                        </div>
+                    </div>
+
+                    <div class="text-center py-4 text-[10px] text-zinc-600 italic">DATABASE 30 Q&A LENGKAP DIMUAT</div>
                 </div>
             </div>
 
-            <div class="glow-card rounded-3xl p-8 col-span-1 h-fit">
+            <div class="glow-card rounded-3xl p-8 col-span-1 border-emerald-500/20">
                 <div class="flex items-center gap-3 mb-6"><span class="text-emerald-400 text-2xl">✅</span><h3 class="title-font font-bold text-xl text-white">MUST DO</h3></div>
                 <ul class="space-y-4 text-xs italic text-emerald-100/70 ml-4 list-disc">
-                    <li>Lapor promotor yang menawarkan cashback pribadi.</li>
+                    <li>Lapor promotor yang menawarkan cashback pribadi ke LiveChat resmi.</li>
                     <li>Dapatkan bonus 100.000 IDR!</li>
                     <li>Identitas pelapor DIJAMIN 100% RAHASIA.</li>
+                    <li>Delayed Penalty: memastikan pelapor tidak terlacak.</li>
                 </ul>
+                <a href="https://direct.lc.chat/12891963/20" target="_blank" class="block mt-8 text-center py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl text-xs uppercase shadow-lg shadow-emerald-500/20 transition-all">📌 LAPOR SEKARANG</a>
             </div>
 
-            <div class="glow-card rounded-3xl p-8 col-span-1 h-fit">
+            <div class="glow-card rounded-3xl p-8 col-span-1 border-rose-500/20">
                 <div class="flex items-center gap-3 mb-6"><span class="text-rose-400 text-2xl">⚠️</span><h3 class="title-font font-bold text-xl text-white">DON'T</h3></div>
                 <ul class="space-y-4 text-[11px] text-rose-100/70">
-                    <li class="flex gap-3"><span>❌</span><span>Mendaftarkan akun & membantu deposit</span></li>
+                    <li class="flex gap-3"><span>❌</span><span>Mendaftarkan akun & membantu deposit pengguna</span></li>
+                    <li class="flex gap-3"><span>❌</span><span>Mendaftarkan diri sendiri sebagai pengguna</span></li>
                     <li class="flex gap-3"><span>❌</span><span>Meminta komisi dari kemenangan pengguna</span></li>
+                    <li class="flex gap-3"><span>❌</span><span>Memberikan rekening pribadi untuk deposit</span></li>
+                    <li class="flex gap-3"><span>❌</span><span>Menjanjikan kemenangan JP nominal tertentu</span></li>
                     <li class="flex gap-3"><span>❌</span><span>Mengirimkan video hacker/kendali</span></li>
                 </ul>
             </div>
@@ -196,7 +323,7 @@
     <script>
         function toggle(el) { el.nextElementSibling.classList.toggle('hidden'); }
         function copy(btn) {
-            const text = btn.previousElementSibling.innerText;
+            const text = btn.previousElementSibling.querySelector('p').innerText;
             const el = document.createElement('textarea');
             el.value = text;
             document.body.appendChild(el);
