@@ -3,232 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manman VIP Strategy Final</title>
+    <title>Manman-Team VIP Strategy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;600&display=swap');
-        :root {
-            --casino-black: #0a0a0a;
-            --vip-gold: linear-gradient(135deg, #fcf6ba 0%, #bf953f 22%, #fbf5b7 45%, #aa771c 80%, #917a39 100%);
-            --soft-gold: #d4af37;
-            --card-gray: #1a1a1a;
-            --text-silver: #e0e0e0;
-            --warning-red: #ff4d4d;
-            --success-green: #28a745;
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;500;600&display=swap');
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
         }
-        body { 
-            background-color: var(--casino-black); 
-            color: var(--text-silver); 
-            font-family: 'Montserrat', sans-serif; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-        }
-        .container { width: 95%; max-width: 1000px; padding: 40px 0; }
-
-        /* 栏目通用样式 */
-        .category-group { 
-            background: var(--card-gray); 
-            margin-bottom: 25px; 
-            border: 1px solid rgba(212, 175, 55, 0.15); 
-        }
-        .category-header { 
-            padding: 20px; 
-            cursor: pointer; 
-            display: flex; 
-            justify-content: space-between; 
-            background: #151515; 
-            border-left: 4px solid var(--soft-gold); 
-        }
-        .category-title { 
-            font-family: 'Cinzel', serif; 
-            color: var(--soft-gold); 
-            font-size: 1.1rem; 
-            letter-spacing: 1px; 
-        }
-        .category-content { 
-            padding: 20px; 
-            display: none; 
-            background: #0f0f0f; 
+        .title-font {
+            font-family: 'Cinzel', serif;
         }
 
-        /* Q&A 网格 */
-        .qa-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 12px; 
-        }
-        .qa-item {
-            background: rgba(255,255,255,0.03); 
-            padding: 15px; 
-            border: 1px solid rgba(212,175,55,0.1);
-            font-size: 0.85rem; 
-            cursor: pointer; 
-            transition: 0.3s;
-        }
-        .qa-item:hover { 
-            border-color: var(--soft-gold); 
-            background: rgba(212,175,55,0.08); 
+        /* 粒子背景容器 */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #1e0533, #0f172a, #1e3a8a);
+            overflow: hidden;
         }
 
-        /* 答案面板 */
-        .answer-panel {
-            display: none; 
-            background: #1a1a1a; 
-            border: 1px solid var(--soft-gold);
-            padding: 15px; 
-            margin-top: 10px; 
-            font-size: 0.9rem; 
-            line-height: 1.6; 
-            color: #fff;
+        /* 微光卡片 */
+        .glow-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 0 35px rgba(167, 139, 250, 0.3),
+                        0 25px 50px -12px rgb(0 0 0 / 0.4);
+            transition: all 0.4s ease;
+        }
+        .glow-card:hover {
+            box-shadow: 0 0 50px rgba(167, 139, 250, 0.5),
+                        0 30px 60px -15px rgb(0 0 0 / 0.5);
+            transform: translateY(-6px);
         }
 
-        /* 提示板 */
-        .notice-board { 
-            background: #111; 
-            border: 1px solid rgba(212,175,55,0.2); 
-            padding: 20px; 
-            margin-bottom: 20px; 
-        }
-        .restriction-list, .mustdo-list { 
-            list-style: none; 
-            padding: 0; 
-        }
-        .restriction-list li, .mustdo-list li { 
-            padding: 10px 0; 
-            border-bottom: 1px dashed #333; 
-            font-size: 0.87rem; 
-            display: flex; 
-            align-items: flex-start;
-            line-height: 1.5;
-        }
-        .restriction-list li::before { 
-            content: '❌'; 
-            margin-right: 12px; 
-            color: var(--warning-red);
-            font-size: 1.1rem;
-        }
-        .mustdo-list li::before { 
-            content: '✅'; 
-            margin-right: 12px; 
-            color: var(--success-green);
-            font-size: 1.1rem;
-        }
-
-        .report-btn {
-            display: block; 
-            text-align: center; 
-            padding: 12px; 
-            background: var(--vip-gold);
-            color: #000; 
-            text-decoration: none; 
-            font-weight: 700; 
-            margin-top: 15px;
-            border-radius: 4px;
+        .glow-text {
+            text-shadow: 0 0 20px rgba(167, 139, 250, 0.6);
         }
     </style>
 </head>
-<body>
-    <div class="container">
-       
-        <!-- VIP SOLUTIONS (Q&A) -->
-        <div class="category-group">
-            <div class="category-header" onclick="toggleSection(this)">
-                <span class="category-title">VIP SOLUTIONS (Q&A)</span>
-                <span>▼</span>
+<body class="text-zinc-200 min-h-screen relative">
+
+    <!-- 粒子背景 -->
+    <canvas id="particles" class="fixed inset-0 pointer-events-none"></canvas>
+
+    <!-- 顶部导航 -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/70 backdrop-blur-md border-b border-violet-500/30">
+        <div class="max-w-6xl mx-auto px-8 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="text-3xl">👑</span>
+                <h1 class="title-font text-3xl font-bold tracking-wider text-white">Manman-Team</h1>
             </div>
-            <div class="category-content" style="display: block;">
-                <div class="qa-grid">
-                    <!-- 你的原有 Q&A 保持不变，这里省略部分以节省空间，实际复制时请保留全部 -->
-                    <div class="qa-wrapper">
-                        <div class="qa-item" onclick="toggleAnswer(this)">1. wd berapa ?</div>
-                        <div class="answer-panel">Tergantung pada riwayat akun. Biasanya proses JP memakan waktu 5-15 menit setelah verifikasi.</div>
+            <div class="text-violet-300 text-sm font-medium tracking-widest">VIP STRATEGY & RULES</div>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto px-6 pt-28 pb-16">
+        <!-- 主标题 -->
+        <div class="text-center mb-16">
+            <h2 class="title-font text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-300 via-fuchsia-300 to-cyan-300 glow-text">
+                VIP STRATEGY
+            </h2>
+            <p class="mt-4 text-xl text-violet-200/80">Panduan Lengkap & Profesional</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+
+            <!-- 1. VIP SOLUTIONS (Q&A) -->
+            <div class="glow-card border border-violet-400/30 rounded-3xl overflow-hidden">
+                <div onclick="toggleSection(this)" 
+                     class="bg-gradient-to-r from-violet-900/80 to-fuchsia-900/80 px-8 py-7 flex items-center justify-between cursor-pointer">
+                    <h2 class="title-font text-2xl text-white">VIP SOLUTIONS (Q&A)</h2>
+                    <span class="text-3xl transition-transform duration-300 text-violet-200">▼</span>
+                </div>
+                <div class="p-8 space-y-6 section-content">
+                    <!-- 示例问题，你可以继续添加 -->
+                    <div onclick="toggleAnswer(this)" class="cursor-pointer group">
+                        <div class="flex justify-between items-center py-3 border-b border-white/10 group-hover:text-violet-200">
+                            <p class="font-medium">1. WD berapa lama?</p>
+                        </div>
+                        <div class="answer-panel hidden mt-4 text-violet-100/90 text-sm leading-relaxed">
+                            Biasanya 5-15 menit setelah verifikasi. Tergantung riwayat akun Anda.
+                        </div>
                     </div>
-                    <!-- ... 其他 10 条 Q&A 请保留你原来的内容 ... -->
-                    <div class="qa-wrapper"><div class="qa-item" onclick="toggleAnswer(this)">11. main di game apa ?</div><div class="answer-panel">Cek RTP Live kami untuk melihat game mana yang sedang dalam status Gacor/Maxwin.</div></div>
+                    <!-- 添加更多问题时复制上面这个块即可 -->
                 </div>
             </div>
-        </div>
 
-        <!-- ✅ HAL YANG HARUS DILAKUKAN（已优化加强版） -->
-        <div class="category-group">
-            <div class="category-header" onclick="toggleSection(this)">
-                <span class="category-title">✅ HAL YANG HARUS DILAKUKAN (MUST DO)</span>
-                <span>▼</span>
-            </div>
-            <div class="category-content" style="display: block;">
-                <div class="notice-board" style="border-left: 5px solid #28a745;">
-                    <h3 style="color: #28a745; text-align:center; margin-bottom: 15px;">✅ PROSEDUR VIP YANG BENAR & AMAN ✅</h3>
-                    <ul class="mustdo-list">
-                        <li>Selalu gunakan link resmi yang diberikan tim VIP untuk registrasi dan login</li>
-                        <li>Verifikasi akun lengkap (KTP / data pribadi) sebelum melakukan deposit pertama</li>
-                        <li>Kirim bukti transfer deposit ke LiveChat resmi segera setelah transfer</li>
-                        <li>Ikuti pola / strategi yang diberikan tim VIP secara disiplin dan konsisten</li>
-                        <li>Screenshot atau rekam layar setiap transaksi deposit & withdraw sebagai bukti</li>
-                        <li>Hubungi LiveChat resmi untuk semua pertanyaan atau kendala akun</li>
-                        <li>Main sesuai aturan dan turnover yang ditentukan agar WD lancar</li>
-                        <li>Gunakan hanya rekening atas nama sendiri untuk deposit dan withdraw</li>
-                        <li>Simpan semua chat / bukti komunikasi dengan tim VIP</li>
-                        <li>Laporkan segera jika menemukan promotor atau link palsu</li>
-                        <li>Patuhi batas minimal WD (50K) dan syarat yang berlaku</li>
-                        <li>Jaga kerahasiaan akun dan jangan bagikan password ke siapapun</li>
-                    </ul>
-                    <p style="text-align: center; margin-top: 15px; color: #d4af37; font-weight: 600;">
-                        ✅ Patuhi semua poin di atas = Proses WD lebih cepat & aman
-                    </p>
+            <!-- 2. MUST DO -->
+            <div class="glow-card border border-emerald-400/30 rounded-3xl overflow-hidden">
+                <div onclick="toggleSection(this)" 
+                     class="bg-gradient-to-r from-emerald-900/80 to-cyan-900/80 px-8 py-7 flex items-center justify-between cursor-pointer">
+                    <h2 class="title-font text-2xl text-emerald-100 flex items-center gap-3">✅ MUST DO</h2>
+                    <span class="text-3xl transition-transform duration-300 text-emerald-200">▼</span>
                 </div>
-            </div>
-        </div>
-
-        <!-- VIP RESTRICTIONS (DON'T) -->
-        <div class="category-group">
-            <div class="category-header" onclick="toggleSection(this)">
-                <span class="category-title">VIP RESTRICTIONS (DON'T)</span>
-                <span>▼</span>
-            </div>
-            <div class="category-content">
-                <div class="notice-board" style="border-left: 5px solid var(--warning-red);">
-                    <h3 style="color: var(--warning-red); text-align:center;">⚠️ HAL YANG DI LARANG ⚠️</h3>
-                    <ul class="restriction-list">
-                        <li>Mendaftarkan akun dan membantu deposit pengguna</li>
-                        <li>Mendaftarkan diri sendiri sebagai pengguna</li>
-                        <li>Meminta komisi dari kemenangan pengguna</li>
-                        <li>Tidak mengirimkan gambar peringatan</li>
-                        <li>Tidak klik profil wa saat rekam layar deposit</li>
-                        <li>Mengirimkan link lebih dari 1 secara bersamaan</li>
-                        <li>Menjanjikan kemenangan nominal JP tertentu</li>
-                        <li>Login akun dan mengambil uang pengguna</li>
-                        <li>Memberikan rekening pribadi untuk deposit</li>
-                        <li>Menjanjikan bonus di luar format Web</li>
-                        <li>Mengirimkan video seperti memegang kendali/hacker</li>
-                        <li>Membantu pelanggan menerima kode verifikasi</li>
+                <div class="p-8 section-content">
+                    <ul class="space-y-6 text-sm">
+                        <li class="flex gap-4 items-start">
+                            <span class="text-emerald-400 text-2xl mt-0.5">✅</span>
+                            <span>Selalu gunakan link resmi Manman-Team</span>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <span class="text-emerald-400 text-2xl mt-0.5">✅</span>
+                            <span>Verifikasi akun lengkap sebelum deposit</span>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <span class="text-emerald-400 text-2xl mt-0.5">✅</span>
+                            <span>Kirim bukti transfer ke LiveChat resmi</span>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <span class="text-emerald-400 text-2xl mt-0.5">✅</span>
+                            <span>Ikuti strategi dan pola yang diberikan tim</span>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <span class="text-emerald-400 text-2xl mt-0.5">✅</span>
+                            <span>Simpan semua bukti chat dan transaksi</span>
+                        </li>
                     </ul>
                 </div>
-                <div class="notice-board" style="border: 1px solid #ff4d4d; background: rgba(255,77,77,0.05);">
-                    <h3 style="color: #ff4d4d; text-align:center;">PEJUANG CASINO</h3>
-                    <p style="text-align: center; font-weight: bold;">🚫 TOLAK TRANSAKSI ILEGAL, LAPOR & DAPATKAN 100K!</p>
-                    <p style="font-size: 0.85rem; color: #ccc;">Jika Anda menemukan promotor yang menawarkan cashback pribadi, lapor ke LiveChat resmi. Bonus 100.000 IDR menanti!</p>
-                    <p style="font-size: 0.8rem; color: #aaa;"><strong>🛡 JAMINAN KEAMANAN:</strong> Identitas pelapor DIJAMIN 100% RAHASIA.</p>
-                    <a href="https://direct.lc.chat/12891963/20" target="_blank" class="report-btn">📌 LINK PELAPORAN RESMI</a>
+            </div>
+
+            <!-- 3. DON'T -->
+            <div class="glow-card border border-rose-400/30 rounded-3xl overflow-hidden">
+                <div onclick="toggleSection(this)" 
+                     class="bg-gradient-to-r from-rose-900/80 to-orange-900/80 px-8 py-7 flex items-center justify-between cursor-pointer">
+                    <h2 class="title-font text-2xl text-rose-100 flex items-center gap-3">⚠️ DON'T</h2>
+                    <span class="text-3xl transition-transform duration-300 text-rose-200">▼</span>
+                </div>
+                <div class="p-8 section-content">
+                    <ul class="space-y-6 text-sm">
+                        <li class="flex gap-4 items-start">
+                            <span class="text-rose-400 text-2xl mt-0.5">❌</span>
+                            <span>Mendaftarkan akun untuk orang lain</span>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <span class="text-rose-400 text-2xl mt-0.5">❌</span>
+                            <span>Memberikan rekening pribadi untuk deposit</span>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <span class="text-rose-400 text-2xl mt-0.5">❌</span>
+                            <span>Menjanjikan JP atau maxwin pasti</span>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <span class="text-rose-400 text-2xl mt-0.5">❌</span>
+                            <span>Menggunakan link tidak resmi</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
+
         </div>
     </div>
 
     <script>
-        function toggleSection(header) {
-            const content = header.nextElementSibling;
-            content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+        // 粒子背景效果
+        function createParticles() {
+            const canvas = document.getElementById('particles');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            let particles = [];
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2.5 + 0.5;
+                    this.speedX = Math.random() * 0.5 - 0.25;
+                    this.speedY = Math.random() * 0.5 - 0.25;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                }
+                draw() {
+                    ctx.fillStyle = 'rgba(167, 139, 250, 0.6)';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < 120; i++) {
+                particles.push(new Particle());
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let p of particles) {
+                    p.update();
+                    p.draw();
+                }
+                requestAnimationFrame(animate);
+            }
+            animate();
+
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
         }
 
-        function toggleAnswer(item) {
-            const panel = item.nextElementSibling;
-            const allPanels = document.querySelectorAll('.answer-panel');
-            allPanels.forEach(p => { 
-                if(p !== panel) p.style.display = 'none'; 
-            });
-            panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
+        // 栏目展开/收起
+        function toggleSection(el) {
+            const content = el.parentElement.querySelector('.section-content');
+            const arrow = el.querySelector('span:last-child');
+            if (content) {
+                content.classList.toggle('hidden');
+                arrow.style.transform = content.classList.contains('hidden') ? '' : 'rotate(180deg)';
+            }
         }
+
+        // 答案展开/收起
+        function toggleAnswer(el) {
+            const panel = el.querySelector('.answer-panel');
+            if (panel) panel.classList.toggle('hidden');
+        }
+
+        // 初始化
+        window.onload = () => {
+            createParticles();
+            // 默认展开第一个栏目
+            const firstContent = document.querySelector('.section-content');
+            if (firstContent) firstContent.classList.remove('hidden');
+        };
     </script>
 </body>
 </html>
